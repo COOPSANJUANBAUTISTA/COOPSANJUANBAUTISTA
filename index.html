@@ -7,6 +7,42 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Estilos y Perspectiva 3D para el carrusel flotante */
+        .perspective-container {
+            perspective: 1200px;
+            transform-style: preserve-3d;
+        }
+        .card-3d {
+            transition: all 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 1.5rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+            opacity: 0;
+            transform: scale(0.85) translateZ(-100px) rotateY(15deg);
+            pointer-events: none;
+        }
+        .card-3d.active {
+            opacity: 1;
+            transform: scale(1) translateZ(0px) rotateY(0deg);
+            pointer-events: auto;
+            z-index: 10;
+        }
+        .card-3d.prev {
+            opacity: 0.4;
+            transform: scale(0.9) translateZ(-60px) translateX(-40px) rotateY(-10deg);
+            z-index: 5;
+        }
+        .card-3d.next {
+            opacity: 0.4;
+            transform: scale(0.9) translateZ(-60px) translateX(40px) rotateY(10deg);
+            z-index: 5;
+        }
+    </style>
 </head>
 <body class="min-h-screen text-white font-sans selection:bg-amber-500 selection:text-white relative overflow-x-hidden">
 
@@ -76,11 +112,14 @@
             </div>
         </main>
 
-        <!-- SECCIÓN 1: VERDURAS -->
+        <!-- SECCIÓN 1: VERDURAS (Con Carrusel 3D Flotante) -->
         <section id="verduras-sec" class="py-16 border-t border-white/10 max-w-[1440px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div class="lg:col-span-5 rounded-3xl overflow-hidden shadow-2xl border border-white/15 h-80 relative group">
-                <img id="verduras-img" src="" alt="Verduras" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+            <div class="lg:col-span-5 h-80 relative perspective-container group">
+                <!-- Contenedor 3D para imágenes de Verduras -->
+                <div id="verduras-3d-carousel" class="w-full h-full relative rounded-3xl overflow-hidden border border-white/20 shadow-2xl bg-black/50">
+                    <!-- Las imágenes se inyectan dinámicamente en 3D -->
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none rounded-3xl"></div>
             </div>
             <div class="lg:col-span-7 space-y-6">
                 <span class="text-amber-300 font-semibold tracking-wider text-xs uppercase bg-amber-500/20 px-3 py-1 rounded-full border border-amber-400/30">Departamento 01</span>
@@ -93,7 +132,7 @@
             </div>
         </section>
 
-        <!-- SECCIÓN 2: FRUTERÍA -->
+        <!-- SECCIÓN 2: FRUTERÍA (Con Carrusel 3D Flotante) -->
         <section id="fruteria-sec" class="py-16 border-t border-white/10 max-w-[1440px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div class="lg:col-span-7 space-y-6 order-2 lg:order-1">
                 <span class="text-amber-300 font-semibold tracking-wider text-xs uppercase bg-amber-500/20 px-3 py-1 rounded-full border border-amber-400/30">Departamento 02</span>
@@ -104,17 +143,23 @@
                     <!-- Productos inyectados por JS -->
                 </div>
             </div>
-            <div class="lg:col-span-5 rounded-3xl overflow-hidden shadow-2xl border border-white/15 h-80 relative group order-1 lg:order-2">
-                <img id="fruteria-img" src="" alt="Frutería" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+            <div class="lg:col-span-5 h-80 relative perspective-container group order-1 lg:order-2">
+                <!-- Contenedor 3D para imágenes de Frutería -->
+                <div id="fruteria-3d-carousel" class="w-full h-full relative rounded-3xl overflow-hidden border border-white/20 shadow-2xl bg-black/50">
+                    <!-- Las imágenes se inyectan dinámicamente en 3D -->
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none rounded-3xl"></div>
             </div>
         </section>
 
-        <!-- SECCIÓN 3: CHARCUTERÍA -->
+        <!-- SECCIÓN 3: CHARCUTERÍA (Con Carrusel 3D Flotante) -->
         <section id="charcuteria-sec" class="py-16 border-t border-white/10 max-w-[1440px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div class="lg:col-span-5 rounded-3xl overflow-hidden shadow-2xl border border-white/15 h-80 relative group">
-                <img id="charcuteria-img" src="" alt="Charcutería" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+            <div class="lg:col-span-5 h-80 relative perspective-container group">
+                <!-- Contenedor 3D para imágenes de Charcutería -->
+                <div id="charcuteria-3d-carousel" class="w-full h-full relative rounded-3xl overflow-hidden border border-white/20 shadow-2xl bg-black/50">
+                    <!-- Las imágenes se inyectan dinámicamente en 3D -->
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none rounded-3xl"></div>
             </div>
             <div class="lg:col-span-7 space-y-6">
                 <span class="text-amber-300 font-semibold tracking-wider text-xs uppercase bg-amber-500/20 px-3 py-1 rounded-full border border-amber-400/30">Departamento 03</span>
@@ -140,17 +185,18 @@
 
     </div>
 
-    <!-- Script para la transición suave de colores por sección -->
+    <!-- Script para Transición de Colores y Carrusel 3D Flotante -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
+            // 1. Transición de Colores del Fondo por Sección
             const sections = document.querySelectorAll('main, section[id]');
             const bgContainer = document.getElementById('dynamic-bg');
 
             const colorThemes = {
-                'inicio': 'bg-gradient-to-br from-[#7c2d12] via-[#57200c] to-[#2c1005]',       // Terracotta cálido
-                'verduras-sec': 'bg-gradient-to-br from-[#113822] via-[#092214] to-[#04120a]', // Verde campo profundo
-                'fruteria-sec': 'bg-gradient-to-br from-[#592209] via-[#78350f] to-[#451a03]', // Ámbar / Cítrico cálido
-                'charcuteria-sec': 'bg-gradient-to-br from-[#3b0d10] via-[#210609] to-[#120204]' // Vino / Caoba profundo
+                'inicio': 'bg-gradient-to-br from-[#7c2d12] via-[#57200c] to-[#2c1005]',       
+                'verduras-sec': 'bg-gradient-to-br from-[#113822] via-[#092214] to-[#04120a]', 
+                'fruteria-sec': 'bg-gradient-to-br from-[#592209] via-[#78350f] to-[#451a03]', 
+                'charcuteria-sec': 'bg-gradient-to-br from-[#3b0d10] via-[#210609] to-[#120204]' 
             };
 
             const observer = new IntersectionObserver((entries) => {
@@ -165,7 +211,49 @@
             }, { threshold: 0.25 });
 
             sections.forEach(sec => observer.observe(sec));
+
+            // 2. Inicializador del Carrusel 3D Flotante por Departamento
+            setTimeout(() => {
+                setup3DCarousel('verduras-3d-carousel', window.verdurasInfo);
+                setup3DCarousel('fruteria-3d-carousel', window.fruteriaInfo);
+                setup3DCarousel('charcuteria-3d-carousel', window.charcuteriaInfo);
+            }, 500);
         });
+
+        function setup3DCarousel(containerId, infoObject) {
+            const container = document.getElementById(containerId);
+            if (!container || !infoObject) return;
+
+            // Extraer imágenes (ya sea del array 'imagenes' o del producto principal)
+            let images = [];
+            if (infoObject.imagenes && Array.isArray(infoObject.imagenes)) {
+                images = infoObject.imagenes;
+            } else if (infoObject.imagen) {
+                images = [infoObject.imagen];
+            } else if (infoObject.productos) {
+                images = infoObject.productos.map(p => p.imagen).filter(Boolean);
+            }
+
+            if (images.length === 0) return;
+
+            container.innerHTML = '';
+            images.forEach((imgSrc, index) => {
+                const img = document.createElement('img');
+                img.src = imgSrc;
+                img.className = `card-3d ${index === 0 ? 'active' : ''}`;
+                container.appendChild(img);
+            });
+
+            if (images.length > 1) {
+                let currentIndex = 0;
+                const cards = container.querySelectorAll('.card-3d');
+                setInterval(() => {
+                    cards[currentIndex].classList.remove('active');
+                    currentIndex = (currentIndex + 1) % cards.length;
+                    cards[currentIndex].classList.add('active');
+                }, 3500); // Rota cada 3.5 segundos con efecto tridimensional
+            }
+        }
     </script>
 
     <!-- Archivos JavaScript por Departamento -->
