@@ -10,3 +10,8 @@ body {
 .animate-float {
     animation: float 4s ease-in-out infinite;
 }
+
+/* Transición suave para el cambio de fotos en carrusel */
+#verduras-img, #fruteria-img, #charcuteria-img {
+    transition: opacity 0.6s ease-in-out;
+}
