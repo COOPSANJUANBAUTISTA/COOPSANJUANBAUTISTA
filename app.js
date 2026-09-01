@@ -1,7 +1,26 @@
-// Cargar datos de Verduras
+// Función para hacer la transición automática de fotos (Carrusel)
+function iniciarCarrusel(imgElementId, imagenesArray) {
+    const imgElement = document.getElementById(imgElementId);
+    if (!imgElement || !imagenesArray || imagenesArray.length === 0) return;
+    
+    let currentIndex = 0;
+    imgElement.src = imagenesArray[0];
+    
+    // Cambia de foto cada 3.5 segundos con efecto de desvanecimiento
+    setInterval(() => {
+        currentIndex = (currentIndex + 1) % imagenesArray.length;
+        imgElement.style.opacity = '0';
+        setTimeout(() => {
+            imgElement.src = imagenesArray[currentIndex];
+            imgElement.style.opacity = '1';
+        }, 300);
+    }, 3500);
+}
+
+// --- VERDURAS ---
 document.getElementById("verduras-titulo").innerText = verdurasInfo.titulo;
 document.getElementById("verduras-desc").innerText = verdurasInfo.descripcion;
-document.getElementById("verduras-img").src = verdurasInfo.imagen;
+iniciarCarrusel("verduras-img", verdurasInfo.imagenes);
 
 const listVerduras = document.getElementById("verduras-lista");
 verdurasInfo.productos.forEach(p => {
@@ -14,10 +33,10 @@ verdurasInfo.productos.forEach(p => {
     `;
 });
 
-// Cargar datos de Frutería
+// --- FRUTERÍA ---
 document.getElementById("fruteria-titulo").innerText = fruteriaInfo.titulo;
 document.getElementById("fruteria-desc").innerText = fruteriaInfo.descripcion;
-document.getElementById("fruteria-img").src = fruteriaInfo.imagen;
+iniciarCarrusel("fruteria-img", fruteriaInfo.imagenes);
 
 const listFruteria = document.getElementById("fruteria-lista");
 fruteriaInfo.productos.forEach(p => {
@@ -30,10 +49,10 @@ fruteriaInfo.productos.forEach(p => {
     `;
 });
 
-// Cargar datos de Charcutería
+// --- CHARCUTERÍA ---
 document.getElementById("charcuteria-titulo").innerText = charcuteriaInfo.titulo;
 document.getElementById("charcuteria-desc").innerText = charcuteriaInfo.descripcion;
-document.getElementById("charcuteria-img").src = charcuteriaInfo.imagen;
+iniciarCarrusel("charcuteria-img", charcuteriaInfo.imagenes);
 
 const listCharcuteria = document.getElementById("charcuteria-lista");
 charcuteriaInfo.productos.forEach(p => {
