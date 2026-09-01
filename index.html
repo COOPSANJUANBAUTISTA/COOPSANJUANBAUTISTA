@@ -1,131 +1,157 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="page-title">Cooperativa San Juan Bautista</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-gradient-to-br from-[#d97706] via-[#c2410c] to-[#78350f] min-h-screen text-white flex items-center justify-center p-4 md:p-8">
+<body class="bg-gradient-to-br from-[#9a3412] via-[#7c2d12] to-[#451a03] min-h-screen text-white font-sans selection:bg-amber-500 selection:text-white">
 
-    <div class="absolute top-0 left-0 w-96 h-96 bg-amber-400/20 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="absolute bottom-0 right-0 w-96 h-96 bg-orange-500/20 rounded-full blur-3xl pointer-events-none"></div>
+    <!-- Fondo ambiental con luces difuminadas -->
+    <div class="fixed top-0 left-0 w-[500px] h-[500px] bg-amber-500/15 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="fixed bottom-0 right-0 w-[500px] h-[500px] bg-orange-600/15 rounded-full blur-[120px] pointer-events-none"></div>
 
-    <div class="relative w-full max-w-6xl bg-black/25 backdrop-blur-xl border border-white/15 rounded-3xl shadow-2xl p-6 md:p-10 flex flex-col justify-between">
+    <!-- Contenedor General Amplio -->
+    <div class="relative w-full min-h-screen flex flex-col justify-between px-6 md:px-16 py-8 max-w-[1440px] mx-auto">
 
-        <header class="flex flex-col md:flex-row items-center justify-between gap-4 mb-8">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-full bg-amber-500/30 flex items-center justify-center border border-amber-400/50 shadow-inner text-xl">
+        <!-- Header / Barra de Navegación -->
+        <header class="flex flex-col md:flex-row items-center justify-between gap-6 py-4 border-b border-white/10">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-2xl bg-amber-500/20 flex items-center justify-center border border-amber-400/40 shadow-lg text-2xl">
                     🌱
                 </div>
                 <div>
-                    <h1 id="brand-name" class="text-sm font-bold tracking-wider uppercase text-amber-200"></h1>
+                    <h1 id="brand-name" class="text-base font-bold tracking-wider uppercase text-amber-200"></h1>
                     <p id="brand-location" class="text-xs text-amber-100/70"></p>
                 </div>
             </div>
 
-            <nav class="bg-black/30 backdrop-blur-md border border-white/10 px-6 py-2.5 rounded-full flex items-center gap-5 md:gap-8 shadow-lg text-sm font-medium">
+            <nav class="bg-black/30 backdrop-blur-md border border-white/15 px-8 py-3 rounded-full flex items-center gap-6 md:gap-10 shadow-xl text-sm font-medium">
                 <a href="#inicio" class="text-white hover:text-amber-300 transition-colors">Inicio</a>
-                <a href="#fruteria" class="text-white/80 hover:text-amber-300 transition-colors">Frutería</a>
-                <a href="#verduras" class="text-white/80 hover:text-amber-300 transition-colors">Verduras</a>
-                <a href="#charcuteria" class="text-white/80 hover:text-amber-300 transition-colors">Charcutería</a>
+                <a href="#productos" class="text-white/80 hover:text-amber-300 transition-colors">Catálogo</a>
+                <a href="#nosotros" class="text-white/80 hover:text-amber-300 transition-colors">Nosotros</a>
+                <a href="#contacto" class="text-white/80 hover:text-amber-300 transition-colors">Contacto</a>
             </nav>
 
-            <div class="hidden md:flex items-center gap-3 text-white/80 text-sm">
-                <span class="cursor-pointer hover:text-white transition">🛒 Pedidos</span>
+            <div class="flex items-center gap-4">
+                <a href="#contacto" class="bg-amber-500 hover:bg-amber-400 text-orange-950 px-5 py-2.5 rounded-full text-xs font-bold transition shadow-lg">
+                    Realizar Pedido
+                </a>
             </div>
         </header>
 
-        <main class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center my-4">
+        <!-- Sección Principal (Hero) Amplia e Imponente -->
+        <main class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center my-auto py-12">
             
-            <div class="lg:col-span-5 space-y-6">
-                <div id="hero-badge" class="inline-block px-3 py-1 bg-amber-500/20 border border-amber-400/30 rounded-full text-xs font-semibold text-amber-300 tracking-wide"></div>
-                <h2 id="hero-title" class="text-4xl md:text-5xl font-extrabold tracking-tight leading-tight"></h2>
-                <p id="hero-description" class="text-white/80 text-sm md:text-base leading-relaxed"></p>
-                <div class="pt-2">
-                    <a href="#catalogo" id="hero-btn" class="inline-flex items-center gap-2 bg-white text-orange-950 font-semibold px-6 py-3.5 rounded-full shadow-lg hover:bg-amber-100 hover:scale-105 transition-all duration-300"></a>
+            <!-- Columna Izquierda: Textos -->
+            <div class="lg:col-span-6 space-y-8">
+                <div id="hero-badge" class="inline-block px-4 py-1.5 bg-amber-500/20 border border-amber-400/30 rounded-full text-xs font-semibold text-amber-300 tracking-wider uppercase"></div>
+                <h2 id="hero-title" class="text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.1]"></h2>
+                <p id="hero-description" class="text-white/85 text-lg md:text-xl leading-relaxed max-w-xl"></p>
+                
+                <div class="flex flex-wrap items-center gap-4 pt-4">
+                    <a href="#productos" id="hero-btn" class="inline-flex items-center gap-3 bg-white text-orange-950 font-bold px-8 py-4 rounded-full shadow-2xl hover:bg-amber-100 hover:scale-105 transition-all duration-300 text-base"></a>
                 </div>
             </div>
 
-            <div class="lg:col-span-4 flex justify-center relative py-6">
-                <div class="absolute inset-0 bg-gradient-to-t from-amber-500/30 to-transparent rounded-full blur-2xl"></div>
+            <!-- Columna Derecha: Imagen Real y Atractiva con Animación Flotante -->
+            <div class="lg:col-span-6 flex justify-center relative">
+                <div class="absolute inset-0 bg-gradient-to-t from-amber-500/20 to-transparent rounded-3xl blur-3xl"></div>
                 
-                <div class="relative z-10 animate-float bg-black/40 backdrop-blur-md border border-white/20 p-8 rounded-3xl shadow-2xl text-center max-w-xs w-full">
-                    <div class="text-7xl mb-3 drop-shadow-xl select-none">🥕🍇🧀</div>
-                    <h3 id="center-title" class="font-bold text-lg text-amber-200"></h3>
-                    <p id="center-subtitle" class="text-xs text-white/70 mt-1"></p>
+                <div class="relative z-10 animate-float w-full max-w-lg bg-black/30 backdrop-blur-xl border border-white/20 p-4 rounded-3xl shadow-2xl overflow-hidden group">
+                    <div class="relative h-80 rounded-2xl overflow-hidden shadow-inner">
+                        <img id="main-product-img" src="" alt="Cosecha y Productos Frescos" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-6">
+                            <div>
+                                <h3 id="center-title" class="text-xl font-bold text-amber-200"></h3>
+                                <p id="center-subtitle" class="text-sm text-white/80"></p>
+                            </div>
+                        </div>
+                    </div>
                     
-                    <div id="center-badge" class="absolute -top-3 -right-3 bg-amber-400 text-orange-950 text-xs font-bold px-3 py-1 rounded-full shadow-lg border border-amber-200"></div>
+                    <div id="center-badge" class="absolute top-7 right-7 bg-amber-400 text-orange-950 text-xs font-extrabold px-4 py-1.5 rounded-full shadow-xl border border-amber-200 uppercase tracking-wider"></div>
                 </div>
-            </div>
-
-            <div class="lg:col-span-3 space-y-4">
-                
-                <div class="bg-white/10 backdrop-blur-md border border-white/15 p-4 rounded-2xl hover:bg-white/20 transition-all cursor-pointer group shadow-md">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-3">
-                            <span class="text-3xl">🥦</span>
-                            <div>
-                                <h4 id="card1-title" class="font-semibold text-sm group-hover:text-amber-300 transition-colors"></h4>
-                                <p id="card1-desc" class="text-xs text-white/70"></p>
-                            </div>
-                        </div>
-                        <div class="w-6 h-6 rounded-full border border-white/30 flex items-center justify-center group-hover:border-amber-300">
-                            <div class="w-2 h-2 rounded-full bg-white group-hover:bg-amber-300"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white/10 backdrop-blur-md border border-white/15 p-4 rounded-2xl hover:bg-white/20 transition-all cursor-pointer group shadow-md">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-3">
-                            <span class="text-3xl">🍎</span>
-                            <div>
-                                <h4 id="card2-title" class="font-semibold text-sm group-hover:text-amber-300 transition-colors"></h4>
-                                <p id="card2-desc" class="text-xs text-white/70"></p>
-                            </div>
-                        </div>
-                        <div class="w-6 h-6 rounded-full border border-white/30 flex items-center justify-center group-hover:border-amber-300">
-                            <div class="w-2 h-2 rounded-full bg-white group-hover:bg-amber-300"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white/10 backdrop-blur-md border border-white/15 p-4 rounded-2xl hover:bg-white/20 transition-all cursor-pointer group shadow-md">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-3">
-                            <span class="text-3xl">🧀</span>
-                            <div>
-                                <h4 id="card3-title" class="font-semibold text-sm group-hover:text-amber-300 transition-colors"></h4>
-                                <p id="card3-desc" class="text-xs text-white/70"></p>
-                            </div>
-                        </div>
-                        <div class="w-6 h-6 rounded-full border border-white/30 flex items-center justify-center group-hover:border-amber-300">
-                            <div class="w-2 h-2 rounded-full bg-white group-hover:bg-amber-300"></div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
 
         </main>
 
-        <footer class="mt-8 pt-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between text-xs text-white/70 gap-4">
-            <div>
-                <p id="footer-slogan"></p>
-            </div>
+        <!-- Sección de Tarjetas de Categorías (Con Imágenes Reales) -->
+        <section id="productos" class="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
             
-            <div class="flex items-center gap-6">
-                <span id="footer-rif" class="text-amber-200"></span>
-                <span id="footer-location"></span>
+            <!-- Tarjeta 1 -->
+            <div class="bg-black/30 backdrop-blur-md border border-white/15 rounded-3xl overflow-hidden hover:border-amber-400/50 transition-all duration-300 group shadow-xl flex flex-col">
+                <div class="h-48 overflow-hidden relative">
+                    <img id="card1-img" src="" alt="Verduras" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                        <h4 id="card1-title" class="text-xl font-bold text-amber-200 mb-2"></h4>
+                        <p id="card1-desc" class="text-sm text-white/80 leading-relaxed"></p>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-amber-300 font-semibold">
+                        <span>Calidad Garantizada</span>
+                        <span>→</span>
+                    </div>
+                </div>
             </div>
 
-            <div class="flex items-center gap-2 bg-black/40 px-4 py-2 rounded-xl border border-white/10 shadow-inner">
-                <span class="text-lg">⚖️</span>
+            <!-- Tarjeta 2 -->
+            <div class="bg-black/30 backdrop-blur-md border border-white/15 rounded-3xl overflow-hidden hover:border-amber-400/50 transition-all duration-300 group shadow-xl flex flex-col">
+                <div class="h-48 overflow-hidden relative">
+                    <img id="card2-img" src="" alt="Frutería" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                        <h4 id="card2-title" class="text-xl font-bold text-amber-200 mb-2"></h4>
+                        <p id="card2-desc" class="text-sm text-white/80 leading-relaxed"></p>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-amber-300 font-semibold">
+                        <span>Cosecha Local</span>
+                        <span>→</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tarjeta 3 -->
+            <div class="bg-black/30 backdrop-blur-md border border-white/15 rounded-3xl overflow-hidden hover:border-amber-400/50 transition-all duration-300 group shadow-xl flex flex-col">
+                <div class="h-48 overflow-hidden relative">
+                    <img id="card3-img" src="" alt="Charcutería" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                        <h4 id="card3-title" class="text-xl font-bold text-amber-200 mb-2"></h4>
+                        <p id="card3-desc" class="text-sm text-white/80 leading-relaxed"></p>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-amber-300 font-semibold">
+                        <span>Artesanal y Fresco</span>
+                        <span>→</span>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Footer / Pie de Página -->
+        <footer id="contacto" class="mt-12 pt-8 border-t border-white/15 flex flex-col md:flex-row items-center justify-between text-sm text-white/80 gap-6">
+            <div>
+                <p id="footer-slogan" class="font-medium text-amber-200"></p>
+            </div>
+            
+            <div class="flex flex-wrap items-center gap-6">
+                <span id="footer-rif" class="bg-black/40 px-3 py-1.5 rounded-lg border border-white/10 text-xs"></span>
+                <span id="footer-location" class="text-xs"></span>
+            </div>
+
+            <div class="flex items-center gap-3 bg-black/50 px-5 py-2.5 rounded-2xl border border-white/15 shadow-inner">
+                <span class="text-xl">⚖️</span>
                 <div>
-                    <span id="price-indicator" class="font-bold text-amber-300 text-sm"></span>
+                    <span id="price-indicator" class="font-bold text-amber-300 text-base"></span>
                     <p class="text-[10px] text-white/60">Actualizado hoy</p>
                 </div>
             </div>
