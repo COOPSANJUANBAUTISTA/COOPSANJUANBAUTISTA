@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cooperativa San Juan Bautista — Servicios Administrativos y Distribución</title>
+  <meta name="description" content="Cooperativa San Juan Bautista: apoyando la producción local y la gestión eficiente. Gestión administrativa, asesoría contable y distribución de rubros agrícolas." />
+  <style>
+    :root{
+      --bg:#ffffff;
+      --text:#0b0b0b;
+      --muted:#6b6b6b;
+      --accent:#111111;
+      --card:#f7f7f7;
+      --glass: rgba(11,11,11,0.04);
+      --max-width:1100px;
+      --radius:10px;
+      --gap:1.25rem;
+      --nav-height:72px;
+      --shadow: 0 6px 18px rgba(11,11,11,0.06);
+      font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.5;
+      font-size:16px;
+      -webkit-text-size-adjust:100%;
+      -ms-text-size-adjust:100%;
+      word-wrap:break-word;
+    }
+
+    /* Header */
+    header{
+      position:sticky;
+      top:0;
+      z-index:40;
+      backdrop-filter: blur(6px);
+      background:linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.86));
+      border-bottom:1px solid rgba(11,11,11,0.06);
+    }
+    .nav-wrap{
+      max-width:var(--max-width);
+      margin:0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:var(--gap);
+      padding:12px 20px;
+      min-height:var(--nav-height);
+    }
+    .brand{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      text-decoration:none;
+      color:var(--accent);
+    }
+    .logo{
+      width:46px;
+      height:46px;
+      border-radius:8px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg,#111,#333);
+      color:#fff;
+      font-weight:700;
+      font-size:14px;
+      box-shadow: var(--shadow);
+    }
+    .brand h1{
+      margin:0;
+      font-size:18px;
+      letter-spacing:0.1px;
+    }
+    nav{
+      display:flex;
+      align-items:center;
+      gap:18px;
+    }
+    nav a{
+      color:var(--accent);
+      text-decoration:none;
+      font-weight:600;
+      padding:8px 10px;
+      border-radius:8px;
+      transition:background .18s, color .18s;
+      font-size:15px;
+    }
+    nav a:hover, nav a:focus{
+      background:var(--glass);
+      outline:none;
+    }
+    .cta{
+      padding:9px 14px;
+      background:#111;
+      color:#fff;
+      border-radius:8px;
+      text-decoration:none;
+      font-weight:700;
+      font-size:15px;
+      box-shadow: 0 6px 16px rgba(17,17,17,0.12);
+    }
+
+    /* Mobile nav */
+    .mobile-toggle{
+      display:none;
+      background:transparent;
+      border:0;
+      padding:8px;
+      border-radius:8px;
+      cursor:pointer;
+      color:var(--accent);
+    }
+
+    /* Hero */
+    .hero{
+      max-width:var(--max-width);
+      margin:28px auto;
+      padding:34px 20px;
+      display:grid;
+      grid-template-columns:1fr 420px;
+      gap:32px;
+      align-items:center;
+    }
+    .hero-inner{
+      padding:28px;
+      border-radius:var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.96));
+      box-shadow: var(--shadow);
+    }
+    .eyebrow{
+      color:var(--muted);
+      font-weight:700;
+      font-size:13px;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      margin-bottom:10px;
+    }
+    .hero h2{
+      margin:0 0 12px 0;
+      font-size:32px;
+      line-height:1.05;
+      color:var(--accent);
+    }
+    .hero p.lead{
+      margin:0 0 18px 0;
+      color:var(--muted);
+      font-size:16px;
+    }
+    .hero .actions{display:flex;gap:12px;flex-wrap:wrap}
+    .btn-outline{
+      padding:10px 14px;
+      border-radius:8px;
+      border:1px solid rgba(11,11,11,0.08);
+      background:transparent;
+      color:var(--accent);
+      text-decoration:none;
+      font-weight:600;
+    }
+    .hero-visual{
+      padding:22px;
+      border-radius:12px;
+      background:linear-gradient(180deg,#111 0%, #222 100%);
+      color:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:200px;
+      box-shadow: 0 12px 30px rgba(17,17,17,0.18);
+    }
+    .hero-visual .big{
+      font-size:18px;
+      text-align:center;
+      max-width:260px;
+      opacity:0.96;
+    }
+
+    /* Sections */
+    main{max-width:var(--max-width); margin:0 auto; padding:18px 20px 80px;}
+    section{padding:40px 0; border-bottom:1px solid rgba(11,11,11,0.03)}
+    section:last-of-type{border-bottom:0}
+    .container{display:block}
+
+    /* Quiénes somos */
+    .about{
+      display:grid;
+      grid-template-columns:1fr 360px;
+      gap:28px;
+      align-items:center;
+    }
+    .about p{
+      margin:0;
+      color:var(--muted);
+      font-size:16px;
+    }
+    .stats{
+      background:var(--card);
+      padding:18px;
+      border-radius:12px;
+      display:flex;
+      gap:12px;
+      justify-content:space-between;
+      align-items:center;
+    }
+    .stat{
+      text-align:center;
+    }
+    .stat strong{display:block;font-size:20px;color:var(--accent)}
+    .stat span{font-size:13px;color:var(--muted)}
+
+    /* Services */
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+    .card{
+      background:var(--card);
+      border-radius:12px;
+      padding:18px;
+      box-shadow: 0 6px 18px rgba(11,11,11,0.04);
+      transition: transform .18s, box-shadow .18s;
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+    }
+    .card:focus-within, .card:hover{
+      transform:translateY(-6px);
+      box-shadow: 0 18px 40px rgba(11,11,11,0.08);
+    }
+    .card .icon{
+      min-width:56px;
+      min-height:56px;
+      border-radius:10px;
+      display:grid;
+      place-items:center;
+      background:#111;
+      color:#fff;
+      flex-shrink:0;
+    }
+    .card h3{margin:0 0 6px 0; font-size:18px}
+    .card p{margin:0;color:var(--muted);font-size:14px}
+    .card .more{margin-top:10px; font-weight:700; color:var(--accent); text-decoration:none; font-size:14px}
+
+    /* Contact */
+    .contact-grid{
+      display:grid;
+      grid-template-columns:1fr 360px;
+      gap:24px;
+      align-items:start;
+    }
+    .contact-card{
+      background:var(--card);
+      padding:18px;
+      border-radius:12px;
+      box-shadow:var(--shadow);
+    }
+    .contact-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
+    .contact-list li{color:var(--muted); font-weight:600}
+    .small{font-size:13px;color:var(--muted)}
+
+    /* Footer */
+    footer{
+      border-top:1px solid rgba(11,11,11,0.03);
+      padding:22px 20px;
+      background:transparent;
+    }
+    .footer-inner{
+      max-width:var(--max-width);
+      margin:0 auto;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .footer-inner .left{color:var(--muted); font-size:14px}
+    .footer-inner .right{color:var(--muted); font-size:13px}
+
+    /* Utilities */
+    .sr-only{
+      position:absolute;
+      width:1px;
+      height:1px;
+      padding:0;
+      margin:-1px;
+      overflow:hidden;
+      clip:rect(0,0,0,0);
+      white-space:nowrap;
+      border:0;
+    }
+
+    /* Responsive */
+    @media (max-width:920px){
+      .hero{grid-template-columns:1fr; margin:18px auto}
+      .about{grid-template-columns:1fr}
+      .contact-grid{grid-template-columns:1fr}
+      .cards{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:640px){
+      .nav-wrap{padding:10px 14px}
+      nav{position:fixed; inset:var(--nav-height) 14px auto 14px; background:rgba(255,255,255,0.98); border-radius:12px; box-shadow:0 18px 40px rgba(11,11,11,0.08); flex-direction:column; padding:12px; display:none;}
+      nav.open{display:flex}
+      .mobile-toggle{display:inline-flex}
+      .hero-visual{min-height:160px}
+      .cards{grid-template-columns:1fr}
+      .brand h1{font-size:16px}
+    }
+
+    /* Accessibility focus */
+    a:focus, button:focus{outline:3px solid rgba(17,17,17,0.08); outline-offset:2px}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-wrap" role="navigation" aria-label="Navegación principal">
+      <a href="#inicio" class="brand" aria-label="Inicio - Cooperativa San Juan Bautista">
+        <div class="logo" aria-hidden="true">SJB</div>
+        <div>
+          <h1>Cooperativa San Juan Bautista</h1>
+          <div style="font-size:12px;color:var(--muted);margin-top:4px">Servicios administrativos y distribución</div>
+        </div>
+      </a>
+
+      <button class="mobile-toggle" id="toggleNav" aria-controls="mainNav" aria-expanded="false" aria-label="Abrir menú">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 7H20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M4 12H20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M4 17H20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <nav id="mainNav" role="menubar" aria-label="Menú principal">
+        <a role="menuitem" href="#inicio">Inicio</a>
+        <a role="menuitem" href="#quienes">Quiénes Somos</a>
+        <a role="menuitem" href="#servicios">Servicios</a>
+        <a role="menuitem" href="#contacto">Contacto</a>
+        <a class="cta" href="#contacto" role="button">Contáctanos</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="inicio" class="hero" aria-labelledby="hero-title">
+      <div class="hero-inner">
+        <div class="eyebrow">Bienvenido</div>
+        <h2 id="hero-title">Cooperativa San Juan Bautista</h2>
+        <p class="lead">Apoyando la producción local y la gestión eficiente. Ofrecemos soluciones administrativas, contables y logística de distribución adaptadas a las necesidades del campo y del comercio regional.</p>
+        <div class="actions">
+          <a class="cta" href="#servicios">Nuestros Servicios</a>
+          <a class="btn-outline" href="#quienes">Conócenos</a>
+        </div>
+      </div>
+
+      <aside class="hero-visual" aria-hidden="true">
+        <div class="big">
+          <svg width="72" height="72" viewBox="0 0 24 24" fill="none" style="margin-bottom:10px" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2v20" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M5 8c1-4 6-5 8-5s7 1 8 5c-1 3-3 4-6 6-2 1-4 3-5 4-1-1-3-3-5-4-3-2-5-3-6-6z" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+          </svg>
+          <div style="font-weight:700; font-size:15px">Gestión y apoyo para el crecimiento local</div>
+          <div class="small" style="margin-top:8px; color:rgba(255,255,255,0.88)">Servicios integrales administrados con responsabilidad y transparencia.</div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="quienes" aria-labelledby="quienes-title">
+      <div class="container">
+        <h2 id="quienes-title">Quiénes Somos</h2>
+        <div class="about" style="margin-top:18px">
+          <div>
+            <p>Somos una cooperativa comprometida con el desarrollo local en Duaca, Estado Lara. Desde nuestra fundación trabajamos en equipo para ofrecer soporte administrativo y soluciones logísticas que fortalecen la producción y comercialización de rubros agrícolas. Nuestro enfoque se basa en la colaboración, la transparencia y el apoyo mutuo entre asociados.</p>
+            <p style="margin-top:12px">Fomentamos prácticas responsables y procesos eficientes para que pequeños y medianos productores accedan a servicios profesionales sin perder control sobre su trabajo y sus beneficios.</p>
+          </div>
+
+          <div class="stats" aria-hidden="true">
+            <div class="stat">
+              <strong>+50</strong>
+              <span>Asociados</span>
+            </div>
+            <div class="stat">
+              <strong>10+</strong>
+              <span>Años de experiencia</span>
+            </div>
+            <div class="stat">
+              <strong>Región</strong>
+              <span>Duaca / Lara</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="servicios" aria-labelledby="servicios-title">
+      <div class="container">
+        <h2 id="servicios-title">Servicios</h2>
+        <p class="small" style="margin-top:8px">Ofrecemos un conjunto de servicios diseñados para simplificar la gestión y ampliar el alcance de producción de nuestros asociados.</p>
+
+        <div class="cards" style="margin-top:18px">
+          <article class="card" tabindex="0" aria-labelledby="s1">
+            <div class="icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 7h18" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M3 12h18" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M3 17h18" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div>
+              <h3 id="s1">Gestión administrativa</h3>
+              <p>Tramitamos documentación, planificación operativa y administración diaria para que su organización funcione con orden y eficiencia.</p>
+              <a class="more" href="#contacto">Solicitar más info →</a>
+            </div>
+          </article>
+
+          <article class="card" tabindex="0" aria-labelledby="s2">
+            <div class="icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 8v8" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M8 12h8" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M21 6v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div>
+              <h3 id="s2">Asesoría contable</h3>
+              <p>Servicios contables y tributarios que incluyen registro de operaciones, conciliaciones y orientación para el cumplimiento normativo.</p>
+              <a class="more" href="#contacto">Solicitar asesoría →</a>
+            </div>
+          </article>
+
+          <article class="card" tabindex="0" aria-labelledby="s3">
+            <div class="icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 12h4l3 6 4-12 3 6h4" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div>
+              <h3 id="s3">Distribución de rubros agrícolas</h3>
+              <p>Coordinamos la logística y distribución regional para que sus productos lleguen con seguridad y puntualidad a mercados y puntos de venta.</p>
+              <a class="more" href="#contacto">Organizar distribución →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto" aria-labelledby="contacto-title">
+      <div class="container">
+        <h2 id="contacto-title">Contacto</h2>
+        <div class="contact-grid" style="margin-top:18px">
+          <div>
+            <p class="small" style="margin-bottom:12px">Estamos disponibles para consultas, asesorías y planificación de servicios. Escríbenos o visítanos en nuestra sede en Duaca.</p>
+
+            <div class="contact-card">
+              <ul class="contact-list" aria-label="Información de contacto">
+                <li>Email: <a href="mailto:contacto@coopsanjuanbautista.org" style="color:var(--accent);text-decoration:none;font-weight:700">contacto@coopsanjuanbautista.org</a></li>
+                <li>Teléfono: <a href="tel:+584123456789" style="color:var(--accent);text-decoration:none;font-weight:700">+58 412 345 6789</a></li>
+                <li>Ubicación: Duaca, Estado Lara, Venezuela</li>
+                <li>RIF: J-00000000-0</li>
+              </ul>
+              <div style="margin-top:12px;color:var(--muted);font-size:13px">Horario de atención: Lunes a Viernes, 8:00 - 16:00</div>
+            </div>
+          </div>
+
+          <aside style="align-self:start">
+            <div class="contact-card" aria-hidden="true">
+              <div style="display:flex;gap:12px;align-items:center">
+                <div style="width:62px;height:62px;border-radius:10px;background:#111;display:grid;place-items:center;color:#fff;font-weight:700">SJB</div>
+                <div>
+                  <div style="font-weight:800;color:var(--accent)">Cooperativa San Juan Bautista</div>
+                  <div class="small" style="margin-top:6px">Apoyo integral a la producción local y la gestión asociativa.</div>
+                </div>
+              </div>
+
+              <div style="margin-top:14px;">
+                <a class="btn-outline" href="mailto:contacto@coopsanjuanbautista.org">Escríbenos</a>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner" role="contentinfo">
+      <div class="left">© <span id="year"></span> Cooperativa San Juan Bautista — Todos los derechos reservados</div>
+      <div class="right">Contacto: contacto@coopsanjuanbautista.org · Duaca, Lara · RIF J-00000000-0</div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    (function(){
+      const toggle = document.getElementById('toggleNav');
+      const nav = document.getElementById('mainNav');
+      toggle.addEventListener('click', function(){
+        const expanded = this.getAttribute('aria-expanded') === 'true';
+        this.setAttribute('aria-expanded', String(!expanded));
+        nav.classList.toggle('open');
+      });
+
+      // Close nav on navigation link click (mobile)
+      nav.querySelectorAll('a[href^="#"]').forEach(a=>{
+        a.addEventListener('click', ()=>{
+          nav.classList.remove('open');
+          toggle.setAttribute('aria-expanded','false');
+        });
+      });
+
+      // Close nav when clicking outside on small screens
+      document.addEventListener('click', (e)=>{
+        if(window.innerWidth <= 640){
+          if(!nav.contains(e.target) && !toggle.contains(e.target)){
+            nav.classList.remove('open');
+            toggle.setAttribute('aria-expanded','false');
+          }
+        }
+      });
+
+      // Smooth scrolling for anchors
+      document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+        anchor.addEventListener('click', function(e){
+          const target = document.querySelector(this.getAttribute('href'));
+          if(target){
+            e.preventDefault();
+            target.scrollIntoView({behavior:'smooth', block:'start'});
+            // set focus for accessibility
+            target.setAttribute('tabindex','-1');
+            window.setTimeout(()=>{ target.focus({preventScroll:true}); }, 600);
+          }
+        });
+      });
+
+      // Set current year
+      document.getElementById('year').textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>
