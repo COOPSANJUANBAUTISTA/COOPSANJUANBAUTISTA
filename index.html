@@ -20,8 +20,9 @@
         <!-- Header / Barra de Navegación -->
         <header class="flex flex-col md:flex-row items-center justify-between gap-6 py-4 border-b border-white/10 max-w-[1440px] mx-auto w-full">
             <div class="flex items-center gap-4">
-                <div class="w-14 h-14 rounded-2xl bg-amber-500/20 flex items-center justify-center border border-amber-400/40 shadow-xl text-3xl">
-                    🌱
+                <!-- LOGO REAL DE LA COOPERATIVA -->
+                <div class="w-14 h-14 rounded-2xl overflow-hidden border border-amber-400/40 shadow-xl bg-black/40 flex items-center justify-center">
+                    <img src="logo.jpg" alt="Logo Coop. San Juan Bautista" class="w-full h-full object-cover">
                 </div>
                 <div>
                     <h1 class="text-lg font-bold tracking-wider uppercase text-amber-200">Cooperativa San Juan Bautista</h1>
@@ -64,14 +65,9 @@
 
             <div class="lg:col-span-5 flex justify-center relative">
                 <div class="relative z-10 animate-float w-full max-w-md bg-black/40 backdrop-blur-xl border border-white/20 p-6 rounded-3xl shadow-2xl">
-                    <div class="relative h-72 rounded-2xl overflow-hidden shadow-inner">
-                        <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1000&q=80" alt="Cosecha Fresca" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-6">
-                            <div>
-                                <span class="bg-amber-400 text-orange-950 text-[10px] font-extrabold px-3 py-1 rounded-full uppercase">100% Calidad Larense</span>
-                                <h3 class="text-xl font-bold text-amber-200 mt-2">Abundancia y Confianza</h3>
-                            </div>
-                        </div>
+                    <div class="relative h-72 rounded-2xl overflow-hidden shadow-inner flex items-center justify-center bg-black/60">
+                        <!-- LOGO DESTACADO EN LA SECCIÓN PRINCIPAL -->
+                        <img src="logo.jpg" alt="Logo Destacado" class="w-48 h-48 object-contain drop-shadow-2xl">
                     </div>
                 </div>
             </div>
@@ -89,7 +85,7 @@
                 <p id="verduras-desc" class="text-white/80 text-lg leading-relaxed"></p>
                 
                 <div id="verduras-lista" class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">
-                    <!-- Los productos se inyectan desde verduras.js -->
+                    <!-- Productos inyectados por JS -->
                 </div>
             </div>
         </section>
@@ -102,7 +98,7 @@
                 <p id="fruteria-desc" class="text-white/80 text-lg leading-relaxed"></p>
                 
                 <div id="fruteria-lista" class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">
-                    <!-- Los productos se inyectan desde fruteria.js -->
+                    <!-- Productos inyectados por JS -->
                 </div>
             </div>
             <div class="lg:col-span-5 rounded-3xl overflow-hidden shadow-2xl border border-white/15 h-80 relative group order-1 lg:order-2">
@@ -123,7 +119,7 @@
                 <p id="charcuteria-desc" class="text-white/80 text-lg leading-relaxed"></p>
                 
                 <div id="charcuteria-lista" class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">
-                    <!-- Los productos se inyectan desde charcuteria.js -->
+                    <!-- Productos inyectados por JS -->
                 </div>
             </div>
         </section>
