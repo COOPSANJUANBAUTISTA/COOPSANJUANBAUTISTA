@@ -44,12 +44,9 @@
         }
     </style>
 </head>
-<body class="min-h-screen text-white font-sans selection:bg-amber-500 selection:text-white relative overflow-x-hidden">
+<body class="min-h-screen text-white font-sans selection:bg-amber-500 selection:text-white relative overflow-x-hidden bg-gradient-to-br from-[#7c2d12] via-[#57200c] to-[#2c1005]">
 
-    <!-- Fondo Dinámico con Transición Suave -->
-    <div id="dynamic-bg" class="fixed inset-0 transition-all duration-1000 ease-in-out -z-10 bg-gradient-to-br from-[#7c2d12] via-[#57200c] to-[#2c1005]"></div>
-
-    <!-- Luces ambientales de fondo -->
+    <!-- Fondo fijo unificado con luces ambientales -->
     <div class="fixed top-0 left-1/4 w-[600px] h-[600px] bg-amber-500/10 rounded-full blur-[140px] pointer-events-none -z-10"></div>
     <div class="fixed bottom-0 right-1/4 w-[600px] h-[600px] bg-orange-600/10 rounded-full blur-[140px] pointer-events-none -z-10"></div>
 
@@ -112,12 +109,11 @@
             </div>
         </main>
 
-        <!-- SECCIÓN 1: VERDURAS (Con Carrusel 3D Flotante) -->
+        <!-- SECCIÓN 1: VERDURAS -->
         <section id="verduras-sec" class="py-16 border-t border-white/10 max-w-[1440px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div class="lg:col-span-5 h-80 relative perspective-container group">
-                <!-- Contenedor 3D para imágenes de Verduras -->
                 <div id="verduras-3d-carousel" class="w-full h-full relative rounded-3xl overflow-hidden border border-white/20 shadow-2xl bg-black/50">
-                    <!-- Las imágenes se inyectan dinámicamente en 3D -->
+                    <!-- Imágenes inyectadas por JS -->
                 </div>
                 <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none rounded-3xl"></div>
             </div>
@@ -125,39 +121,31 @@
                 <span class="text-amber-300 font-semibold tracking-wider text-xs uppercase bg-amber-500/20 px-3 py-1 rounded-full border border-amber-400/30">Departamento 01</span>
                 <h3 id="verduras-titulo" class="text-4xl font-extrabold text-amber-100"></h3>
                 <p id="verduras-desc" class="text-white/80 text-lg leading-relaxed"></p>
-                
-                <div id="verduras-lista" class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">
-                    <!-- Productos inyectados por JS -->
-                </div>
+                <div id="verduras-lista" class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4"></div>
             </div>
         </section>
 
-        <!-- SECCIÓN 2: FRUTERÍA (Con Carrusel 3D Flotante) -->
+        <!-- SECCIÓN 2: FRUTERÍA -->
         <section id="fruteria-sec" class="py-16 border-t border-white/10 max-w-[1440px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div class="lg:col-span-7 space-y-6 order-2 lg:order-1">
                 <span class="text-amber-300 font-semibold tracking-wider text-xs uppercase bg-amber-500/20 px-3 py-1 rounded-full border border-amber-400/30">Departamento 02</span>
                 <h3 id="fruteria-titulo" class="text-4xl font-extrabold text-amber-100"></h3>
                 <p id="fruteria-desc" class="text-white/80 text-lg leading-relaxed"></p>
-                
-                <div id="fruteria-lista" class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">
-                    <!-- Productos inyectados por JS -->
-                </div>
+                <div id="fruteria-lista" class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4"></div>
             </div>
             <div class="lg:col-span-5 h-80 relative perspective-container group order-1 lg:order-2">
-                <!-- Contenedor 3D para imágenes de Frutería -->
                 <div id="fruteria-3d-carousel" class="w-full h-full relative rounded-3xl overflow-hidden border border-white/20 shadow-2xl bg-black/50">
-                    <!-- Las imágenes se inyectan dinámicamente en 3D -->
+                    <!-- Imágenes inyectadas por JS -->
                 </div>
                 <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none rounded-3xl"></div>
             </div>
         </section>
 
-        <!-- SECCIÓN 3: CHARCUTERÍA (Con Carrusel 3D Flotante) -->
+        <!-- SECCIÓN 3: CHARCUTERÍA -->
         <section id="charcuteria-sec" class="py-16 border-t border-white/10 max-w-[1440px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div class="lg:col-span-5 h-80 relative perspective-container group">
-                <!-- Contenedor 3D para imágenes de Charcutería -->
                 <div id="charcuteria-3d-carousel" class="w-full h-full relative rounded-3xl overflow-hidden border border-white/20 shadow-2xl bg-black/50">
-                    <!-- Las imágenes se inyectan dinámicamente en 3D -->
+                    <!-- Imágenes inyectadas por JS -->
                 </div>
                 <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none rounded-3xl"></div>
             </div>
@@ -165,10 +153,7 @@
                 <span class="text-amber-300 font-semibold tracking-wider text-xs uppercase bg-amber-500/20 px-3 py-1 rounded-full border border-amber-400/30">Departamento 03</span>
                 <h3 id="charcuteria-titulo" class="text-4xl font-extrabold text-amber-100"></h3>
                 <p id="charcuteria-desc" class="text-white/80 text-lg leading-relaxed"></p>
-                
-                <div id="charcuteria-lista" class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">
-                    <!-- Productos inyectados por JS -->
-                </div>
+                <div id="charcuteria-lista" class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4"></div>
             </div>
         </section>
 
@@ -185,46 +170,20 @@
 
     </div>
 
-    <!-- Script para Transición de Colores y Carrusel 3D Flotante -->
+    <!-- Script Inicializador del Carrusel 3D -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            // 1. Transición de Colores del Fondo por Sección
-            const sections = document.querySelectorAll('main, section[id]');
-            const bgContainer = document.getElementById('dynamic-bg');
-
-            const colorThemes = {
-                'inicio': 'bg-gradient-to-br from-[#7c2d12] via-[#57200c] to-[#2c1005]',       
-                'verduras-sec': 'bg-gradient-to-br from-[#113822] via-[#092214] to-[#04120a]', 
-                'fruteria-sec': 'bg-gradient-to-br from-[#592209] via-[#78350f] to-[#451a03]', 
-                'charcuteria-sec': 'bg-gradient-to-br from-[#3b0d10] via-[#210609] to-[#120204]' 
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const id = entry.target.id;
-                        if (colorThemes[id]) {
-                            bgContainer.className = `fixed inset-0 transition-all duration-1000 ease-in-out -z-10 ${colorThemes[id]}`;
-                        }
-                    }
-                });
-            }, { threshold: 0.25 });
-
-            sections.forEach(sec => observer.observe(sec));
-
-            // 2. Inicializador del Carrusel 3D Flotante por Departamento
             setTimeout(() => {
                 setup3DCarousel('verduras-3d-carousel', window.verdurasInfo);
                 setup3DCarousel('fruteria-3d-carousel', window.fruteriaInfo);
                 setup3DCarousel('charcuteria-3d-carousel', window.charcuteriaInfo);
-            }, 500);
+            }, 400);
         });
 
         function setup3DCarousel(containerId, infoObject) {
             const container = document.getElementById(containerId);
             if (!container || !infoObject) return;
 
-            // Extraer imágenes (ya sea del array 'imagenes' o del producto principal)
             let images = [];
             if (infoObject.imagenes && Array.isArray(infoObject.imagenes)) {
                 images = infoObject.imagenes;
@@ -251,7 +210,7 @@
                     cards[currentIndex].classList.remove('active');
                     currentIndex = (currentIndex + 1) % cards.length;
                     cards[currentIndex].classList.add('active');
-                }, 3500); // Rota cada 3.5 segundos con efecto tridimensional
+                }, 3500);
             }
         }
     </script>
