@@ -3,162 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="page-title">Cooperativa San Juan Bautista</title>
+    <title>Cooperativa San Juan Bautista | Duaca - Lara</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-gradient-to-br from-[#9a3412] via-[#7c2d12] to-[#451a03] min-h-screen text-white font-sans selection:bg-amber-500 selection:text-white">
+<body class="bg-gradient-to-br from-[#7c2d12] via-[#57200c] to-[#2c1005] min-h-screen text-white font-sans selection:bg-amber-500 selection:text-white">
 
-    <!-- Fondo ambiental con luces difuminadas -->
-    <div class="fixed top-0 left-0 w-[500px] h-[500px] bg-amber-500/15 rounded-full blur-[120px] pointer-events-none"></div>
-    <div class="fixed bottom-0 right-0 w-[500px] h-[500px] bg-orange-600/15 rounded-full blur-[120px] pointer-events-none"></div>
+    <!-- Luces ambientales de fondo -->
+    <div class="fixed top-0 left-1/4 w-[600px] h-[600px] bg-amber-500/10 rounded-full blur-[140px] pointer-events-none"></div>
+    <div class="fixed bottom-0 right-1/4 w-[600px] h-[600px] bg-orange-600/10 rounded-full blur-[140px] pointer-events-none"></div>
 
-    <!-- Contenedor General Amplio -->
-    <div class="relative w-full min-h-screen flex flex-col justify-between px-6 md:px-16 py-8 max-w-[1440px] mx-auto">
+    <!-- Contenedor General a Pantalla Completa -->
+    <div class="relative w-full min-h-screen flex flex-col justify-between px-6 lg:px-20 py-8">
 
         <!-- Header / Barra de Navegación -->
-        <header class="flex flex-col md:flex-row items-center justify-between gap-6 py-4 border-b border-white/10">
+        <header class="flex flex-col md:flex-row items-center justify-between gap-6 py-4 border-b border-white/10 max-w-[1440px] mx-auto w-full">
             <div class="flex items-center gap-4">
-                <div class="w-12 h-12 rounded-2xl bg-amber-500/20 flex items-center justify-center border border-amber-400/40 shadow-lg text-2xl">
+                <div class="w-14 h-14 rounded-2xl bg-amber-500/20 flex items-center justify-center border border-amber-400/40 shadow-xl text-3xl">
                     🌱
                 </div>
                 <div>
-                    <h1 id="brand-name" class="text-base font-bold tracking-wider uppercase text-amber-200"></h1>
-                    <p id="brand-location" class="text-xs text-amber-100/70"></p>
+                    <h1 class="text-lg font-bold tracking-wider uppercase text-amber-200">Cooperativa San Juan Bautista</h1>
+                    <p class="text-xs text-amber-100/70">Duaca, Estado Lara • RIF: J-08501684-8</p>
                 </div>
             </div>
 
-            <nav class="bg-black/30 backdrop-blur-md border border-white/15 px-8 py-3 rounded-full flex items-center gap-6 md:gap-10 shadow-xl text-sm font-medium">
+            <nav class="bg-black/30 backdrop-blur-md border border-white/15 px-8 py-3 rounded-full flex items-center gap-8 shadow-2xl text-sm font-medium">
                 <a href="#inicio" class="text-white hover:text-amber-300 transition-colors">Inicio</a>
-                <a href="#productos" class="text-white/80 hover:text-amber-300 transition-colors">Catálogo</a>
-                <a href="#nosotros" class="text-white/80 hover:text-amber-300 transition-colors">Nosotros</a>
-                <a href="#contacto" class="text-white/80 hover:text-amber-300 transition-colors">Contacto</a>
+                <a href="#verduras-sec" class="text-white/80 hover:text-amber-300 transition-colors">Verduras</a>
+                <a href="#fruteria-sec" class="text-white/80 hover:text-amber-300 transition-colors">Frutería</a>
+                <a href="#charcuteria-sec" class="text-white/80 hover:text-amber-300 transition-colors">Charcutería</a>
             </nav>
 
-            <div class="flex items-center gap-4">
-                <a href="#contacto" class="bg-amber-500 hover:bg-amber-400 text-orange-950 px-5 py-2.5 rounded-full text-xs font-bold transition shadow-lg">
-                    Realizar Pedido
+            <div>
+                <a href="https://wa.me/" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white px-6 py-3 rounded-full text-xs font-bold transition shadow-xl flex items-center gap-2">
+                    <span>💬</span> Pedidos WhatsApp
                 </a>
             </div>
         </header>
 
-        <!-- Sección Principal (Hero) Amplia e Imponente -->
-        <main class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center my-auto py-12">
-            
-            <!-- Columna Izquierda: Textos -->
-            <div class="lg:col-span-6 space-y-8">
-                <div id="hero-badge" class="inline-block px-4 py-1.5 bg-amber-500/20 border border-amber-400/30 rounded-full text-xs font-semibold text-amber-300 tracking-wider uppercase"></div>
-                <h2 id="hero-title" class="text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.1]"></h2>
-                <p id="hero-description" class="text-white/85 text-lg md:text-xl leading-relaxed max-w-xl"></p>
-                
+        <!-- Sección Principal (Hero) -->
+        <main id="inicio" class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center my-auto py-16 max-w-[1440px] mx-auto w-full">
+            <div class="lg:col-span-7 space-y-8">
+                <span class="inline-block px-4 py-1.5 bg-amber-500/20 border border-amber-400/30 rounded-full text-xs font-semibold text-amber-300 tracking-wider uppercase">
+                    Directo del campo a tu mesa
+                </span>
+                <h2 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.1]">
+                    Frescura y Tradición <span class="text-amber-300">Cooperativa</span>
+                </h2>
+                <p class="text-white/85 text-lg md:text-xl leading-relaxed max-w-2xl">
+                    Impulsamos la economía local con hortalizas cosechadas diariamente, frutas selectas de temporada y charcutería artesanal para toda la comunidad de Duaca.
+                </p>
                 <div class="flex flex-wrap items-center gap-4 pt-4">
-                    <a href="#productos" id="hero-btn" class="inline-flex items-center gap-3 bg-white text-orange-950 font-bold px-8 py-4 rounded-full shadow-2xl hover:bg-amber-100 hover:scale-105 transition-all duration-300 text-base"></a>
+                    <a href="#verduras-sec" class="bg-amber-400 text-orange-950 font-bold px-8 py-4 rounded-full shadow-2xl hover:bg-amber-300 hover:scale-105 transition-all duration-300 text-base">
+                        Explorar Departamentos ↓
+                    </a>
                 </div>
             </div>
 
-            <!-- Columna Derecha: Imagen Real y Atractiva con Animación Flotante -->
-            <div class="lg:col-span-6 flex justify-center relative">
-                <div class="absolute inset-0 bg-gradient-to-t from-amber-500/20 to-transparent rounded-3xl blur-3xl"></div>
-                
-                <div class="relative z-10 animate-float w-full max-w-lg bg-black/30 backdrop-blur-xl border border-white/20 p-4 rounded-3xl shadow-2xl overflow-hidden group">
-                    <div class="relative h-80 rounded-2xl overflow-hidden shadow-inner">
-                        <img id="main-product-img" src="" alt="Cosecha y Productos Frescos" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+            <div class="lg:col-span-5 flex justify-center relative">
+                <div class="relative z-10 animate-float w-full max-w-md bg-black/40 backdrop-blur-xl border border-white/20 p-6 rounded-3xl shadow-2xl">
+                    <div class="relative h-72 rounded-2xl overflow-hidden shadow-inner">
+                        <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1000&q=80" alt="Cosecha Fresca" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-6">
                             <div>
-                                <h3 id="center-title" class="text-xl font-bold text-amber-200"></h3>
-                                <p id="center-subtitle" class="text-sm text-white/80"></p>
+                                <span class="bg-amber-400 text-orange-950 text-[10px] font-extrabold px-3 py-1 rounded-full uppercase">100% Calidad Larense</span>
+                                <h3 class="text-xl font-bold text-amber-200 mt-2">Abundancia y Confianza</h3>
                             </div>
                         </div>
                     </div>
-                    
-                    <div id="center-badge" class="absolute top-7 right-7 bg-amber-400 text-orange-950 text-xs font-extrabold px-4 py-1.5 rounded-full shadow-xl border border-amber-200 uppercase tracking-wider"></div>
                 </div>
             </div>
-
         </main>
 
-        <!-- Sección de Tarjetas de Categorías (Con Imágenes Reales) -->
-        <section id="productos" class="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
-            
-            <!-- Tarjeta 1 -->
-            <div class="bg-black/30 backdrop-blur-md border border-white/15 rounded-3xl overflow-hidden hover:border-amber-400/50 transition-all duration-300 group shadow-xl flex flex-col">
-                <div class="h-48 overflow-hidden relative">
-                    <img id="card1-img" src="" alt="Verduras" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                </div>
-                <div class="p-6 flex-1 flex flex-col justify-between">
-                    <div>
-                        <h4 id="card1-title" class="text-xl font-bold text-amber-200 mb-2"></h4>
-                        <p id="card1-desc" class="text-sm text-white/80 leading-relaxed"></p>
-                    </div>
-                    <div class="mt-4 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-amber-300 font-semibold">
-                        <span>Calidad Garantizada</span>
-                        <span>→</span>
-                    </div>
+        <!-- SECCIÓN 1: VERDURAS -->
+        <section id="verduras-sec" class="py-16 border-t border-white/10 max-w-[1440px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-5 rounded-3xl overflow-hidden shadow-2xl border border-white/15 h-80 relative group">
+                <img id="verduras-img" src="" alt="Verduras" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+            </div>
+            <div class="lg:col-span-7 space-y-6">
+                <span class="text-amber-300 font-semibold tracking-wider text-xs uppercase bg-amber-500/20 px-3 py-1 rounded-full border border-amber-400/30">Departamento 01</span>
+                <h3 id="verduras-titulo" class="text-4xl font-extrabold text-amber-100"></h3>
+                <p id="verduras-desc" class="text-white/80 text-lg leading-relaxed"></p>
+                
+                <div id="verduras-lista" class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">
+                    <!-- Los productos se inyectan desde verduras.js -->
                 </div>
             </div>
+        </section>
 
-            <!-- Tarjeta 2 -->
-            <div class="bg-black/30 backdrop-blur-md border border-white/15 rounded-3xl overflow-hidden hover:border-amber-400/50 transition-all duration-300 group shadow-xl flex flex-col">
-                <div class="h-48 overflow-hidden relative">
-                    <img id="card2-img" src="" alt="Frutería" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                </div>
-                <div class="p-6 flex-1 flex flex-col justify-between">
-                    <div>
-                        <h4 id="card2-title" class="text-xl font-bold text-amber-200 mb-2"></h4>
-                        <p id="card2-desc" class="text-sm text-white/80 leading-relaxed"></p>
-                    </div>
-                    <div class="mt-4 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-amber-300 font-semibold">
-                        <span>Cosecha Local</span>
-                        <span>→</span>
-                    </div>
+        <!-- SECCIÓN 2: FRUTERÍA -->
+        <section id="fruteria-sec" class="py-16 border-t border-white/10 max-w-[1440px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-7 space-y-6 order-2 lg:order-1">
+                <span class="text-amber-300 font-semibold tracking-wider text-xs uppercase bg-amber-500/20 px-3 py-1 rounded-full border border-amber-400/30">Departamento 02</span>
+                <h3 id="fruteria-titulo" class="text-4xl font-extrabold text-amber-100"></h3>
+                <p id="fruteria-desc" class="text-white/80 text-lg leading-relaxed"></p>
+                
+                <div id="fruteria-lista" class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">
+                    <!-- Los productos se inyectan desde fruteria.js -->
                 </div>
             </div>
+            <div class="lg:col-span-5 rounded-3xl overflow-hidden shadow-2xl border border-white/15 h-80 relative group order-1 lg:order-2">
+                <img id="fruteria-img" src="" alt="Frutería" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+            </div>
+        </section>
 
-            <!-- Tarjeta 3 -->
-            <div class="bg-black/30 backdrop-blur-md border border-white/15 rounded-3xl overflow-hidden hover:border-amber-400/50 transition-all duration-300 group shadow-xl flex flex-col">
-                <div class="h-48 overflow-hidden relative">
-                    <img id="card3-img" src="" alt="Charcutería" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                </div>
-                <div class="p-6 flex-1 flex flex-col justify-between">
-                    <div>
-                        <h4 id="card3-title" class="text-xl font-bold text-amber-200 mb-2"></h4>
-                        <p id="card3-desc" class="text-sm text-white/80 leading-relaxed"></p>
-                    </div>
-                    <div class="mt-4 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-amber-300 font-semibold">
-                        <span>Artesanal y Fresco</span>
-                        <span>→</span>
-                    </div>
+        <!-- SECCIÓN 3: CHARCUTERÍA -->
+        <section id="charcuteria-sec" class="py-16 border-t border-white/10 max-w-[1440px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-5 rounded-3xl overflow-hidden shadow-2xl border border-white/15 h-80 relative group">
+                <img id="charcuteria-img" src="" alt="Charcutería" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+            </div>
+            <div class="lg:col-span-7 space-y-6">
+                <span class="text-amber-300 font-semibold tracking-wider text-xs uppercase bg-amber-500/20 px-3 py-1 rounded-full border border-amber-400/30">Departamento 03</span>
+                <h3 id="charcuteria-titulo" class="text-4xl font-extrabold text-amber-100"></h3>
+                <p id="charcuteria-desc" class="text-white/80 text-lg leading-relaxed"></p>
+                
+                <div id="charcuteria-lista" class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">
+                    <!-- Los productos se inyectan desde charcuteria.js -->
                 </div>
             </div>
-
         </section>
 
         <!-- Footer / Pie de Página -->
-        <footer id="contacto" class="mt-12 pt-8 border-t border-white/15 flex flex-col md:flex-row items-center justify-between text-sm text-white/80 gap-6">
+        <footer class="mt-20 pt-8 border-t border-white/15 flex flex-col md:flex-row items-center justify-between text-sm text-white/80 gap-6 max-w-[1440px] mx-auto w-full">
             <div>
-                <p id="footer-slogan" class="font-medium text-amber-200"></p>
+                <p class="font-medium text-amber-200">Confianza, trabajo en equipo y apoyo mutuo.</p>
             </div>
-            
-            <div class="flex flex-wrap items-center gap-6">
-                <span id="footer-rif" class="bg-black/40 px-3 py-1.5 rounded-lg border border-white/10 text-xs"></span>
-                <span id="footer-location" class="text-xs"></span>
-            </div>
-
-            <div class="flex items-center gap-3 bg-black/50 px-5 py-2.5 rounded-2xl border border-white/15 shadow-inner">
-                <span class="text-xl">⚖️</span>
-                <div>
-                    <span id="price-indicator" class="font-bold text-amber-300 text-base"></span>
-                    <p class="text-[10px] text-white/60">Actualizado hoy</p>
-                </div>
+            <div class="flex items-center gap-6">
+                <span class="bg-black/40 px-4 py-2 rounded-xl border border-white/10 text-xs">RIF: J-08501684-8</span>
+                <span class="text-xs">Ubicados en Duaca, Estado Lara</span>
             </div>
         </footer>
 
     </div>
 
-    <script src="data.js"></script>
+    <!-- Archivos JavaScript por Departamento -->
+    <script src="verduras.js"></script>
+    <script src="fruteria.js"></script>
+    <script src="charcuteria.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
