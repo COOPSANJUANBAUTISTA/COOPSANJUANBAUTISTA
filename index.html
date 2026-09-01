@@ -8,7 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Estilos y Perspectiva 3D para el carrusel flotante */
         .perspective-container {
             perspective: 1200px;
             transform-style: preserve-3d;
@@ -21,7 +20,7 @@
             height: 100%;
             object-fit: cover;
             border-radius: 1.5rem;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.25);
             opacity: 0;
             transform: scale(0.85) translateZ(-100px) rotateY(15deg);
             pointer-events: none;
@@ -44,65 +43,60 @@
         }
     </style>
 </head>
-<body class="min-h-screen text-white font-sans selection:bg-emerald-400 selection:text-slate-950 relative overflow-x-hidden bg-gradient-to-br from-[#52b788] via-[#3d8c65] to-[#1b4332]">
-
-    <!-- Luces ambientales de fondo en tonos verdes/menta -->
-    <div class="fixed top-0 left-1/4 w-[600px] h-[600px] bg-emerald-300/15 rounded-full blur-[140px] pointer-events-none -z-10"></div>
-    <div class="fixed bottom-0 right-1/4 w-[600px] h-[600px] bg-teal-500/15 rounded-full blur-[140px] pointer-events-none -z-10"></div>
+<body class="min-h-screen text-white font-sans selection:bg-white selection:text-emerald-800 relative overflow-x-hidden bg-[#52b788]">
 
     <!-- Contenedor General a Pantalla Completa -->
     <div class="relative w-full min-h-screen flex flex-col justify-between px-6 lg:px-20 py-8">
 
         <!-- Header / Barra de Navegación -->
-        <header class="flex flex-col md:flex-row items-center justify-between gap-6 py-4 border-b border-white/15 max-w-[1440px] mx-auto w-full">
+        <header class="flex flex-col md:flex-row items-center justify-between gap-6 py-4 border-b border-white/20 max-w-[1440px] mx-auto w-full">
             <div class="flex items-center gap-4">
-                <!-- LOGO REAL DE LA COOPERATIVA -->
-                <div class="w-14 h-14 rounded-2xl overflow-hidden border border-emerald-300/40 shadow-xl bg-black/30 flex items-center justify-center p-1">
+                <div class="w-14 h-14 rounded-2xl overflow-hidden border border-white/30 shadow-lg bg-white/10 backdrop-blur-md flex items-center justify-center p-1">
                     <img src="./logo.jpg.png" alt="Logo Coop. San Juan Bautista" class="w-full h-full object-contain">
                 </div>
                 <div>
-                    <h1 class="text-lg font-bold tracking-wider uppercase text-emerald-100">Cooperativa San Juan Bautista</h1>
-                    <p class="text-xs text-emerald-200/80">Duaca, Estado Lara • RIF: J-08501684-8</p>
+                    <h1 class="text-lg font-bold tracking-wider uppercase text-white">Cooperativa San Juan Bautista</h1>
+                    <p class="text-xs text-white/85">Duaca, Estado Lara • RIF: J-08501684-8</p>
                 </div>
             </div>
 
-            <nav class="bg-black/25 backdrop-blur-md border border-white/15 px-8 py-3 rounded-full flex items-center gap-8 shadow-2xl text-sm font-medium">
-                <a href="#inicio" class="text-white hover:text-emerald-300 transition-colors">Inicio</a>
-                <a href="#verduras-sec" class="text-white/80 hover:text-emerald-300 transition-colors">Verduras</a>
-                <a href="#fruteria-sec" class="text-white/80 hover:text-emerald-300 transition-colors">Frutería</a>
-                <a href="#charcuteria-sec" class="text-white/80 hover:text-emerald-300 transition-colors">Charcutería</a>
+            <nav class="bg-white/10 backdrop-blur-md border border-white/25 px-8 py-3 rounded-full flex items-center gap-8 shadow-xl text-sm font-medium">
+                <a href="#inicio" class="text-white hover:text-emerald-200 transition-colors">Inicio</a>
+                <a href="#verduras-sec" class="text-white/90 hover:text-emerald-200 transition-colors">Verduras</a>
+                <a href="#fruteria-sec" class="text-white/90 hover:text-emerald-200 transition-colors">Frutería</a>
+                <a href="#charcuteria-sec" class="text-white/90 hover:text-emerald-200 transition-colors">Charcutería</a>
             </nav>
 
             <div>
-                <a href="https://wa.me/" target="_blank" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold px-6 py-3 rounded-full text-xs transition shadow-xl flex items-center gap-2">
+                <a href="https://wa.me/" target="_blank" class="bg-white hover:bg-emerald-50 text-emerald-900 font-extrabold px-6 py-3 rounded-full text-xs transition shadow-lg flex items-center gap-2">
                     <span>💬</span> Pedidos WhatsApp
                 </a>
             </div>
         </header>
 
-        <!-- Sección Principal (Hero) -->
+        <!-- Sección Principal (Hero) perfectamente centrada -->
         <main id="inicio" class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center my-auto py-16 max-w-[1440px] mx-auto w-full">
             <div class="lg:col-span-7 space-y-8">
-                <span class="inline-block px-4 py-1.5 bg-emerald-400/20 border border-emerald-300/30 rounded-full text-xs font-semibold text-emerald-200 tracking-wider uppercase">
+                <span class="inline-block px-4 py-1.5 bg-white/20 border border-white/30 rounded-full text-xs font-semibold text-white tracking-wider uppercase">
                     Directo del campo a tu mesa
                 </span>
                 <h2 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.1]">
-                    Frescura y Tradición <span class="text-emerald-200">Cooperativa</span>
+                    Frescura y Tradición <span class="text-emerald-100">Cooperativa</span>
                 </h2>
                 <p class="text-white/90 text-lg md:text-xl leading-relaxed max-w-2xl">
                     Impulsamos la economía local con hortalizas cosechadas diariamente, frutas selectas de temporada y charcutería artesanal para toda la comunidad de Duaca.
                 </p>
                 <div class="flex flex-wrap items-center gap-4 pt-4">
-                    <a href="#verduras-sec" class="bg-emerald-300 text-slate-950 font-bold px-8 py-4 rounded-full shadow-2xl hover:bg-emerald-200 hover:scale-105 transition-all duration-300 text-base">
+                    <a href="#verduras-sec" class="bg-white text-emerald-900 font-bold px-8 py-4 rounded-full shadow-xl hover:bg-emerald-50 hover:scale-105 transition-all duration-300 text-base">
                         Explorar Departamentos ↓
                     </a>
                 </div>
             </div>
 
-            <!-- LOGO ESTÁTICO E INSERTADO EN LA ESTRUCTURA -->
-            <div class="lg:col-span-5 flex justify-center relative">
-                <div class="w-full max-w-md bg-black/20 border border-white/10 p-6 rounded-3xl shadow-xl flex items-center justify-center">
-                    <div class="relative h-72 w-full flex items-center justify-center p-2">
+            <!-- Logo Integrado y Centrado -->
+            <div class="lg:col-span-5 flex justify-center items-center">
+                <div class="w-full max-w-md bg-white/10 backdrop-blur-md border border-white/25 p-8 rounded-3xl shadow-xl flex items-center justify-center">
+                    <div class="relative h-64 w-full flex items-center justify-center">
                         <img src="./logo.jpg.png" alt="Logo Destacado" class="w-full h-full object-contain drop-shadow-md">
                     </div>
                 </div>
@@ -110,67 +104,58 @@
         </main>
 
         <!-- SECCIÓN 1: VERDURAS -->
-        <section id="verduras-sec" class="py-16 border-t border-white/15 max-w-[1440px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <section id="verduras-sec" class="py-16 border-t border-white/20 max-w-[1440px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div class="lg:col-span-5 h-80 relative perspective-container group">
-                <div id="verduras-3d-carousel" class="w-full h-full relative rounded-3xl overflow-hidden border border-white/20 shadow-2xl bg-black/40">
-                    <!-- Imágenes inyectadas por JS -->
-                </div>
-                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none rounded-3xl"></div>
+                <div id="verduras-3d-carousel" class="w-full h-full relative rounded-3xl overflow-hidden border border-white/25 shadow-xl bg-white/10 backdrop-blur-md"></div>
             </div>
             <div class="lg:col-span-7 space-y-6">
-                <span class="text-emerald-200 font-semibold tracking-wider text-xs uppercase bg-emerald-400/20 px-3 py-1 rounded-full border border-emerald-300/30">Departamento 01</span>
-                <h3 id="verduras-titulo" class="text-4xl font-extrabold text-emerald-100"></h3>
+                <span class="text-white font-semibold tracking-wider text-xs uppercase bg-white/20 px-3 py-1 rounded-full border border-white/30">Departamento 01</span>
+                <h3 id="verduras-titulo" class="text-4xl font-extrabold text-white"></h3>
                 <p id="verduras-desc" class="text-white/90 text-lg leading-relaxed"></p>
                 <div id="verduras-lista" class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4"></div>
             </div>
         </section>
 
         <!-- SECCIÓN 2: FRUTERÍA -->
-        <section id="fruteria-sec" class="py-16 border-t border-white/15 max-w-[1440px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <section id="fruteria-sec" class="py-16 border-t border-white/20 max-w-[1440px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div class="lg:col-span-7 space-y-6 order-2 lg:order-1">
-                <span class="text-emerald-200 font-semibold tracking-wider text-xs uppercase bg-emerald-400/20 px-3 py-1 rounded-full border border-emerald-300/30">Departamento 02</span>
-                <h3 id="fruteria-titulo" class="text-4xl font-extrabold text-emerald-100"></h3>
+                <span class="text-white font-semibold tracking-wider text-xs uppercase bg-white/20 px-3 py-1 rounded-full border border-white/30">Departamento 02</span>
+                <h3 id="fruteria-titulo" class="text-4xl font-extrabold text-white"></h3>
                 <p id="fruteria-desc" class="text-white/90 text-lg leading-relaxed"></p>
                 <div id="fruteria-lista" class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4"></div>
             </div>
             <div class="lg:col-span-5 h-80 relative perspective-container group order-1 lg:order-2">
-                <div id="fruteria-3d-carousel" class="w-full h-full relative rounded-3xl overflow-hidden border border-white/20 shadow-2xl bg-black/40">
-                    <!-- Imágenes inyectadas por JS -->
-                </div>
-                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none rounded-3xl"></div>
+                <div id="fruteria-3d-carousel" class="w-full h-full relative rounded-3xl overflow-hidden border border-white/25 shadow-xl bg-white/10 backdrop-blur-md"></div>
             </div>
         </section>
 
         <!-- SECCIÓN 3: CHARCUTERÍA -->
-        <section id="charcuteria-sec" class="py-16 border-t border-white/15 max-w-[1440px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <section id="charcuteria-sec" class="py-16 border-t border-white/20 max-w-[1440px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div class="lg:col-span-5 h-80 relative perspective-container group">
-                <div id="charcuteria-3d-carousel" class="w-full h-full relative rounded-3xl overflow-hidden border border-white/20 shadow-2xl bg-black/40">
-                    <!-- Imágenes inyectadas por JS -->
-                </div>
-                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none rounded-3xl"></div>
+                <div id="charcuteria-3d-carousel" class="w-full h-full relative rounded-3xl overflow-hidden border border-white/25 shadow-xl bg-white/10 backdrop-blur-md"></div>
             </div>
             <div class="lg:col-span-7 space-y-6">
-                <span class="text-emerald-200 font-semibold tracking-wider text-xs uppercase bg-emerald-400/20 px-3 py-1 rounded-full border border-emerald-300/30">Departamento 03</span>
-                <h3 id="charcuteria-titulo" class="text-4xl font-extrabold text-emerald-100"></h3>
+                <span class="text-white font-semibold tracking-wider text-xs uppercase bg-white/20 px-3 py-1 rounded-full border border-white/30">Departamento 03</span>
+                <h3 id="charcuteria-titulo" class="text-4xl font-extrabold text-white"></h3>
                 <p id="charcuteria-desc" class="text-white/90 text-lg leading-relaxed"></p>
                 <div id="charcuteria-lista" class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4"></div>
             </div>
         </section>
 
-        <!-- Footer / Pie de Página -->
-        <footer class="mt-20 pt-8 border-t border-white/15 flex flex-col md:flex-row items-center justify-between text-sm text-white/80 gap-6 max-w-[1440px] mx-auto w-full">
+        <!-- Footer -->
+        <footer class="mt-20 pt-8 border-t border-white/20 flex flex-col md:flex-row items-center justify-between text-sm text-white/85 gap-6 max-w-[1440px] mx-auto w-full">
             <div>
-                <p class="font-medium text-emerald-200">Confianza, trabajo en equipo y apoyo mutuo.</p>
+                <p class="font-medium text-white">Confianza, trabajo en equipo y apoyo mutuo.</p>
             </div>
             <div class="flex items-center gap-6">
-                <span class="bg-black/30 px-4 py-2 rounded-xl border border-white/10 text-xs">RIF: J-08501684-8</span>
+                <span class="bg-white/10 px-4 py-2 rounded-xl border border-white/20 text-xs">RIF: J-08501684-8</span>
                 <span class="text-xs">Ubicados en Duaca, Estado Lara</span>
             </div>
         </footer>
 
     </div>
 
-    <!-- Script Inicializador del Carrusel 3D -->
+    <!-- Script Carrusel 3D -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             setTimeout(() => {
