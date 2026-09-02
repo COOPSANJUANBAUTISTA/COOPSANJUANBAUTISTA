@@ -1,39 +1,29 @@
-<!-- SECCIÓN 1: VERDURAS -->
-<section id="verduras-sec" class="py-16 border-t border-white/20 max-w-[1440px] mx-auto w-full space-y-8">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div class="space-y-6 text-left">
-            <span class="inline-block text-white font-semibold tracking-wider text-xs uppercase bg-white/20 px-3 py-1 rounded-full border border-white/30 shadow-sm">Departamento 01</span>
-            <h3 id="verduras-titulo" class="text-4xl md:text-5xl font-extrabold text-white drop-shadow-[0_4px_10px_rgba(0,0,0,0.3)]"></h3>
-            <p id="verduras-desc" class="text-white text-lg md:text-xl leading-relaxed font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.25)]"></p>
-        </div>
-        <div class="carrusel-container" id="carrusel-verduras"></div>
-    </div>
-    <!-- Tarjetas de Productos Destacados -->
-    <div id="verduras-lista" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 pt-4"></div>
-</section>
-
-<!-- SECCIÓN 2: FRUTERÍA -->
-<section id="fruteria-sec" class="py-16 border-t border-white/20 max-w-[1440px] mx-auto w-full space-y-8">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div class="carrusel-container order-2 lg:order-1" id="carrusel-fruteria"></div>
-        <div class="space-y-6 text-left order-1 lg:order-2">
-            <span class="inline-block text-white font-semibold tracking-wider text-xs uppercase bg-white/20 px-3 py-1 rounded-full border border-white/30 shadow-sm">Departamento 02</span>
-            <h3 id="fruteria-titulo" class="text-4xl md:text-5xl font-extrabold text-white drop-shadow-[0_4px_10px_rgba(0,0,0,0.3)]"></h3>
-            <p id="fruteria-desc" class="text-white text-lg md:text-xl leading-relaxed font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.25)]"></p>
-        </div>
-    </div>
-    <div id="fruteria-lista" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 pt-4"></div>
-</section>
-
-<!-- SECCIÓN 3: CHARCUTERÍA -->
-<section id="charcuteria-sec" class="py-16 border-t border-white/20 max-w-[1440px] mx-auto w-full space-y-8">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div class="space-y-6 text-left">
-            <span class="inline-block text-white font-semibold tracking-wider text-xs uppercase bg-white/20 px-3 py-1 rounded-full border border-white/30 shadow-sm">Departamento 03</span>
-            <h3 id="charcuteria-titulo" class="text-4xl md:text-5xl font-extrabold text-white drop-shadow-[0_4px_10px_rgba(0,0,0,0.3)]"></h3>
-            <p id="charcuteria-desc" class="text-white text-lg md:text-xl leading-relaxed font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.25)]"></p>
-        </div>
-        <div class="carrusel-container" id="carrusel-charcuteria"></div>
-    </div>
-    <div id="charcuteria-lista" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 pt-4"></div>
-</section>
+window.verdurasInfo = {
+    titulo: "Verduras y Hortalizas",
+    desc: "Cosechadas diariamente en los Campos, nuestras hortalizas garantizan la máxima frescura, sabor auténtico y valor nutricional para la mesa de cada hogar.",
+    imagenes: [
+        "./logo.jpg/0b12cbb6-053f-41fa-847b-41cad05ad9db_removalai_preview.png",
+        "./logo.jpg/1d72ca9d-5683-4090-903b-cb55161ea6eb_removalai_preview.png",
+        "./logo.jpg/23d067f8-0230-457d-abfd-80556ff27264_removalai_preview.png",
+        "./logo.jpg/23f33808-cf77-4968-a225-89698e227cff_removalai_preview.png",
+        "./logo.jpg/2a4ba879-0eb4-4052-a178-dcbe110b55ea_removalai_preview.png",
+        "./logo.jpg/2f6afdbc-0519-4e9c-bb38-0766cec47b2b_removalai_preview.png",
+        "./logo.jpg/3abf1a1a-35aa-47da-a0e0-fdea918bf598_removalai_preview.png",
+        "./logo.jpg/41c1e72a-e6da-461c-94a9-b835c33850d8_removalai_preview.png",
+        "./logo.jpg/42a78599-4362-4f65-8dae-2e3f2b5f1332_removalai_preview.png",
+        "./logo.jpg/48fa2840-430c-4a8d-a6a3-6c11b3495a8d_removalai_preview.png",
+        "./logo.jpg/6e051d1c-3109-4181-a7be-8a8396a33577_removalai_preview.png",
+        "./logo.jpg/84b4e5d1-2dab-4b15-b830-ef03b92f6679_removalai_preview.png",
+        "./logo.jpg/91020a70-96e6-4e56-97a0-f23958a71a7a_removalai_preview.png",
+        "./logo.jpg/a7f04413-8836-481e-b1ab-701c50fd8b72_removalai_preview.png",
+        "./logo.jpg/b55972f1-1ed7-4529-94da-70cee4708387_removalai_preview.png",
+        "./logo.jpg/c28b01bb-3233-4d0c-80c2-e9b8e584b555_removalai_preview.png",
+        "./logo.jpg/c3523d83-4cb3-4e96-b177-71f5532370ff_removalai_preview.png",
+        "./logo.jpg/ca681eda-6d72-4cb4-b9ec-18870921e201_removalai_preview.png",
+        "./logo.jpg/d53ca533-4931-4a7a-8204-d9d08038b331_removalai_preview.png",
+        "./logo.jpg/dd6ed450-7b9c-4ae0-9d2f-a928854a887f_removalai_preview.png",
+        "./logo.jpg/e723643a-c897-4b14-ba54-b04168ba2359_removalai_preview.png",
+        "./logo.jpg/f06aad12-4b03-4ede-8f8f-75ab6cb01fc7_removalai_preview.png",
+        "./logo.jpg/fa76a14d-fd22-447a-92b1-16fd8d21fcd3_removalai_preview.png"
+    ]
+};
