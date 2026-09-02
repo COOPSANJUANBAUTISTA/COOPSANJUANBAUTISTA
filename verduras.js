@@ -2,14 +2,14 @@ window.verdurasInfo = {
     titulo: "Departamento de Verduras y Hortalizas",
     desc: "Cosechadas directamente en el campo de Duaca, nuestras hortalizas garantizan la máxima frescura, sabor y calidad nutricional para tu hogar.",
     imagenes: [
-        "logo.jpg/nombre_foto_carrusel_1.jpg",
-        "logo.jpg/nombre_foto_carrusel_2.jpg",
-        "logo.jpg/nombre_foto_carrusel_3.jpg"
+        "logo.jpg/05.jpeg",
+        "logo.jpg/Brinjal.jpeg",
+        "logo.jpg/Isolated ear corn.jpeg"
     ],
     productos: [
-        { nombre: "Tomate Perita", desc: "Fresco y de excelente calidad.", imagen: "logo.jpg/tomate.jpg" },
-        { nombre: "Cebolla", desc: "Cosecha local de Duaca.", imagen: "logo.jpg/cebolla.jpg" },
-        { nombre: "Papa Arratia", desc: "Ideal para todo tipo de platos.", imagen: "logo.jpg/papa.jpg" }
+        { nombre: "Tomate Fresco", desc: "Seleccionado del campo local.", imagen: "logo.jpg/Tomato stock image_ Image of produce, ripe, tomato, isolated - 25211279.jpeg" },
+        { nombre: "Berenjena", desc: "Cosecha fresca y de calidad.", imagen: "logo.jpg/Brinjal.jpeg" },
+        { nombre: "Maíz tierno", desc: "Ideal para todo tipo de preparaciones.", imagen: "logo.jpg/Isolated ear corn.jpeg" }
     ]
 };
 
