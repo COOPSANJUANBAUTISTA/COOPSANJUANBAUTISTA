@@ -40,12 +40,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const lista = document.getElementById('verduras-lista');
     if(lista && v.productos) {
         lista.innerHTML = v.productos.map(p => `
-            <div class="bg-black/40 backdrop-blur-md p-4 rounded-2xl border border-white/10 hover:border-amber-400/50 transition flex flex-col">
-                <div class="w-full h-32 bg-white rounded-xl mb-3 flex items-center justify-center p-2 overflow-hidden">
-                    <img src="${p.imagen}" alt="${p.nombre}" class="w-full h-full object-contain">
+            <div class="bg-black/40 backdrop-blur-md p-4 rounded-2xl border border-white/10 hover:border-amber-400/50 transition flex flex-col justify-between">
+                <div class="w-full h-36 bg-white rounded-xl mb-3 flex items-center justify-center p-3 overflow-hidden shadow-inner">
+                    <img src="${p.imagen}" alt="${p.nombre}" class="max-h-full max-w-full object-contain">
                 </div>
-                <h4 class="font-bold text-amber-200 text-base">${p.nombre}</h4>
-                <p class="text-xs text-white/70 mt-1">${p.desc}</p>
+                <div>
+                    <h4 class="font-bold text-amber-200 text-base">${p.nombre}</h4>
+                    <p class="text-xs text-white/70 mt-1">${p.desc}</p>
+                </div>
             </div>
         `).join('');
     }
