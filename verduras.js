@@ -1,6 +1,6 @@
 window.verdurasInfo = {
     titulo: "Verduras y Hortalizas",
-    desc: "Cosechadas diariamente en los Campos, nuestras hortalizas garantizan la máxima frescura, sabor auténtico y valor nutricional para la mesa de cada hogar.",
+    desc: "Seleccionamos minuciosamente los mejores productos agrícolas para llevar a tu mesa la máxima frescura, sabor auténtico y un alto valor nutricional en cada una de tus comidas.",
     imagenes: [
         "./logo.jpg/0b12cbb6-053f-41fa-847b-41cad05ad9db_removalai_preview.png",
         "./logo.jpg/1d72ca9d-5683-4090-903b-cb55161ea6eb_removalai_preview.png",
