@@ -2,14 +2,14 @@ window.verdurasInfo = {
     titulo: "Departamento de Verduras y Hortalizas",
     desc: "Cosechadas directamente en el campo de Duaca, nuestras hortalizas garantizan la máxima frescura, sabor y calidad nutricional para tu hogar.",
     imagenes: [
-        "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&q=80&w=800", // Mix de verduras
-        "https://images.unsplash.com/photo-1597362925123-77861dcf3bc7?auto=format&fit=crop&q=80&w=800", // Tomates frescos
-        "https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&q=80&w=800"  // Papas y raíces
+        "logo.jpg/nombre_foto_carrusel_1.jpg",
+        "logo.jpg/nombre_foto_carrusel_2.jpg",
+        "logo.jpg/nombre_foto_carrusel_3.jpg"
     ],
     productos: [
-        { nombre: "Tomate Perita", desc: "Fresco y de excelente calidad.", imagen: "https://images.unsplash.com/photo-1597362925123-77861dcf3bc7?auto=format&fit=crop&q=80&w=400" },
-        { nombre: "Cebolla", desc: "Cosecha local de Duaca.", imagen: "https://images.unsplash.com/photo-1508747703725-719777637510?auto=format&fit=crop&q=80&w=400" },
-        { nombre: "Papa Arratia", desc: "Ideal para todo tipo de platos.", imagen: "https://images.unsplash.com/photo-1518977676601-b5ff82803c37?auto=format&fit=crop&q=80&w=400" }
+        { nombre: "Tomate Perita", desc: "Fresco y de excelente calidad.", imagen: "logo.jpg/tomate.jpg" },
+        { nombre: "Cebolla", desc: "Cosecha local de Duaca.", imagen: "logo.jpg/cebolla.jpg" },
+        { nombre: "Papa Arratia", desc: "Ideal para todo tipo de platos.", imagen: "logo.jpg/papa.jpg" }
     ]
 };
 
