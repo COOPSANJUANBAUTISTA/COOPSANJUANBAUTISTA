@@ -13,7 +13,7 @@
             transform-style: preserve-3d;
         }
         
-        /* Contenedor con caja de cristal original para Frutería y Charcutería */
+        /* Contenedor con caja de cristal original solo para Charcutería */
         .card-3d-wrapper {
             transition: all 0.9s cubic-bezier(0.25, 1, 0.5, 1);
             position: absolute;
@@ -72,7 +72,6 @@
             filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.35));
         }
 
-        /* Estilo específico para la 3ª y 4ª imagen de verduras (índices 2 y 3) un poco más grandes */
         .card-3d-wrapper-verduras.card-verduras-grande img {
             width: 135%;
             height: 135%;
@@ -85,12 +84,42 @@
             z-index: 10;
         }
 
-        .card-3d-wrapper.prev, .card-3d-wrapper-verduras.prev {
+        /* Estilo exclusivo para Frutería: sin cuadro, flotando y con tamaño mayor (115%) */
+        .card-3d-wrapper-fruteria {
+            transition: all 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transform: scale(0.9) translateZ(-100px) rotateY(15deg);
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: visible;
+        }
+
+        .card-3d-wrapper-fruteria img {
+            width: 115%;
+            height: 115%;
+            object-fit: contain;
+            filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.35));
+        }
+
+        .card-3d-wrapper-fruteria.active {
+            opacity: 1;
+            transform: scale(1) translateZ(0px) rotateY(0deg);
+            pointer-events: auto;
+            z-index: 10;
+        }
+
+        .card-3d-wrapper.prev, .card-3d-wrapper-verduras.prev, .card-3d-wrapper-fruteria.prev {
             opacity: 0.4;
             transform: scale(0.9) translateZ(-60px) translateX(-40px) rotateY(-10deg);
             z-index: 5;
         }
-        .card-3d-wrapper.next, .card-3d-wrapper-verduras.next {
+        .card-3d-wrapper.next, .card-3d-wrapper-verduras.next, .card-3d-wrapper-fruteria.next {
             opacity: 0.4;
             transform: scale(0.9) translateZ(-60px) translateX(40px) rotateY(10deg);
             z-index: 5;
@@ -218,7 +247,7 @@
         document.addEventListener("DOMContentLoaded", () => {
             setTimeout(() => {
                 setup3DCarousel('verduras-3d-carousel', window.verdurasInfo, 'verduras');
-                setup3DCarousel('fruteria-3d-carousel', window.fruteriaInfo, 'normal');
+                setup3DCarousel('fruteria-3d-carousel', window.fruteriaInfo, 'fruteria');
                 setup3DCarousel('charcuteria-3d-carousel', window.charcuteriaInfo, 'normal');
             }, 400);
         });
@@ -241,11 +270,19 @@
             container.innerHTML = '';
             images.forEach((imgSrc, index) => {
                 const wrapper = document.createElement('div');
+                let wrapperClass = 'card-3d-wrapper';
                 let extraClass = '';
-                if (type === 'verduras' && (index === 2 || index === 3)) {
-                    extraClass = ' card-verduras-grande';
+
+                if (type === 'verduras') {
+                    wrapperClass = 'card-3d-wrapper-verduras';
+                    if (index === 2 || index === 3) {
+                        extraClass = ' card-verduras-grande';
+                    }
+                } else if (type === 'fruteria') {
+                    wrapperClass = 'card-3d-wrapper-fruteria';
                 }
-                wrapper.className = `${type === 'verduras' ? 'card-3d-wrapper-verduras' : 'card-3d-wrapper'}${extraClass} ${index === 0 ? 'active' : ''}`;
+
+                wrapper.className = `${wrapperClass}${extraClass} ${index === 0 ? 'active' : ''}`;
                 
                 const img = document.createElement('img');
                 img.src = imgSrc;
@@ -256,7 +293,11 @@
 
             if (images.length > 1) {
                 let currentIndex = 0;
-                const cards = container.querySelectorAll(type === 'verduras' ? '.card-3d-wrapper-verduras' : '.card-3d-wrapper');
+                let selector = '.card-3d-wrapper';
+                if (type === 'verduras') selector = '.card-3d-wrapper-verduras';
+                else if (type === 'fruteria') selector = '.card-3d-wrapper-fruteria';
+
+                const cards = container.querySelectorAll(selector);
                 setInterval(() => {
                     cards[currentIndex].classList.remove('active');
                     currentIndex = (currentIndex + 1) % cards.length;
