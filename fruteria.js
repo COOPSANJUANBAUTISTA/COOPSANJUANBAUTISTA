@@ -1,317 +1,39 @@
-<!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cooperativa San Juan Bautista | Duaca - Lara</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <style>
-        .perspective-container {
-            perspective: 1200px;
-            transform-style: preserve-3d;
-        }
-        
-        /* Contenedor con caja de cristal original solo para Charcutería */
-        .card-3d-wrapper {
-            transition: all 0.9s cubic-bezier(0.25, 1, 0.5, 1);
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 1.5rem;
-            opacity: 0;
-            transform: scale(0.85) translateZ(-100px) rotateY(15deg);
-            pointer-events: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            padding: 10px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
-        }
+window.fruteriaInfo = {
+    titulo: "Frutería Seleccionada",
+    desc: "Disfruta de frutas de temporada dulces, jugosas y llenas de vitaminas, seleccionadas cuidadosamente para llevar la energía del trópico a tu mesa.",
+    imagenes: [
+        "./fruteria.png/1281f70d-51dd-41b3-8071-3dcd8a7d74df_removalai_preview.png",
+        "./fruteria.png/13ee1fee-2b5c-4774-b1ef-088148a8be1f_removalai_preview.png",
+        "./fruteria.png/303633c9-e69f-4829-bbfd-602a09f9990f_removalai_preview.png",
+        "./fruteria.png/42cbade8-2712-4e46-b66b-3e7d71bba092_removalai_preview.png",
+        "./fruteria.png/4dd84058-0ad9-4fef-affb-70bc016d131f_removalai_preview.png",
+        "./fruteria.png/60775e8a-f407-4f02-bc2e-2409186e4bf5_removalai_preview.png",
+        "./fruteria.png/636b45ea-aaad-4810-bc1c-1e68035fc8f_removalai_preview.png",
+        "./fruteria.png/7b41197a-1ae8-40a5-8d78-8da3e4e91806_removalai_preview.png",
+        "./fruteria.png/92479290-8e44-4cbb-b4c8-1a8c4f08349c_removalai_preview.png",
+        "./fruteria.png/991d0683-08d8-4e0f-a9d6-ff7cd5d80e3b_removalai_preview.png",
+        "./fruteria.png/cbae61de-a4a0-4a95-a7ae-161625841ce5_removalai_preview.png",
+        "./fruteria.png/ceaabc86-b4ff-4890-931c-14d4bd7e37d8_removalai_preview.png"
+    ],
+    productos: [
+        { nombre: "Cambur Titiaro", desc: "Dulces y nutritivos.", imagen: "./fruteria.png/1281f70d-51dd-41b3-8071-3dcd8a7d74df_removalai_preview.png" },
+        { nombre: "Lechosa", desc: "Excelente para jugos y digestión.", imagen: "./fruteria.png/13ee1fee-2b5c-4774-b1ef-088148a8be1f_removalai_preview.png" },
+        { nombre: "Piña Regional", desc: "Aromática y jugosa.", imagen: "./fruteria.png/303633c9-e69f-4829-bbfd-602a09f9990f_removalai_preview.png" }
+    ]
+};
 
-        .card-3d-wrapper img {
-            max-width: 90%;
-            max-height: 90%;
-            object-fit: contain;
-            filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.35));
-        }
-
-        .card-3d-wrapper.active {
-            opacity: 1;
-            transform: scale(1) translateZ(0px) rotateY(0deg);
-            pointer-events: auto;
-            z-index: 10;
-        }
-
-        /* Estilo exclusivo para Verduras: sin cuadro, tamaño base (115%) */
-        .card-3d-wrapper-verduras {
-            transition: all 0.9s cubic-bezier(0.25, 1, 0.5, 1);
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transform: scale(0.9) translateZ(-100px) rotateY(15deg);
-            pointer-events: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: visible;
-        }
-
-        .card-3d-wrapper-verduras img {
-            width: 115%;
-            height: 115%;
-            object-fit: contain;
-            filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.35));
-        }
-
-        /* Estilo específico para la 3ª y 4ª imagen de verduras (índices 2 y 3) más grandes */
-        .card-3d-wrapper-verduras.card-verduras-grande img {
-            width: 135%;
-            height: 135%;
-        }
-
-        .card-3d-wrapper-verduras.active {
-            opacity: 1;
-            transform: scale(1) translateZ(0px) rotateY(0deg);
-            pointer-events: auto;
-            z-index: 10;
-        }
-
-        /* Estilo exclusivo para Frutería: sin cuadro, flotando y con tamaño mayor (115%) */
-        .card-3d-wrapper-fruteria {
-            transition: all 0.9s cubic-bezier(0.25, 1, 0.5, 1);
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transform: scale(0.9) translateZ(-100px) rotateY(15deg);
-            pointer-events: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: visible;
-        }
-
-        .card-3d-wrapper-fruteria img {
-            width: 115%;
-            height: 115%;
-            object-fit: contain;
-            filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.35));
-        }
-
-        .card-3d-wrapper-fruteria.active {
-            opacity: 1;
-            transform: scale(1) translateZ(0px) rotateY(0deg);
-            pointer-events: auto;
-            z-index: 10;
-        }
-
-        .card-3d-wrapper.prev, .card-3d-wrapper-verduras.prev, .card-3d-wrapper-fruteria.prev {
-            opacity: 0.4;
-            transform: scale(0.9) translateZ(-60px) translateX(-40px) rotateY(-10deg);
-            z-index: 5;
-        }
-        .card-3d-wrapper.next, .card-3d-wrapper-verduras.next, .card-3d-wrapper-fruteria.next {
-            opacity: 0.4;
-            transform: scale(0.9) translateZ(-60px) translateX(40px) rotateY(10deg);
-            z-index: 5;
-        }
-    </style>
-</head>
-<body class="min-h-screen text-white font-sans selection:bg-white selection:text-emerald-800 relative overflow-x-hidden bg-[#52b788]">
-
-    <!-- Contenedor General a Pantalla Completa -->
-    <div class="relative w-full min-h-screen flex flex-col justify-between px-6 lg:px-20 py-8">
-
-        <!-- Header / Barra de Navegación -->
-        <header class="flex flex-col md:flex-row items-center justify-between gap-6 py-4 border-b border-white/20 max-w-[1440px] mx-auto w-full">
-            <div class="flex items-center gap-6">
-                <!-- Logo grande y completamente integrado -->
-                <img src="./logo.jpg.png" alt="Logo Coop. San Juan Bautista" class="w-24 h-24 md:w-28 md:h-28 object-contain drop-shadow-2xl">
-                <div class="space-y-1">
-                    <h1 class="text-xl md:text-2xl font-extrabold tracking-widest uppercase text-white drop-shadow-[0_4px_10px_rgba(0,0,0,0.3)]">Cooperativa San Juan Bautista</h1>
-                    <p class="text-sm text-white font-semibold tracking-wide drop-shadow-[0_2px_6px_rgba(0,0,0,0.25)]">Duaca, Estado Lara • RIF: J-08501684-8</p>
-                </div>
+document.addEventListener("DOMContentLoaded", () => {
+    const f = window.fruteriaInfo;
+    if(document.getElementById('fruteria-titulo')) document.getElementById('fruteria-titulo').innerText = f.titulo;
+    if(document.getElementById('fruteria-desc')) document.getElementById('fruteria-desc').innerText = f.desc;
+    const lista = document.getElementById('fruteria-lista');
+    if(lista && f.productos) {
+        lista.innerHTML = f.productos.map(p => `
+            <div class="bg-black/40 backdrop-blur-md p-4 rounded-2xl border border-white/10 hover:border-amber-400/50 transition">
+                <img src="${p.imagen}" alt="${p.nombre}" class="w-full h-32 object-cover rounded-xl mb-3">
+                <h4 class="font-bold text-amber-200 text-base">${p.nombre}</h4>
+                <p class="text-xs text-white/70 mt-1">${p.desc}</p>
             </div>
-
-            <!-- Menú de navegación con efecto flotante y sombra realista -->
-            <nav class="bg-white/10 backdrop-blur-md border border-white/30 px-8 py-3 rounded-full flex items-center gap-8 shadow-[0_20px_35px_-5px_rgba(0,0,0,0.3)] hover:shadow-[0_30px_50px_-10px_rgba(0,0,0,0.4)] transition-all duration-300 hover:-translate-y-1 text-sm font-medium">
-                <a href="#inicio" class="text-white hover:text-emerald-200 transition-colors">Inicio</a>
-                <a href="#verduras-sec" class="text-white/90 hover:text-emerald-200 transition-colors">Verduras</a>
-                <a href="#fruteria-sec" class="text-white/90 hover:text-emerald-200 transition-colors">Frutería</a>
-                <a href="#charcuteria-sec" class="text-white/90 hover:text-emerald-200 transition-colors">Charcutería</a>
-            </nav>
-
-            <div>
-                <!-- Botón flotante transparente a Redes Sociales con sombra realista -->
-                <a href="https://instagram.com/" target="_blank" class="bg-white/10 hover:bg-white/20 text-white font-bold px-6 py-3 rounded-full text-xs transition-all duration-300 shadow-[0_20px_35px_-5px_rgba(0,0,0,0.3)] hover:shadow-[0_30px_50px_-10px_rgba(0,0,0,0.4)] hover:-translate-y-1 backdrop-blur-md border border-white/30 flex items-center gap-2">
-                    Nuestras Redes
-                </a>
-            </div>
-        </header>
-
-        <!-- Sección Principal (Hero) -->
-        <main id="inicio" class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center my-auto py-16 max-w-[1440px] mx-auto w-full">
-            <div class="lg:col-span-7 space-y-8">
-                <span class="inline-block px-4 py-1.5 bg-white/20 border border-white/30 rounded-full text-xs font-semibold text-white tracking-wider uppercase shadow-sm">
-                    Directo del campo a tu mesa
-                </span>
-                <h2 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.1] drop-shadow-[0_5px_15px_rgba(0,0,0,0.3)]">
-                    Frescura y Tradición <span class="text-emerald-100 drop-shadow-[0_5px_15px_rgba(0,0,0,0.3)]">Cooperativa</span>
-                </h2>
-                <p class="text-white text-lg md:text-xl leading-relaxed max-w-2xl font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.25)]">
-                    Impulsamos la economía local con hortalizas cosechadas diariamente, frutas selectas de temporada y charcutería artesanal para toda la comunidad de Duaca.
-                </p>
-                <div class="flex flex-wrap items-center gap-4 pt-4">
-                    <!-- Botón principal flotante con sombra profunda -->
-                    <a href="#verduras-sec" class="bg-white text-emerald-900 font-bold px-8 py-4 rounded-full shadow-[0_20px_35px_-5px_rgba(0,0,0,0.3)] hover:shadow-[0_30px_50px_-10px_rgba(0,0,0,0.4)] hover:bg-emerald-50 hover:-translate-y-1.5 transition-all duration-300 text-base">
-                        Explorar Departamentos ↓
-                    </a>
-                </div>
-            </div>
-
-            <!-- Logo Integrado y Mucho Más Grande -->
-            <div class="lg:col-span-5 flex flex-col items-center justify-center relative">
-                <div class="absolute w-96 h-96 bg-white/15 rounded-full blur-3xl pointer-events-none -z-10"></div>
-                <div class="w-full max-w-xl relative flex items-center justify-center p-2">
-                    <img src="./logo.jpg.png" alt="Cooperativa San Juan Bautista" class="w-full h-auto max-h-[480px] object-contain drop-shadow-2xl">
-                </div>
-                <div class="mt-4 text-center">
-                    <span class="text-xs uppercase tracking-widest text-white font-bold drop-shadow-[0_2px_6px_rgba(0,0,0,0.3)]">Duaca • Estado Lara</span>
-                </div>
-            </div>
-        </main>
-
-        <!-- SECCIÓN 1: VERDURAS -->
-        <section id="verduras-sec" class="py-16 border-t border-white/20 max-w-[1440px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div class="lg:col-span-5 h-80 relative perspective-container group">
-                <div id="verduras-3d-carousel" class="w-full h-full relative flex items-center justify-center"></div>
-            </div>
-            <div class="lg:col-span-7 space-y-6">
-                <span class="text-white font-semibold tracking-wider text-xs uppercase bg-white/20 px-3 py-1 rounded-full border border-white/30 shadow-sm">Departamento 01</span>
-                <h3 id="verduras-titulo" class="text-4xl font-extrabold text-white drop-shadow-[0_4px_10px_rgba(0,0,0,0.3)]"></h3>
-                <p id="verduras-desc" class="text-white text-lg leading-relaxed font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.25)]"></p>
-                <div id="verduras-lista" class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4"></div>
-            </div>
-        </section>
-
-        <!-- SECCIÓN 2: FRUTERÍA -->
-        <section id="fruteria-sec" class="py-16 border-t border-white/20 max-w-[1440px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div class="lg:col-span-7 space-y-6 order-2 lg:order-1">
-                <span class="text-white font-semibold tracking-wider text-xs uppercase bg-white/20 px-3 py-1 rounded-full border border-white/30 shadow-sm">Departamento 02</span>
-                <h3 id="fruteria-titulo" class="text-4xl font-extrabold text-white drop-shadow-[0_4px_10px_rgba(0,0,0,0.3)]"></h3>
-                <p id="fruteria-desc" class="text-white text-lg leading-relaxed font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.25)]"></p>
-                <div id="fruteria-lista" class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4"></div>
-            </div>
-            <div class="lg:col-span-5 h-80 relative perspective-container group order-1 lg:order-2">
-                <div id="fruteria-3d-carousel" class="w-full h-full relative flex items-center justify-center"></div>
-            </div>
-        </section>
-
-        <!-- SECCIÓN 3: CHARCUTERÍA -->
-        <section id="charcuteria-sec" class="py-16 border-t border-white/20 max-w-[1440px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div class="lg:col-span-5 h-80 relative perspective-container group">
-                <div id="charcuteria-3d-carousel" class="w-full h-full relative flex items-center justify-center"></div>
-            </div>
-            <div class="lg:col-span-7 space-y-6">
-                <span class="text-white font-semibold tracking-wider text-xs uppercase bg-white/20 px-3 py-1 rounded-full border border-white/30 shadow-sm">Departamento 03</span>
-                <h3 id="charcuteria-titulo" class="text-4xl font-extrabold text-white drop-shadow-[0_4px_10px_rgba(0,0,0,0.3)]"></h3>
-                <p id="charcuteria-desc" class="text-white text-lg leading-relaxed font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.25)]"></p>
-                <div id="charcuteria-lista" class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4"></div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="mt-20 pt-8 border-t border-white/20 flex flex-col md:flex-row items-center justify-between text-sm text-white gap-6 max-w-[1440px] mx-auto w-full font-medium">
-            <div>
-                <p class="drop-shadow-[0_2px_6px_rgba(0,0,0,0.3)]">Confianza, trabajo en equipo y apoyo mutuo.</p>
-            </div>
-            <div class="flex items-center gap-6">
-                <span class="bg-white/10 px-4 py-2 rounded-xl border border-white/20 text-xs shadow-sm drop-shadow-[0_2px_6px_rgba(0,0,0,0.3)]">RIF: J-08501684-8</span>
-                <span class="text-xs drop-shadow-[0_2px_6px_rgba(0,0,0,0.3)]">Ubicados en Duaca, Estado Lara</span>
-            </div>
-        </footer>
-
-    </div>
-
-    <!-- Script Carrusel 3D -->
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            setTimeout(() => {
-                setup3DCarousel('verduras-3d-carousel', window.verdurasInfo, 'verduras');
-                setup3DCarousel('fruteria-3d-carousel', window.fruteriaInfo, 'fruteria');
-                setup3DCarousel('charcuteria-3d-carousel', window.charcuteriaInfo, 'normal');
-            }, 400);
-        });
-
-        function setup3DCarousel(containerId, infoObject, type = 'normal') {
-            const container = document.getElementById(containerId);
-            if (!container || !infoObject) return;
-
-            let images = [];
-            if (infoObject.imagenes && Array.isArray(infoObject.imagenes)) {
-                images = infoObject.imagenes;
-            } else if (infoObject.imagen) {
-                images = [infoObject.imagen];
-            } else if (infoObject.productos) {
-                images = infoObject.productos.map(p => p.imagen).filter(Boolean);
-            }
-
-            if (images.length === 0) return;
-
-            container.innerHTML = '';
-            images.forEach((imgSrc, index) => {
-                const wrapper = document.createElement('div');
-                let wrapperClass = 'card-3d-wrapper';
-                let extraClass = '';
-
-                if (type === 'verduras') {
-                    wrapperClass = 'card-3d-wrapper-verduras';
-                    if (index === 2 || index === 3) {
-                        extraClass = ' card-verduras-grande';
-                    }
-                } else if (type === 'fruteria') {
-                    wrapperClass = 'card-3d-wrapper-fruteria';
-                }
-
-                wrapper.className = `${wrapperClass}${extraClass} ${index === 0 ? 'active' : ''}`;
-                
-                const img = document.createElement('img');
-                img.src = imgSrc;
-                
-                wrapper.appendChild(img);
-                container.appendChild(wrapper);
-            });
-
-            if (images.length > 1) {
-                let currentIndex = 0;
-                let selector = '.card-3d-wrapper';
-                if (type === 'verduras') selector = '.card-3d-wrapper-verduras';
-                else if (type === 'fruteria') selector = '.card-3d-wrapper-fruteria';
-
-                const cards = container.querySelectorAll(selector);
-                setInterval(() => {
-                    cards[currentIndex].classList.remove('active');
-                    currentIndex = (currentIndex + 1) % cards.length;
-                    cards[currentIndex].classList.add('active');
-                }, 3500);
-            }
-        }
-    </script>
-
-    <!-- Archivos JavaScript por Departamento -->
-    <script src="verduras.js"></script>
-    <script src="fruteria.js"></script>
-    <script src="charcuteria.js"></script>
-    <script src="app.js"></script>
-</body>
-</html>
+        `).join('');
+    }
+});
