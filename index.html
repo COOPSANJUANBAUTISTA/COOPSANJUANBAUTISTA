@@ -13,7 +13,7 @@
             transform-style: preserve-3d;
         }
         
-        /* Contenedor blanco para la imagen */
+        /* Contenedor transparente para que la imagen flote directamente sin fondo blanco */
         .card-3d-wrapper {
             transition: all 0.9s cubic-bezier(0.25, 1, 0.5, 1);
             position: absolute;
@@ -21,24 +21,22 @@
             width: 100%;
             height: 100%;
             border-radius: 1.5rem;
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.25);
             opacity: 0;
             transform: scale(0.85) translateZ(-100px) rotateY(15deg);
             pointer-events: none;
-            background-color: white; /* Añadido: Fondo blanco para rellenar espacios vacíos */
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            padding: 10px; /* Añadido: Un pequeño respiro interno (opcional) */
+            padding: 10px;
         }
 
-        /* La imagen dentro del contenedor */
+        /* La imagen con sombra realista para que parezca que flota sobre el verde */
         .card-3d-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain; /* CORREGIDO: Muestra la imagen completa sin recortes */
-            border-radius: 1rem;
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.35));
         }
 
         .card-3d-wrapper.active {
@@ -202,7 +200,6 @@
 
             container.innerHTML = '';
             images.forEach((imgSrc, index) => {
-                // MODIFICADO: Creamos un contenedor (div) para la imagen en lugar de solo la etiqueta img
                 const wrapper = document.createElement('div');
                 wrapper.className = `card-3d-wrapper ${index === 0 ? 'active' : ''}`;
                 
