@@ -4,7 +4,21 @@ window.verdurasInfo = {
     imagenes: [
         "logo.jpg/05.jpeg",
         "logo.jpg/Brinjal.jpeg",
-        "logo.jpg/Isolated ear corn.jpeg"
+        "logo.jpg/Isolated ear corn.jpeg",
+        "logo.jpg/Tomato stock image_ Image of produce, ripe, tomato, isolated - 25211279.jpeg",
+        "logo.jpg/Purple Cabbage on Transparent.jpeg",
+        "logo.jpg/The Benefits of Beets - Health Best.jpeg",
+        "logo.jpg/10696117857857068.jpeg",
+        "logo.jpg/1266706141909822.jpeg",
+        "logo.jpg/16044142419491668.jpeg",
+        "logo.jpg/1829656092154284.jpeg",
+        "logo.jpg/19351473395653597.jpeg",
+        "logo.jpg/35043703347205935.jpeg",
+        "logo.jpg/3588874698438976.jpeg",
+        "logo.jpg/3940718421083158.jpeg",
+        "logo.jpg/590886413661244468.jpeg",
+        "logo.jpg/68749509993.jpeg",
+        "logo.jpg/descarga (4).jpeg"
     ],
     productos: [
         { nombre: "Tomate Fresco", desc: "Seleccionado del campo local.", imagen: "logo.jpg/Tomato stock image_ Image of produce, ripe, tomato, isolated - 25211279.jpeg" },
