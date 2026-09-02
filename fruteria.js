@@ -21,19 +21,3 @@ window.fruteriaInfo = {
         { nombre: "Piña Regional", desc: "Aromática y jugosa.", imagen: "./fruteria.png/303633c9-e69f-4829-bbfd-602a09f9990f_removalai_preview.png" }
     ]
 };
-
-document.addEventListener("DOMContentLoaded", () => {
-    const f = window.fruteriaInfo;
-    if(document.getElementById('fruteria-titulo')) document.getElementById('fruteria-titulo').innerText = f.titulo;
-    if(document.getElementById('fruteria-desc')) document.getElementById('fruteria-desc').innerText = f.desc;
-    const lista = document.getElementById('fruteria-lista');
-    if(lista && f.productos) {
-        lista.innerHTML = f.productos.map(p => `
-            <div class="bg-black/40 backdrop-blur-md p-4 rounded-2xl border border-white/10 hover:border-amber-400/50 transition">
-                <img src="${p.imagen}" alt="${p.nombre}" class="w-full h-32 object-cover rounded-xl mb-3">
-                <h4 class="font-bold text-amber-200 text-base">${p.nombre}</h4>
-                <p class="text-xs text-white/70 mt-1">${p.desc}</p>
-            </div>
-        `).join('');
-    }
-});
