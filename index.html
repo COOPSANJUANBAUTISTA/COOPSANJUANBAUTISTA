@@ -49,7 +49,7 @@
             z-index: 10;
         }
 
-        /* Estilo exclusivo para Verduras: sin cuadro, aumentado a un tamaño mayor (115%) */
+        /* Estilo exclusivo para Verduras: sin cuadro, tamaño base (115%) */
         .card-3d-wrapper-verduras {
             transition: all 0.9s cubic-bezier(0.25, 1, 0.5, 1);
             position: absolute;
@@ -70,6 +70,12 @@
             height: 115%;
             object-fit: contain;
             filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.35));
+        }
+
+        /* Estilo específico para la 3ª y 4ª imagen de verduras (índices 2 y 3) un poco más grandes */
+        .card-3d-wrapper-verduras.card-verduras-grande img {
+            width: 135%;
+            height: 135%;
         }
 
         .card-3d-wrapper-verduras.active {
@@ -235,7 +241,11 @@
             container.innerHTML = '';
             images.forEach((imgSrc, index) => {
                 const wrapper = document.createElement('div');
-                wrapper.className = `${type === 'verduras' ? 'card-3d-wrapper-verduras' : 'card-3d-wrapper'} ${index === 0 ? 'active' : ''}`;
+                let extraClass = '';
+                if (type === 'verduras' && (index === 2 || index === 3)) {
+                    extraClass = ' card-verduras-grande';
+                }
+                wrapper.className = `${type === 'verduras' ? 'card-3d-wrapper-verduras' : 'card-3d-wrapper'}${extraClass} ${index === 0 ? 'active' : ''}`;
                 
                 const img = document.createElement('img');
                 img.src = imgSrc;
