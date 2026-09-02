@@ -7,124 +7,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <style>
-        .perspective-container {
-            perspective: 1200px;
-            transform-style: preserve-3d;
-        }
-        
-        /* Contenedor con caja de cristal original solo para Charcutería */
-        .card-3d-wrapper {
-            transition: all 0.9s cubic-bezier(0.25, 1, 0.5, 1);
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 1.5rem;
-            opacity: 0;
-            transform: scale(0.85) translateZ(-100px) rotateY(15deg);
-            pointer-events: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            padding: 10px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
-        }
-
-        .card-3d-wrapper img {
-            max-width: 90%;
-            max-height: 90%;
-            object-fit: contain;
-            filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.35));
-        }
-
-        .card-3d-wrapper.active {
-            opacity: 1;
-            transform: scale(1) translateZ(0px) rotateY(0deg);
-            pointer-events: auto;
-            z-index: 10;
-        }
-
-        /* Estilo exclusivo para Verduras: sin cuadro, tamaño base (115%) */
-        .card-3d-wrapper-verduras {
-            transition: all 0.9s cubic-bezier(0.25, 1, 0.5, 1);
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transform: scale(0.9) translateZ(-100px) rotateY(15deg);
-            pointer-events: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: visible;
-        }
-
-        .card-3d-wrapper-verduras img {
-            width: 115%;
-            height: 115%;
-            object-fit: contain;
-            filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.35));
-        }
-
-        .card-3d-wrapper-verduras.card-verduras-grande img {
-            width: 135%;
-            height: 135%;
-        }
-
-        .card-3d-wrapper-verduras.active {
-            opacity: 1;
-            transform: scale(1) translateZ(0px) rotateY(0deg);
-            pointer-events: auto;
-            z-index: 10;
-        }
-
-        /* Estilo exclusivo para Frutería: sin cuadro, flotando y con tamaño mayor (115%) */
-        .card-3d-wrapper-fruteria {
-            transition: all 0.9s cubic-bezier(0.25, 1, 0.5, 1);
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transform: scale(0.9) translateZ(-100px) rotateY(15deg);
-            pointer-events: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: visible;
-        }
-
-        .card-3d-wrapper-fruteria img {
-            width: 115%;
-            height: 115%;
-            object-fit: contain;
-            filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.35));
-        }
-
-        .card-3d-wrapper-fruteria.active {
-            opacity: 1;
-            transform: scale(1) translateZ(0px) rotateY(0deg);
-            pointer-events: auto;
-            z-index: 10;
-        }
-
-        .card-3d-wrapper.prev, .card-3d-wrapper-verduras.prev, .card-3d-wrapper-fruteria.prev {
-            opacity: 0.4;
-            transform: scale(0.9) translateZ(-60px) translateX(-40px) rotateY(-10deg);
-            z-index: 5;
-        }
-        .card-3d-wrapper.next, .card-3d-wrapper-verduras.next, .card-3d-wrapper-fruteria.next {
-            opacity: 0.4;
-            transform: scale(0.9) translateZ(-60px) translateX(40px) rotateY(10deg);
-            z-index: 5;
-        }
-    </style>
 </head>
 <body class="min-h-screen text-white font-sans selection:bg-white selection:text-emerald-800 relative overflow-x-hidden bg-[#52b788]">
 
@@ -191,42 +73,24 @@
         </main>
 
         <!-- SECCIÓN 1: VERDURAS -->
-        <section id="verduras-sec" class="py-16 border-t border-white/20 max-w-[1440px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div class="lg:col-span-5 h-80 relative perspective-container group">
-                <div id="verduras-3d-carousel" class="w-full h-full relative flex items-center justify-center"></div>
-            </div>
-            <div class="lg:col-span-7 space-y-6">
-                <span class="text-white font-semibold tracking-wider text-xs uppercase bg-white/20 px-3 py-1 rounded-full border border-white/30 shadow-sm">Departamento 01</span>
-                <h3 id="verduras-titulo" class="text-4xl font-extrabold text-white drop-shadow-[0_4px_10px_rgba(0,0,0,0.3)]"></h3>
-                <p id="verduras-desc" class="text-white text-lg leading-relaxed font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.25)]"></p>
-                <div id="verduras-lista" class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4"></div>
-            </div>
+        <section id="verduras-sec" class="py-16 border-t border-white/20 max-w-4xl mx-auto w-full text-center space-y-6">
+            <span class="inline-block text-white font-semibold tracking-wider text-xs uppercase bg-white/20 px-3 py-1 rounded-full border border-white/30 shadow-sm">Departamento 01</span>
+            <h3 id="verduras-titulo" class="text-4xl md:text-5xl font-extrabold text-white drop-shadow-[0_4px_10px_rgba(0,0,0,0.3)]"></h3>
+            <p id="verduras-desc" class="text-white text-lg md:text-xl leading-relaxed font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.25)] max-w-2xl mx-auto"></p>
         </section>
 
         <!-- SECCIÓN 2: FRUTERÍA -->
-        <section id="fruteria-sec" class="py-16 border-t border-white/20 max-w-[1440px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div class="lg:col-span-7 space-y-6 order-2 lg:order-1">
-                <span class="text-white font-semibold tracking-wider text-xs uppercase bg-white/20 px-3 py-1 rounded-full border border-white/30 shadow-sm">Departamento 02</span>
-                <h3 id="fruteria-titulo" class="text-4xl font-extrabold text-white drop-shadow-[0_4px_10px_rgba(0,0,0,0.3)]"></h3>
-                <p id="fruteria-desc" class="text-white text-lg leading-relaxed font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.25)]"></p>
-                <div id="fruteria-lista" class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4"></div>
-            </div>
-            <div class="lg:col-span-5 h-80 relative perspective-container group order-1 lg:order-2">
-                <div id="fruteria-3d-carousel" class="w-full h-full relative flex items-center justify-center"></div>
-            </div>
+        <section id="fruteria-sec" class="py-16 border-t border-white/20 max-w-4xl mx-auto w-full text-center space-y-6">
+            <span class="inline-block text-white font-semibold tracking-wider text-xs uppercase bg-white/20 px-3 py-1 rounded-full border border-white/30 shadow-sm">Departamento 02</span>
+            <h3 id="fruteria-titulo" class="text-4xl md:text-5xl font-extrabold text-white drop-shadow-[0_4px_10px_rgba(0,0,0,0.3)]"></h3>
+            <p id="fruteria-desc" class="text-white text-lg md:text-xl leading-relaxed font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.25)] max-w-2xl mx-auto"></p>
         </section>
 
         <!-- SECCIÓN 3: CHARCUTERÍA -->
-        <section id="charcuteria-sec" class="py-16 border-t border-white/20 max-w-[1440px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div class="lg:col-span-5 h-80 relative perspective-container group">
-                <div id="charcuteria-3d-carousel" class="w-full h-full relative flex items-center justify-center"></div>
-            </div>
-            <div class="lg:col-span-7 space-y-6">
-                <span class="text-white font-semibold tracking-wider text-xs uppercase bg-white/20 px-3 py-1 rounded-full border border-white/30 shadow-sm">Departamento 03</span>
-                <h3 id="charcuteria-titulo" class="text-4xl font-extrabold text-white drop-shadow-[0_4px_10px_rgba(0,0,0,0.3)]"></h3>
-                <p id="charcuteria-desc" class="text-white text-lg leading-relaxed font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.25)]"></p>
-                <div id="charcuteria-lista" class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4"></div>
-            </div>
+        <section id="charcuteria-sec" class="py-16 border-t border-white/20 max-w-4xl mx-auto w-full text-center space-y-6">
+            <span class="inline-block text-white font-semibold tracking-wider text-xs uppercase bg-white/20 px-3 py-1 rounded-full border border-white/30 shadow-sm">Departamento 03</span>
+            <h3 id="charcuteria-titulo" class="text-4xl md:text-5xl font-extrabold text-white drop-shadow-[0_4px_10px_rgba(0,0,0,0.3)]"></h3>
+            <p id="charcuteria-desc" class="text-white text-lg md:text-xl leading-relaxed font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.25)] max-w-2xl mx-auto"></p>
         </section>
 
         <!-- Footer -->
@@ -241,71 +105,6 @@
         </footer>
 
     </div>
-
-    <!-- Script Carrusel 3D -->
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            setTimeout(() => {
-                setup3DCarousel('verduras-3d-carousel', window.verdurasInfo, 'verduras');
-                setup3DCarousel('fruteria-3d-carousel', window.fruteriaInfo, 'fruteria');
-                setup3DCarousel('charcuteria-3d-carousel', window.charcuteriaInfo, 'normal');
-            }, 400);
-        });
-
-        function setup3DCarousel(containerId, infoObject, type = 'normal') {
-            const container = document.getElementById(containerId);
-            if (!container || !infoObject) return;
-
-            let images = [];
-            if (infoObject.imagenes && Array.isArray(infoObject.imagenes)) {
-                images = infoObject.imagenes;
-            } else if (infoObject.imagen) {
-                images = [infoObject.imagen];
-            } else if (infoObject.productos) {
-                images = infoObject.productos.map(p => p.imagen).filter(Boolean);
-            }
-
-            if (images.length === 0) return;
-
-            container.innerHTML = '';
-            images.forEach((imgSrc, index) => {
-                const wrapper = document.createElement('div');
-                let wrapperClass = 'card-3d-wrapper';
-                let extraClass = '';
-
-                if (type === 'verduras') {
-                    wrapperClass = 'card-3d-wrapper-verduras';
-                    if (index === 2 || index === 3) {
-                        extraClass = ' card-verduras-grande';
-                    }
-                } else if (type === 'fruteria') {
-                    wrapperClass = 'card-3d-wrapper-fruteria';
-                }
-
-                wrapper.className = `${wrapperClass}${extraClass} ${index === 0 ? 'active' : ''}`;
-                
-                const img = document.createElement('img');
-                img.src = imgSrc;
-                
-                wrapper.appendChild(img);
-                container.appendChild(wrapper);
-            });
-
-            if (images.length > 1) {
-                let currentIndex = 0;
-                let selector = '.card-3d-wrapper';
-                if (type === 'verduras') selector = '.card-3d-wrapper-verduras';
-                else if (type === 'fruteria') selector = '.card-3d-wrapper-fruteria';
-
-                const cards = container.querySelectorAll(selector);
-                setInterval(() => {
-                    cards[currentIndex].classList.remove('active');
-                    currentIndex = (currentIndex + 1) % cards.length;
-                    cards[currentIndex].classList.add('active');
-                }, 3500);
-            }
-        }
-    </script>
 
     <!-- Archivos JavaScript por Departamento -->
     <script src="verduras.js"></script>
