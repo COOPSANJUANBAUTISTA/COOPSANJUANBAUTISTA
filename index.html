@@ -13,8 +13,44 @@
             transform-style: preserve-3d;
         }
         
-        /* Contenedor completamente invisible para que la imagen flote libremente sin ningún cuadro */
+        /* Contenedor con caja de cristal original para Frutería y Charcutería */
         .card-3d-wrapper {
+            transition: all 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 1.5rem;
+            opacity: 0;
+            transform: scale(0.85) translateZ(-100px) rotateY(15deg);
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-3d-wrapper img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.35));
+        }
+
+        .card-3d-wrapper.active {
+            opacity: 1;
+            transform: scale(1) translateZ(0px) rotateY(0deg);
+            pointer-events: auto;
+            z-index: 10;
+        }
+
+        /* Estilo exclusivo para Verduras: sin cuadro, tamaño equilibrado y elegante */
+        .card-3d-wrapper-verduras {
             transition: all 0.9s cubic-bezier(0.25, 1, 0.5, 1);
             position: absolute;
             inset: 0;
@@ -29,28 +65,28 @@
             overflow: visible;
         }
 
-        /* Imagen al doble de tamaño con sombra realista flotando directamente sobre el fondo verde */
-        .card-3d-wrapper img {
-            width: 180%;
-            height: 180%;
+        .card-3d-wrapper-verduras img {
+            width: 85%;
+            height: 85%;
             object-fit: contain;
-            filter: drop-shadow(0 25px 35px rgba(0, 0, 0, 0.4));
+            filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.35));
         }
 
-        .card-3d-wrapper.active {
+        .card-3d-wrapper-verduras.active {
             opacity: 1;
-            transform: scale(1.8) translateZ(0px) rotateY(0deg);
+            transform: scale(1) translateZ(0px) rotateY(0deg);
             pointer-events: auto;
             z-index: 10;
         }
-        .card-3d-wrapper.prev {
+
+        .card-3d-wrapper.prev, .card-3d-wrapper-verduras.prev {
             opacity: 0.4;
-            transform: scale(1.3) translateZ(-60px) translateX(-40px) rotateY(-10deg);
+            transform: scale(0.9) translateZ(-60px) translateX(-40px) rotateY(-10deg);
             z-index: 5;
         }
-        .card-3d-wrapper.next {
+        .card-3d-wrapper.next, .card-3d-wrapper-verduras.next {
             opacity: 0.4;
-            transform: scale(1.3) translateZ(-60px) translateX(40px) rotateY(10deg);
+            transform: scale(0.9) translateZ(-60px) translateX(40px) rotateY(10deg);
             z-index: 5;
         }
     </style>
@@ -175,13 +211,13 @@
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             setTimeout(() => {
-                setup3DCarousel('verduras-3d-carousel', window.verdurasInfo);
-                setup3DCarousel('fruteria-3d-carousel', window.fruteriaInfo);
-                setup3DCarousel('charcuteria-3d-carousel', window.charcuteriaInfo);
+                setup3DCarousel('verduras-3d-carousel', window.verdurasInfo, 'verduras');
+                setup3DCarousel('fruteria-3d-carousel', window.fruteriaInfo, 'normal');
+                setup3DCarousel('charcuteria-3d-carousel', window.charcuteriaInfo, 'normal');
             }, 400);
         });
 
-        function setup3DCarousel(containerId, infoObject) {
+        function setup3DCarousel(containerId, infoObject, type = 'normal') {
             const container = document.getElementById(containerId);
             if (!container || !infoObject) return;
 
@@ -199,7 +235,7 @@
             container.innerHTML = '';
             images.forEach((imgSrc, index) => {
                 const wrapper = document.createElement('div');
-                wrapper.className = `card-3d-wrapper ${index === 0 ? 'active' : ''}`;
+                wrapper.className = `${type === 'verduras' ? 'card-3d-wrapper-verduras' : 'card-3d-wrapper'} ${index === 0 ? 'active' : ''}`;
                 
                 const img = document.createElement('img');
                 img.src = imgSrc;
@@ -210,7 +246,7 @@
 
             if (images.length > 1) {
                 let currentIndex = 0;
-                const cards = container.querySelectorAll('.card-3d-wrapper');
+                const cards = container.querySelectorAll(type === 'verduras' ? '.card-3d-wrapper-verduras' : '.card-3d-wrapper');
                 setInterval(() => {
                     cards[currentIndex].classList.remove('active');
                     currentIndex = (currentIndex + 1) % cards.length;
