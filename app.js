@@ -1,5 +1,30 @@
 // Archivo: app.js
 
+// Funcionalidad Global para cambiar de pestaña al hacer clic
+function cambiarPestana(nombreTab, colorFondo) {
+    // 1. Cambiar el color de fondo con transición suave
+    document.body.style.backgroundColor = colorFondo;
+
+    // 2. Ocultar todos los paneles de pestañas
+    const paneles = document.querySelectorAll('.tab-panel');
+    paneles.forEach(panel => panel.classList.remove('active'));
+
+    // 3. Mostrar el panel correspondiente
+    const panelActivo = document.getElementById(`tab-${nombreTab}`);
+    if (panelActivo) {
+        panelActivo.classList.add('active');
+    }
+
+    // 4. Actualizar estado visual de los botones del menú
+    const botones = document.querySelectorAll('.tab-btn');
+    botones.forEach(btn => btn.classList.remove('active-tab'));
+
+    const botonActivo = document.getElementById(`btn-${nombreTab}`);
+    if (botonActivo) {
+        botonActivo.classList.add('active-tab');
+    }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     
     // --- 1. CARGA DE TÍTULOS Y DESCRIPCIONES ---
@@ -77,27 +102,4 @@ document.addEventListener("DOMContentLoaded", () => {
     crearCarrusel('carrusel-fruteria', imagenesFruteria);
     crearCarrusel('carrusel-charcuteria', imagenesCharcuteria);
     crearCarrusel('carrusel-artesania', imagenesArtesania);
-
-    // --- 4. CAMBIO DE COLOR DINÁMICO CON OBSERVADOR DE PANTALLA ---
-
-    const contenedorSnap = document.getElementById('contenedor-snap');
-    const secciones = document.querySelectorAll('.seccion-depto');
-    
-    const observerOptions = {
-        root: contenedorSnap,
-        threshold: 0.6 // Se activa cuando el 60% de la pantalla está centrada
-    };
-
-    const colorObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const nuevoColor = entry.target.getAttribute('data-bg');
-                if (nuevoColor) {
-                    document.body.style.backgroundColor = nuevoColor;
-                }
-            }
-        });
-    }, observerOptions);
-
-    secciones.forEach(sec => colorObserver.observe(sec));
 });
