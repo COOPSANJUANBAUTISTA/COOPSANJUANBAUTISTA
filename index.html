@@ -9,9 +9,68 @@
     <link rel="stylesheet" href="style.css">
     <style>
         body {
-            transition: background-color 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s ease;
             font-family: 'Poppins', sans-serif;
         }
+
+        /* ESTILOS GLASSMORPHISM (Inspirados en la imagen) */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+        }
+
+        .glass-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(12px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-btn:hover {
+            background: rgba(255, 255, 255, 0.22);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-1px);
+        }
+
+        .glass-btn.active-tab {
+            background: rgba(255, 255, 255, 0.38);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2), inset 0 1px 2px rgba(255, 255, 255, 0.6);
+            transform: scale(1.04);
+            font-weight: 700;
+        }
+
+        /* MODO DÍA (LIGHT MODE) OPTIMIZADO */
+        body.light-mode {
+            color: #0f172a;
+        }
+        body.light-mode .text-contrast {
+            color: #0f172a !important;
+        }
+        body.light-mode .text-sub-contrast {
+            color: #334155 !important;
+        }
+        body.light-mode .glass-nav {
+            background: rgba(255, 255, 255, 0.55);
+            border-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+        }
+        body.light-mode .glass-btn {
+            background: rgba(255, 255, 255, 0.45);
+            border-color: rgba(0, 0, 0, 0.08);
+            color: #334155;
+        }
+        body.light-mode .glass-btn.active-tab {
+            background: #ffffff;
+            border-color: rgba(0, 0, 0, 0.15);
+            color: #0f172a;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+        }
+
+        /* PANELES DE PESTAÑAS */
         .tab-panel {
             display: none;
             opacity: 0;
@@ -23,39 +82,47 @@
             opacity: 1;
             transform: translateY(0);
         }
-        .tab-btn.active-tab {
-            background-color: rgba(255, 255, 255, 0.25);
-            border-color: rgba(255, 255, 255, 0.8);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-            transform: scale(1.03);
-        }
     </style>
 </head>
-<body class="min-h-screen text-white flex flex-col justify-between px-6 lg:px-16 py-6 overflow-x-hidden bg-[#2d6a4f]">
+<body class="min-h-screen text-white flex flex-col justify-between px-6 lg:px-16 py-6 overflow-x-hidden bg-[#2d6a4f]" id="main-body">
 
-    <!-- BARRA SUPERIOR CON BOTONES DE NAVEGACIÓN -->
-    <header class="flex flex-col lg:flex-row items-center justify-between gap-4 py-3 px-6 bg-black/25 backdrop-blur-2xl border border-white/20 rounded-full max-w-[1400px] mx-auto w-full shadow-2xl z-50">
+    <!-- BARRA SUPERIOR GLASSMORPHISM CON BOTÓN DÍA/NOCHE -->
+    <header class="flex flex-col lg:flex-row items-center justify-between gap-4 py-3 px-6 glass-nav rounded-full max-w-[1400px] mx-auto w-full z-50">
+        
         <!-- Logo e Identidad -->
         <div class="flex items-center gap-3">
             <img src="./logo.jpg.png" alt="Logo Cooperativa" class="w-10 h-10 object-contain drop-shadow-md">
             <div>
-                <h1 class="text-sm font-extrabold tracking-widest uppercase text-white leading-none">Coop. San Juan Bautista</h1>
-                <span class="text-[10px] text-white/70 font-medium tracking-wider">Duaca • J-08501684-8</span>
+                <h1 class="text-sm font-extrabold tracking-widest uppercase text-contrast leading-none">Coop. San Juan Bautista</h1>
+                <span class="text-[10px] text-sub-contrast font-medium tracking-wider">Duaca • J-08501684-8</span>
             </div>
         </div>
 
-        <!-- Botones Superiores de Departamentos -->
-        <nav class="flex items-center gap-1.5 md:gap-3 bg-black/30 p-1.5 rounded-full border border-white/10 flex-wrap justify-center">
-            <button onclick="cambiarPestana('inicio', '#2d6a4f')" class="tab-btn active-tab px-4 py-2 rounded-full text-xs font-bold transition-all hover:bg-white/20" id="btn-inicio">Inicio</button>
-            <button onclick="cambiarPestana('verduras', '#1b4332')" class="tab-btn px-4 py-2 rounded-full text-xs font-bold transition-all hover:bg-white/20" id="btn-verduras">Verduras</button>
-            <button onclick="cambiarPestana('fruteria', '#991b1b')" class="tab-btn px-4 py-2 rounded-full text-xs font-bold transition-all hover:bg-white/20" id="btn-fruteria">Frutería</button>
-            <button onclick="cambiarPestana('charcuteria', '#4c0519')" class="tab-btn px-4 py-2 rounded-full text-xs font-bold transition-all hover:bg-white/20" id="btn-charcuteria">Charcutería</button>
-            <button onclick="cambiarPestana('artesania', '#78350f')" class="tab-btn px-4 py-2 rounded-full text-xs font-bold transition-all hover:bg-white/20" id="btn-artesania">Artesanía</button>
+        <!-- Botones Superiores Estilo Cápsula Glass -->
+        <nav class="flex items-center gap-2 p-1.5 rounded-full flex-wrap justify-center">
+            <button onclick="cambiarPestana('inicio')" class="tab-btn glass-btn active-tab px-5 py-2 rounded-full text-xs font-semibold tracking-wide" id="btn-inicio">
+                <span>Inicio</span>
+            </button>
+            <button onclick="cambiarPestana('verduras')" class="tab-btn glass-btn px-5 py-2 rounded-full text-xs font-semibold tracking-wide" id="btn-verduras">
+                <span>Verduras</span>
+            </button>
+            <button onclick="cambiarPestana('fruteria')" class="tab-btn glass-btn px-5 py-2 rounded-full text-xs font-semibold tracking-wide" id="btn-fruteria">
+                <span>Frutería</span>
+            </button>
+            <button onclick="cambiarPestana('charcuteria')" class="tab-btn glass-btn px-5 py-2 rounded-full text-xs font-semibold tracking-wide" id="btn-charcuteria">
+                <span>Charcutería</span>
+            </button>
+            <button onclick="cambiarPestana('artesania')" class="tab-btn glass-btn px-5 py-2 rounded-full text-xs font-semibold tracking-wide" id="btn-artesania">
+                <span>Artesanía</span>
+            </button>
         </nav>
 
-        <a href="https://instagram.com/" target="_blank" class="hidden xl:inline-block bg-white/20 hover:bg-white/30 text-white text-xs font-bold px-5 py-2 rounded-full border border-white/30 transition-all shadow-lg">
-            Contacto
-        </a>
+        <!-- Botón Modo Día / Noche (Inspirado en la Imagen 2) -->
+        <button onclick="toggleModoDiaNoche()" id="theme-toggle" class="glass-btn flex items-center gap-2.5 px-4 py-2 rounded-full text-xs font-bold transition-all shadow-md">
+            <!-- Icono Sol / Luna dinámico -->
+            <span id="theme-icon">🌙</span>
+            <span id="theme-text" class="text-contrast">Noche</span>
+        </button>
     </header>
 
     <!-- ÁREA PRINCIPAL -->
@@ -63,39 +130,37 @@
 
         <!-- Pestaña: INICIO -->
         <div id="tab-inicio" class="tab-panel active grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <!-- Lado Izquierdo: Texto -->
             <div class="lg:col-span-7 space-y-6 text-left">
-                <span class="inline-block px-4 py-1.5 bg-white/20 border border-white/30 rounded-full text-xs font-bold uppercase tracking-widest backdrop-blur-md">
+                <span class="inline-block px-4 py-1.5 glass-btn rounded-full text-xs font-bold uppercase tracking-widest text-contrast">
                     Bienvenido a la Cooperativa
                 </span>
-                <h2 class="text-4xl md:text-6xl font-black tracking-tight leading-none drop-shadow-md">
-                    Frescura y Tradición <span class="text-emerald-200">Local</span>
+                <h2 class="text-4xl md:text-6xl font-black tracking-tight leading-none text-contrast drop-shadow-md">
+                    Frescura y Tradición <span class="text-emerald-300 dark-highlight">Local</span>
                 </h2>
-                <p class="text-white/90 text-base md:text-lg leading-relaxed max-w-xl font-normal">
+                <p class="text-sub-contrast text-base md:text-lg leading-relaxed max-w-xl font-normal">
                     Impulsamos la economía de Duaca con hortalizas cosechadas diariamente, frutas selectas de temporada, charcutería y artesanías de nuestros productores localizados.
                 </p>
                 <div class="pt-2">
-                    <button onclick="cambiarPestana('verduras', '#1b4332')" class="bg-white text-emerald-950 font-extrabold px-8 py-3.5 rounded-full shadow-2xl hover:bg-emerald-100 transition-all text-sm uppercase tracking-wider">
+                    <button onclick="cambiarPestana('verduras')" class="glass-btn bg-white/90 text-slate-900 font-extrabold px-8 py-3.5 rounded-full shadow-2xl hover:bg-white transition-all text-sm uppercase tracking-wider">
                         Explorar Departamentos →
                     </button>
                 </div>
             </div>
 
-            <!-- Lado Derecho: Logo Solo y Más Grande -->
             <div class="lg:col-span-5 flex justify-center items-center">
-                <img src="./logo.jpg.png" alt="Logo Principal" class="w-full max-w-md md:max-w-lg lg:max-w-xl h-auto max-h-[460px] object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,0.4)] transition-transform hover:scale-105 duration-300">
+                <img src="./logo.jpg.png" alt="Logo Principal" class="w-full max-w-md md:max-w-lg lg:max-w-xl h-auto max-h-[460px] object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,0.35)] transition-transform hover:scale-105 duration-300">
             </div>
         </div>
 
         <!-- Pestaña: VERDURAS -->
         <div id="tab-verduras" class="tab-panel grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div class="space-y-6 text-left">
-                <span class="inline-block px-4 py-1.5 bg-emerald-950/60 border border-white/30 rounded-full text-xs font-bold uppercase tracking-widest">
+                <span class="inline-block px-4 py-1.5 glass-btn rounded-full text-xs font-bold uppercase tracking-widest text-contrast">
                     Departamento 01
                 </span>
-                <h2 id="verduras-titulo" class="text-4xl md:text-6xl font-black tracking-tight leading-none"></h2>
-                <p id="verduras-desc" class="text-white/90 text-base md:text-lg leading-relaxed font-normal max-w-xl"></p>
-                <button class="bg-white text-emerald-950 font-extrabold px-8 py-3.5 rounded-full shadow-2xl hover:bg-emerald-100 transition-all text-sm uppercase tracking-wider">
+                <h2 id="verduras-titulo" class="text-4xl md:text-6xl font-black tracking-tight leading-none text-contrast"></h2>
+                <p id="verduras-desc" class="text-sub-contrast text-base md:text-lg leading-relaxed font-normal max-w-xl"></p>
+                <button class="glass-btn bg-white/90 text-slate-900 font-extrabold px-8 py-3.5 rounded-full shadow-2xl hover:bg-white transition-all text-sm uppercase tracking-wider">
                     Ver Productos
                 </button>
             </div>
@@ -107,12 +172,12 @@
         <!-- Pestaña: FRUTERÍA -->
         <div id="tab-fruteria" class="tab-panel grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div class="space-y-6 text-left">
-                <span class="inline-block px-4 py-1.5 bg-red-950/60 border border-white/30 rounded-full text-xs font-bold uppercase tracking-widest">
+                <span class="inline-block px-4 py-1.5 glass-btn rounded-full text-xs font-bold uppercase tracking-widest text-contrast">
                     Departamento 02
                 </span>
-                <h2 id="fruteria-titulo" class="text-4xl md:text-6xl font-black tracking-tight leading-none"></h2>
-                <p id="fruteria-desc" class="text-white/90 text-base md:text-lg leading-relaxed font-normal max-w-xl"></p>
-                <button class="bg-white text-red-950 font-extrabold px-8 py-3.5 rounded-full shadow-2xl hover:bg-red-100 transition-all text-sm uppercase tracking-wider">
+                <h2 id="fruteria-titulo" class="text-4xl md:text-6xl font-black tracking-tight leading-none text-contrast"></h2>
+                <p id="fruteria-desc" class="text-sub-contrast text-base md:text-lg leading-relaxed font-normal max-w-xl"></p>
+                <button class="glass-btn bg-white/90 text-slate-900 font-extrabold px-8 py-3.5 rounded-full shadow-2xl hover:bg-white transition-all text-sm uppercase tracking-wider">
                     Ver Frutas de Temporada
                 </button>
             </div>
@@ -124,12 +189,12 @@
         <!-- Pestaña: CHARCUTERÍA -->
         <div id="tab-charcuteria" class="tab-panel grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div class="space-y-6 text-left">
-                <span class="inline-block px-4 py-1.5 bg-rose-950/60 border border-white/30 rounded-full text-xs font-bold uppercase tracking-widest">
+                <span class="inline-block px-4 py-1.5 glass-btn rounded-full text-xs font-bold uppercase tracking-widest text-contrast">
                     Departamento 03
                 </span>
-                <h2 id="charcuteria-titulo" class="text-4xl md:text-6xl font-black tracking-tight leading-none"></h2>
-                <p id="charcuteria-desc" class="text-white/90 text-base md:text-lg leading-relaxed font-normal max-w-xl"></p>
-                <button class="bg-white text-rose-950 font-extrabold px-8 py-3.5 rounded-full shadow-2xl hover:bg-rose-100 transition-all text-sm uppercase tracking-wider">
+                <h2 id="charcuteria-titulo" class="text-4xl md:text-6xl font-black tracking-tight leading-none text-contrast"></h2>
+                <p id="charcuteria-desc" class="text-sub-contrast text-base md:text-lg leading-relaxed font-normal max-w-xl"></p>
+                <button class="glass-btn bg-white/90 text-slate-900 font-extrabold px-8 py-3.5 rounded-full shadow-2xl hover:bg-white transition-all text-sm uppercase tracking-wider">
                     Ver Variedad
                 </button>
             </div>
@@ -141,12 +206,12 @@
         <!-- Pestaña: ARTESANÍA -->
         <div id="tab-artesania" class="tab-panel grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div class="space-y-6 text-left">
-                <span class="inline-block px-4 py-1.5 bg-amber-950/60 border border-white/30 rounded-full text-xs font-bold uppercase tracking-widest">
+                <span class="inline-block px-4 py-1.5 glass-btn rounded-full text-xs font-bold uppercase tracking-widest text-contrast">
                     Departamento 04
                 </span>
-                <h2 id="artesania-titulo" class="text-4xl md:text-6xl font-black tracking-tight leading-none"></h2>
-                <p id="artesania-desc" class="text-white/90 text-base md:text-lg leading-relaxed font-normal max-w-xl"></p>
-                <button class="bg-white text-amber-950 font-extrabold px-8 py-3.5 rounded-full shadow-2xl hover:bg-amber-100 transition-all text-sm uppercase tracking-wider">
+                <h2 id="artesania-titulo" class="text-4xl md:text-6xl font-black tracking-tight leading-none text-contrast"></h2>
+                <p id="artesania-desc" class="text-sub-contrast text-base md:text-lg leading-relaxed font-normal max-w-xl"></p>
+                <button class="glass-btn bg-white/90 text-slate-900 font-extrabold px-8 py-3.5 rounded-full shadow-2xl hover:bg-white transition-all text-sm uppercase tracking-wider">
                     Ver Piezas
                 </button>
             </div>
@@ -158,10 +223,10 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="pt-4 border-t border-white/15 flex flex-col md:flex-row items-center justify-between text-xs text-white/80 gap-3 max-w-[1400px] mx-auto w-full font-medium">
+    <footer class="pt-4 border-t border-white/15 flex flex-col md:flex-row items-center justify-between text-xs text-sub-contrast gap-3 max-w-[1400px] mx-auto w-full font-medium">
         <p>© Cooperativa San Juan Bautista — La Perla del Norte</p>
         <div class="flex items-center gap-4">
-            <span class="bg-white/10 px-3 py-1 rounded-full border border-white/20">RIF: J-08501684-8</span>
+            <span class="glass-btn px-3 py-1 rounded-full">RIF: J-08501684-8</span>
             <span>Duaca, Estado Lara</span>
         </div>
     </footer>
