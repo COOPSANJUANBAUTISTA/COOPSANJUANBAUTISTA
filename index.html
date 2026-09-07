@@ -28,6 +28,7 @@
                 <a href="#verduras-sec" class="text-white/90 hover:text-emerald-200 transition-colors">Verduras</a>
                 <a href="#fruteria-sec" class="text-white/90 hover:text-emerald-200 transition-colors">Frutería</a>
                 <a href="#charcuteria-sec" class="text-white/90 hover:text-emerald-200 transition-colors">Charcutería</a>
+                <a href="#artesania-sec" class="text-white/90 hover:text-emerald-200 transition-colors">Artesanía</a>
             </nav>
 
             <div>
@@ -106,6 +107,19 @@
             <div id="charcuteria-lista" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 pt-4"></div>
         </section>
 
+        <!-- SECCIÓN 4: ARTESANÍA -->
+        <section id="artesania-sec" class="py-16 border-t border-white/20 max-w-[1440px] mx-auto w-full space-y-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="carrusel-container order-2 lg:order-1" id="carrusel-artesania"></div>
+                <div class="space-y-6 text-left order-1 lg:order-2">
+                    <span class="inline-block text-white font-semibold tracking-wider text-xs uppercase bg-white/20 px-3 py-1 rounded-full border border-white/30 shadow-sm">Departamento 04</span>
+                    <h3 id="artesania-titulo" class="text-4xl md:text-5xl font-extrabold text-white drop-shadow-[0_4px_10px_rgba(0,0,0,0.3)]"></h3>
+                    <p id="artesania-desc" class="text-white text-lg md:text-xl leading-relaxed font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.25)]"></p>
+                </div>
+            </div>
+            <div id="artesania-lista" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 pt-4"></div>
+        </section>
+
         <!-- Footer -->
         <footer class="mt-20 pt-8 border-t border-white/20 flex flex-col md:flex-row items-center justify-between text-sm text-white gap-6 max-w-[1440px] mx-auto w-full font-medium">
             <div>
@@ -119,10 +133,11 @@
 
     </div>
 
-    <!-- Carga de Scripts JS (Archivos de datos cargados ANTES de app.js) -->
+    <!-- Carga de Scripts JS -->
     <script src="verduras.js"></script>
     <script src="fruteria.js"></script>
     <script src="charcuteria.js"></script>
+    <script src="artesania.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
