@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,119 +11,122 @@
         body {
             transition: background-color 0.8s ease-in-out;
         }
+        /* Contenedor principal de salto por pantalla */
+        .snap-container {
+            height: 100vh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+        /* Cada sección obligada a pantalla completa */
+        .seccion-depto {
+            height: 100vh;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+        }
     </style>
 </head>
-<body class="min-h-screen text-white font-sans relative overflow-x-hidden bg-[#2d6a4f]">
+<body class="text-white font-sans overflow-hidden bg-[#2d6a4f]">
 
-    <!-- Contenedor General -->
-    <div class="relative w-full min-h-screen flex flex-col justify-between px-6 lg:px-20 py-8">
+    <!-- Header Fijo Flotante -->
+    <header class="fixed top-4 left-1/2 -translate-x-1/2 z-50 flex items-center justify-between gap-6 py-3 px-8 bg-black/30 backdrop-blur-xl border border-white/20 rounded-full max-w-[1300px] w-[90%] shadow-2xl">
+        <div class="flex items-center gap-3">
+            <img src="./logo.jpg.png" alt="Logo" class="w-10 h-10 object-contain drop-shadow-md">
+            <h1 class="text-sm md:text-base font-extrabold tracking-wider uppercase text-white hidden sm:block">Coop. San Juan Bautista</h1>
+        </div>
 
-        <!-- Header / Navegación Flotante Estilo Pill -->
-        <header class="sticky top-4 z-50 flex flex-col md:flex-row items-center justify-between gap-6 py-4 px-8 bg-black/20 backdrop-blur-xl border border-white/20 rounded-3xl max-w-[1440px] mx-auto w-full shadow-2xl transition-all">
-            <div class="flex items-center gap-4">
-                <img src="./logo.jpg.png" alt="Logo Coop. San Juan Bautista" class="w-14 h-14 object-contain drop-shadow-md">
-                <div>
-                    <h1 class="text-base md:text-lg font-extrabold tracking-widest uppercase text-white drop-shadow-sm">Coop. San Juan Bautista</h1>
-                    <p class="text-xs text-white/80 font-medium">Duaca, Lara • RIF: J-08501684-8</p>
+        <nav class="flex items-center gap-4 md:gap-6 text-xs md:text-sm font-semibold">
+            <a href="#inicio" class="hover:text-emerald-200 transition-colors">Inicio</a>
+            <a href="#verduras-sec" class="hover:text-emerald-200 transition-colors">Verduras</a>
+            <a href="#fruteria-sec" class="hover:text-amber-200 transition-colors">Frutería</a>
+            <a href="#charcuteria-sec" class="hover:text-rose-200 transition-colors">Charcutería</a>
+            <a href="#artesania-sec" class="hover:text-orange-200 transition-colors">Artesanía</a>
+        </nav>
+
+        <a href="https://instagram.com/" target="_blank" class="hidden md:inline-block bg-white/20 hover:bg-white/30 text-white text-xs font-bold px-4 py-2 rounded-full border border-white/30 transition-all">
+            Redes
+        </a>
+    </header>
+
+    <!-- CONTENEDOR CON SCROLL SNAP -->
+    <div class="snap-container" id="contenedor-snap">
+
+        <!-- INICIO / HERO -->
+        <main id="inicio" data-bg="#2d6a4f" class="seccion-depto flex items-center justify-center px-6 lg:px-20 pt-16">
+            <div class="max-w-[1440px] w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-7 space-y-6">
+                    <span class="inline-block px-4 py-1.5 bg-white/20 border border-white/30 rounded-full text-xs font-semibold uppercase tracking-wider">
+                        Directo del campo a tu mesa
+                    </span>
+                    <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight">
+                        Frescura y Tradición <span class="text-emerald-200">Cooperativa</span>
+                    </h2>
+                    <p class="text-white/90 text-base md:text-lg leading-relaxed max-w-xl font-medium">
+                        Impulsamos la economía local con hortalizas cosechadas diariamente, frutas selectas de temporada y charcutería artesanal para toda la comunidad de Duaca.
+                    </p>
+                    <div>
+                        <a href="#verduras-sec" class="bg-white text-emerald-900 font-bold px-8 py-3.5 rounded-full shadow-2xl hover:bg-emerald-50 transition-all text-sm inline-block">
+                            Desliza para ver Departamentos ↓
+                        </a>
+                    </div>
                 </div>
-            </div>
 
-            <nav class="flex items-center gap-6 text-sm font-semibold">
-                <a href="#inicio" class="hover:text-emerald-200 transition-colors">Inicio</a>
-                <a href="#verduras-sec" class="hover:text-emerald-200 transition-colors">Verduras</a>
-                <a href="#fruteria-sec" class="hover:text-amber-200 transition-colors">Frutería</a>
-                <a href="#charcuteria-sec" class="hover:text-rose-200 transition-colors">Charcutería</a>
-                <a href="#artesania-sec" class="hover:text-orange-200 transition-colors">Artesanía</a>
-            </nav>
-
-            <a href="https://instagram.com/" target="_blank" class="bg-white/20 hover:bg-white/30 text-white text-xs font-bold px-5 py-2.5 rounded-full border border-white/30 backdrop-blur-md transition-all">
-                Redes Sociales
-            </a>
-        </header>
-
-        <!-- Hero Section (Fondo Verde Base) -->
-        <main id="inicio" data-bg="#2d6a4f" class="seccion-depto min-h-[85vh] grid grid-cols-1 lg:grid-cols-12 gap-12 items-center py-16 max-w-[1440px] mx-auto w-full">
-            <div class="lg:col-span-7 space-y-8">
-                <span class="inline-block px-4 py-1.5 bg-white/20 border border-white/30 rounded-full text-xs font-semibold uppercase tracking-wider">
-                    Directo del campo a tu mesa
-                </span>
-                <h2 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.1] drop-shadow-lg">
-                    Frescura y Tradición <span class="text-emerald-200">Cooperativa</span>
-                </h2>
-                <p class="text-white/90 text-lg md:text-xl leading-relaxed max-w-2xl font-medium">
-                    Impulsamos la economía local con hortalizas cosechadas diariamente, frutas selectas de temporada y charcutería artesanal para toda la comunidad de Duaca.
-                </p>
-                <div class="pt-4">
-                    <a href="#verduras-sec" class="bg-white text-emerald-900 font-bold px-8 py-4 rounded-full shadow-2xl hover:bg-emerald-50 transition-all text-base inline-block">
-                        Explorar Catálogo ↓
-                    </a>
-                </div>
-            </div>
-
-            <div class="lg:col-span-5 flex flex-col items-center justify-center relative">
-                <div class="w-full max-w-md bg-white/10 backdrop-blur-2xl border border-white/30 p-8 rounded-3xl shadow-2xl flex flex-col items-center">
-                    <img src="./logo.jpg.png" alt="Cooperativa San Juan Bautista" class="w-full h-auto max-h-[320px] object-contain drop-shadow-2xl">
-                    <span class="mt-6 text-xs uppercase tracking-widest font-bold text-white/80">Duaca • Estado Lara</span>
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="w-full max-w-sm bg-white/10 backdrop-blur-xl border border-white/30 p-6 rounded-3xl shadow-2xl flex flex-col items-center">
+                        <img src="./logo.jpg.png" alt="Logo Cooperativa" class="w-full h-auto max-h-[260px] object-contain drop-shadow-2xl">
+                        <span class="mt-4 text-xs uppercase tracking-widest font-bold text-white/80">Duaca • Estado Lara</span>
+                    </div>
                 </div>
             </div>
         </main>
 
-        <!-- SECCIÓN 1: VERDURAS (Tono Verde Fresco) -->
-        <section id="verduras-sec" data-bg="#1b4332" class="seccion-depto py-24 border-t border-white/20 max-w-[1440px] mx-auto w-full space-y-8">
-            <div class="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 md:p-12 shadow-2xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <!-- DEPARTAMENTO 1: VERDURAS -->
+        <section id="verduras-sec" data-bg="#1b4332" class="seccion-depto flex items-center justify-center px-6 lg:px-20 pt-16">
+            <div class="max-w-[1440px] w-full bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 md:p-12 shadow-2xl grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                 <div class="space-y-6 text-left">
-                    <span class="inline-block text-white font-bold tracking-wider text-xs uppercase bg-emerald-800/50 px-4 py-1.5 rounded-full border border-white/30">Departamento 01</span>
-                    <h3 id="verduras-titulo" class="text-4xl md:text-5xl font-extrabold text-white"></h3>
-                    <p id="verduras-desc" class="text-white/90 text-lg leading-relaxed font-medium"></p>
+                    <span class="inline-block text-white font-bold tracking-wider text-xs uppercase bg-emerald-900/60 px-4 py-1.5 rounded-full border border-white/30">Departamento 01</span>
+                    <h3 id="verduras-titulo" class="text-3xl md:text-5xl font-extrabold text-white"></h3>
+                    <p id="verduras-desc" class="text-white/90 text-base md:text-lg leading-relaxed font-medium"></p>
                 </div>
-                <div class="carrusel-container rounded-2xl overflow-hidden shadow-2xl border border-white/20" id="carrusel-verduras"></div>
+                <div class="carrusel-container max-h-[380px] rounded-2xl overflow-hidden shadow-2xl border border-white/20" id="carrusel-verduras"></div>
             </div>
         </section>
 
-        <!-- SECCIÓN 2: FRUTERÍA (Tono Naranja Cítrico) -->
-        <section id="fruteria-sec" data-bg="#d97706" class="seccion-depto py-24 border-t border-white/20 max-w-[1440px] mx-auto w-full space-y-8">
-            <div class="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 md:p-12 shadow-2xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div class="carrusel-container order-2 lg:order-1 rounded-2xl overflow-hidden shadow-2xl border border-white/20" id="carrusel-fruteria"></div>
+        <!-- DEPARTAMENTO 2: FRUTERÍA -->
+        <section id="fruteria-sec" data-bg="#d97706" class="seccion-depto flex items-center justify-center px-6 lg:px-20 pt-16">
+            <div class="max-w-[1440px] w-full bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 md:p-12 shadow-2xl grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <div class="carrusel-container order-2 lg:order-1 max-h-[380px] rounded-2xl overflow-hidden shadow-2xl border border-white/20" id="carrusel-fruteria"></div>
                 <div class="space-y-6 text-left order-1 lg:order-2">
-                    <span class="inline-block text-white font-bold tracking-wider text-xs uppercase bg-amber-800/50 px-4 py-1.5 rounded-full border border-white/30">Departamento 02</span>
-                    <h3 id="fruteria-titulo" class="text-4xl md:text-5xl font-extrabold text-white"></h3>
-                    <p id="fruteria-desc" class="text-white/90 text-lg leading-relaxed font-medium"></p>
+                    <span class="inline-block text-white font-bold tracking-wider text-xs uppercase bg-amber-900/60 px-4 py-1.5 rounded-full border border-white/30">Departamento 02</span>
+                    <h3 id="fruteria-titulo" class="text-3xl md:text-5xl font-extrabold text-white"></h3>
+                    <p id="fruteria-desc" class="text-white/90 text-base md:text-lg leading-relaxed font-medium"></p>
                 </div>
             </div>
         </section>
 
-        <!-- SECCIÓN 3: CHARCUTERÍA (Tono Rojo Gourmet) -->
-        <section id="charcuteria-sec" data-bg="#9f1239" class="seccion-depto py-24 border-t border-white/20 max-w-[1440px] mx-auto w-full space-y-8">
-            <div class="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 md:p-12 shadow-2xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <!-- DEPARTAMENTO 3: CHARCUTERÍA -->
+        <section id="charcuteria-sec" data-bg="#9f1239" class="seccion-depto flex items-center justify-center px-6 lg:px-20 pt-16">
+            <div class="max-w-[1440px] w-full bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 md:p-12 shadow-2xl grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                 <div class="space-y-6 text-left">
-                    <span class="inline-block text-white font-bold tracking-wider text-xs uppercase bg-rose-900/50 px-4 py-1.5 rounded-full border border-white/30">Departamento 03</span>
-                    <h3 id="charcuteria-titulo" class="text-4xl md:text-5xl font-extrabold text-white"></h3>
-                    <p id="charcuteria-desc" class="text-white/90 text-lg leading-relaxed font-medium"></p>
+                    <span class="inline-block text-white font-bold tracking-wider text-xs uppercase bg-rose-950/60 px-4 py-1.5 rounded-full border border-white/30">Departamento 03</span>
+                    <h3 id="charcuteria-titulo" class="text-3xl md:text-5xl font-extrabold text-white"></h3>
+                    <p id="charcuteria-desc" class="text-white/90 text-base md:text-lg leading-relaxed font-medium"></p>
                 </div>
-                <div class="carrusel-container rounded-2xl overflow-hidden shadow-2xl border border-white/20" id="carrusel-charcuteria"></div>
+                <div class="carrusel-container max-h-[380px] rounded-2xl overflow-hidden shadow-2xl border border-white/20" id="carrusel-charcuteria"></div>
             </div>
         </section>
 
-        <!-- SECCIÓN 4: ARTESANÍA (Tono Cobre Terracota) -->
-        <section id="artesania-sec" data-bg="#854d0e" class="seccion-depto py-24 border-t border-white/20 max-w-[1440px] mx-auto w-full space-y-8">
-            <div class="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 md:p-12 shadow-2xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div class="carrusel-container order-2 lg:order-1 rounded-2xl overflow-hidden shadow-2xl border border-white/20" id="carrusel-artesania"></div>
+        <!-- DEPARTAMENTO 4: ARTESANÍA -->
+        <section id="artesania-sec" data-bg="#854d0e" class="seccion-depto flex items-center justify-center px-6 lg:px-20 pt-16">
+            <div class="max-w-[1440px] w-full bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 md:p-12 shadow-2xl grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <div class="carrusel-container order-2 lg:order-1 max-h-[380px] rounded-2xl overflow-hidden shadow-2xl border border-white/20" id="carrusel-artesania"></div>
                 <div class="space-y-6 text-left order-1 lg:order-2">
-                    <span class="inline-block text-white font-bold tracking-wider text-xs uppercase bg-yellow-900/50 px-4 py-1.5 rounded-full border border-white/30">Departamento 04</span>
-                    <h3 id="artesania-titulo" class="text-4xl md:text-5xl font-extrabold text-white"></h3>
-                    <p id="artesania-desc" class="text-white/90 text-lg leading-relaxed font-medium"></p>
+                    <span class="inline-block text-white font-bold tracking-wider text-xs uppercase bg-yellow-950/60 px-4 py-1.5 rounded-full border border-white/30">Departamento 04</span>
+                    <h3 id="artesania-titulo" class="text-3xl md:text-5xl font-extrabold text-white"></h3>
+                    <p id="artesania-desc" class="text-white/90 text-base md:text-lg leading-relaxed font-medium"></p>
                 </div>
             </div>
         </section>
-
-        <!-- Footer -->
-        <footer class="mt-20 pt-8 border-t border-white/20 flex flex-col md:flex-row items-center justify-between text-sm text-white gap-6 max-w-[1440px] mx-auto w-full font-medium">
-            <p>Confianza, trabajo en equipo y apoyo mutuo.</p>
-            <div class="flex items-center gap-6">
-                <span class="bg-white/10 px-4 py-2 rounded-xl border border-white/20 text-xs">RIF: J-08501684-8</span>
-                <span class="text-xs">Duaca, Estado Lara</span>
-            </div>
-        </footer>
 
     </div>
 
