@@ -78,13 +78,14 @@ document.addEventListener("DOMContentLoaded", () => {
     crearCarrusel('carrusel-charcuteria', imagenesCharcuteria);
     crearCarrusel('carrusel-artesania', imagenesArtesania);
 
-    // --- 4. CAMBIO DE COLOR DINÁMICO AL HACER SCROLL (ESTILO STARBUCKS) ---
+    // --- 4. CAMBIO DE COLOR DINÁMICO CON OBSERVADOR DE PANTALLA ---
 
+    const contenedorSnap = document.getElementById('contenedor-snap');
     const secciones = document.querySelectorAll('.seccion-depto');
     
     const observerOptions = {
-        root: null,
-        threshold: 0.45 // Se activa cuando el 45% de la sección es visible
+        root: contenedorSnap,
+        threshold: 0.6 // Se activa cuando el 60% de la pantalla está centrada
     };
 
     const colorObserver = new IntersectionObserver((entries) => {
