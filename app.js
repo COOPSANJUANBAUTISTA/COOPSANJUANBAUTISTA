@@ -1,32 +1,60 @@
-// Archivo: app.js
+// MAPA DE PALETAS (Noche = Colores originales | Día = Tonalidades claras con alto contraste)
+const paletaColores = {
+    inicio:      { noche: '#2d6a4f', dia: '#e8f5e9' },
+    verduras:    { noche: '#1b4332', dia: '#d8f3dc' },
+    fruteria:    { noche: '#991b1b', dia: '#ffe3e3' },
+    charcuteria: { noche: '#4c0519', dia: '#ffe4e6' },
+    artesania:   { noche: '#78350f', dia: '#fef3c7' }
+};
 
-function cambiarPestana(nombreTab, colorFondo) {
-    // 1. Cambiar el color de fondo general con suave transición
-    document.body.style.backgroundColor = colorFondo;
+let departamentoActual = 'inicio';
+let esModoDia = false;
 
-    // 2. Ocultar todos los paneles de pestañas
-    const paneles = document.querySelectorAll('.tab-panel');
-    paneles.forEach(panel => panel.classList.remove('active'));
+// CAMBIAR PESTAÑA Y APLICAR COLOR SEGÚN EL MODO ACTIVO
+function cambiarPestana(nombreTab) {
+    departamentoActual = nombreTab;
+    aplicarColorDeFondo();
 
-    // 3. Mostrar el panel activo
+    // Actualizar paneles visibles
+    document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
     const panelActivo = document.getElementById(`tab-${nombreTab}`);
-    if (panelActivo) {
-        panelActivo.classList.add('active');
-    }
+    if (panelActivo) panelActivo.classList.add('active');
 
-    // 4. Actualizar botones del menú superior
-    const botones = document.querySelectorAll('.tab-btn');
-    botones.forEach(btn => btn.classList.remove('active-tab'));
-
+    // Actualizar estados de botones
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active-tab'));
     const botonActivo = document.getElementById(`btn-${nombreTab}`);
-    if (botonActivo) {
-        botonActivo.classList.add('active-tab');
-    }
+    if (botonActivo) botonActivo.classList.add('active-tab');
 }
 
+// APLICAR COLOR CORRESPONDIENTE AL DÍA O NOCHE
+function aplicarColorDeFondo() {
+    const colores = paletaColores[departamentoActual] || paletaColores.inicio;
+    const colorFinal = esModoDia ? colores.dia : colores.noche;
+    document.getElementById('main-body').style.backgroundColor = colorFinal;
+}
+
+// ALTERNAR ENTRE MODO DÍA Y MODO NOCHE
+function toggleModoDiaNoche() {
+    esModoDia = !esModoDia;
+    const body = document.getElementById('main-body');
+    const themeIcon = document.getElementById('theme-icon');
+    const themeText = document.getElementById('theme-text');
+
+    if (esModoDia) {
+        body.classList.add('light-mode');
+        themeIcon.innerText = '☀️';
+        themeText.innerText = 'Día';
+    } else {
+        body.classList.remove('light-mode');
+        themeIcon.innerText = '🌙';
+        themeText.innerText = 'Noche';
+    }
+
+    aplicarColorDeFondo();
+}
+
+// INICIALIZACIÓN DE CONTENIDOS Y CARRUSELES
 document.addEventListener("DOMContentLoaded", () => {
-    
-    // --- CARGA DINÁMICA DE INFORMACIÓN ---
     
     const cargarInfo = (idTitulo, idDesc, data) => {
         const titleEl = document.getElementById(idTitulo);
@@ -40,14 +68,12 @@ document.addEventListener("DOMContentLoaded", () => {
     if (typeof charcuteriaInfo !== 'undefined') cargarInfo("charcuteria-titulo", "charcuteria-desc", charcuteriaInfo);
     if (typeof artesaniaInfo !== 'undefined') cargarInfo("artesania-titulo", "artesania-desc", artesaniaInfo);
 
-    // --- CARRUSELES DE IMÁGENES ---
-
     function crearCarrusel(contenedorId, listaImagenes) {
         const contenedor = document.getElementById(contenedorId);
         if (!contenedor || !listaImagenes || listaImagenes.length === 0) return;
 
         contenedor.innerHTML = listaImagenes.map((src, index) => 
-            `<img src="${src}" class="${index === 0 ? 'active' : ''}" alt="Imagen del departamento">`
+            `<img src="${src}" class="${index === 0 ? 'active' : ''}" alt="Imagen departamento">`
         ).join('');
 
         let indiceActual = 0;
