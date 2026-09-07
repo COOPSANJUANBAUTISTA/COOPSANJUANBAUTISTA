@@ -68,24 +68,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- 3. INICIALIZACIÓN DE CARRUSELES ---
 
-    const imagenesVerduras = (typeof verdurasInfo !== 'undefined' && verdurasInfo.imagenes) 
-        ? verdurasInfo.imagenes 
-        : [];
-
-    const imagenesFruteria = (typeof fruteriaInfo !== 'undefined' && fruteriaInfo.imagenes) 
-        ? fruteriaInfo.imagenes 
-        : [];
-
-    const imagenesCharcuteria = (typeof charcuteriaInfo !== 'undefined' && charcuteriaInfo.imagenes) 
-        ? charcuteriaInfo.imagenes 
-        : [];
-
-    const imagenesArtesania = (typeof artesaniaInfo !== 'undefined' && artesaniaInfo.imagenes) 
-        ? artesaniaInfo.imagenes 
-        : [];
+    const imagenesVerduras = (typeof verdurasInfo !== 'undefined' && verdurasInfo.imagenes) ? verdurasInfo.imagenes : [];
+    const imagenesFruteria = (typeof fruteriaInfo !== 'undefined' && fruteriaInfo.imagenes) ? fruteriaInfo.imagenes : [];
+    const imagenesCharcuteria = (typeof charcuteriaInfo !== 'undefined' && charcuteriaInfo.imagenes) ? charcuteriaInfo.imagenes : [];
+    const imagenesArtesania = (typeof artesaniaInfo !== 'undefined' && artesaniaInfo.imagenes) ? artesaniaInfo.imagenes : [];
 
     crearCarrusel('carrusel-verduras', imagenesVerduras);
     crearCarrusel('carrusel-fruteria', imagenesFruteria);
     crearCarrusel('carrusel-charcuteria', imagenesCharcuteria);
     crearCarrusel('carrusel-artesania', imagenesArtesania);
+
+    // --- 4. CAMBIO DE COLOR DINÁMICO AL HACER SCROLL (ESTILO STARBUCKS) ---
+
+    const secciones = document.querySelectorAll('.seccion-depto');
+    
+    const observerOptions = {
+        root: null,
+        threshold: 0.45 // Se activa cuando el 45% de la sección es visible
+    };
+
+    const colorObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const nuevoColor = entry.target.getAttribute('data-bg');
+                if (nuevoColor) {
+                    document.body.style.backgroundColor = nuevoColor;
+                }
+            }
+        });
+    }, observerOptions);
+
+    secciones.forEach(sec => colorObserver.observe(sec));
 });
