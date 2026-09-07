@@ -34,6 +34,16 @@ document.addEventListener("DOMContentLoaded", () => {
         cDesc.innerText = charcuteriaInfo.desc || charcuteriaInfo.descripcion || '';
     }
 
+    // Artesanía
+    const aTitle = document.getElementById("artesania-titulo");
+    const aDesc = document.getElementById("artesania-desc");
+    if (aTitle && typeof artesaniaInfo !== 'undefined' && artesaniaInfo.titulo) {
+        aTitle.innerText = artesaniaInfo.titulo;
+    }
+    if (aDesc && typeof artesaniaInfo !== 'undefined') {
+        aDesc.innerText = artesaniaInfo.desc || artesaniaInfo.descripcion || '';
+    }
+
     // --- 2. LÓGICA DE LOS CARRUSELES DE IMÁGENES ---
 
     function crearCarrusel(contenedorId, listaImagenes) {
@@ -70,7 +80,12 @@ document.addEventListener("DOMContentLoaded", () => {
         ? charcuteriaInfo.imagenes 
         : [];
 
+    const imagenesArtesania = (typeof artesaniaInfo !== 'undefined' && artesaniaInfo.imagenes) 
+        ? artesaniaInfo.imagenes 
+        : [];
+
     crearCarrusel('carrusel-verduras', imagenesVerduras);
     crearCarrusel('carrusel-fruteria', imagenesFruteria);
     crearCarrusel('carrusel-charcuteria', imagenesCharcuteria);
+    crearCarrusel('carrusel-artesania', imagenesArtesania);
 });
