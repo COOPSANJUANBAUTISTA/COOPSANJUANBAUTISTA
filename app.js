@@ -1,21 +1,20 @@
 // Archivo: app.js
 
-// Funcionalidad Global para cambiar de pestaña al hacer clic
 function cambiarPestana(nombreTab, colorFondo) {
-    // 1. Cambiar el color de fondo con transición suave
+    // 1. Cambiar el color de fondo general con suave transición
     document.body.style.backgroundColor = colorFondo;
 
     // 2. Ocultar todos los paneles de pestañas
     const paneles = document.querySelectorAll('.tab-panel');
     paneles.forEach(panel => panel.classList.remove('active'));
 
-    // 3. Mostrar el panel correspondiente
+    // 3. Mostrar el panel activo
     const panelActivo = document.getElementById(`tab-${nombreTab}`);
     if (panelActivo) {
         panelActivo.classList.add('active');
     }
 
-    // 4. Actualizar estado visual de los botones del menú
+    // 4. Actualizar botones del menú superior
     const botones = document.querySelectorAll('.tab-btn');
     botones.forEach(btn => btn.classList.remove('active-tab'));
 
@@ -27,56 +26,28 @@ function cambiarPestana(nombreTab, colorFondo) {
 
 document.addEventListener("DOMContentLoaded", () => {
     
-    // --- 1. CARGA DE TÍTULOS Y DESCRIPCIONES ---
+    // --- CARGA DINÁMICA DE INFORMACIÓN ---
+    
+    const cargarInfo = (idTitulo, idDesc, data) => {
+        const titleEl = document.getElementById(idTitulo);
+        const descEl = document.getElementById(idDesc);
+        if (titleEl && data && data.titulo) titleEl.innerText = data.titulo;
+        if (descEl && data) descEl.innerText = data.desc || data.descripcion || '';
+    };
 
-    // Verduras
-    const vTitle = document.getElementById("verduras-titulo");
-    const vDesc = document.getElementById("verduras-desc");
-    if (vTitle && typeof verdurasInfo !== 'undefined' && verdurasInfo.titulo) {
-        vTitle.innerText = verdurasInfo.titulo;
-    }
-    if (vDesc && typeof verdurasInfo !== 'undefined') {
-        vDesc.innerText = verdurasInfo.desc || verdurasInfo.descripcion || '';
-    }
+    if (typeof verdurasInfo !== 'undefined') cargarInfo("verduras-titulo", "verduras-desc", verdurasInfo);
+    if (typeof fruteriaInfo !== 'undefined') cargarInfo("fruteria-titulo", "fruteria-desc", fruteriaInfo);
+    if (typeof charcuteriaInfo !== 'undefined') cargarInfo("charcuteria-titulo", "charcuteria-desc", charcuteriaInfo);
+    if (typeof artesaniaInfo !== 'undefined') cargarInfo("artesania-titulo", "artesania-desc", artesaniaInfo);
 
-    // Frutería
-    const fTitle = document.getElementById("fruteria-titulo");
-    const fDesc = document.getElementById("fruteria-desc");
-    if (fTitle && typeof fruteriaInfo !== 'undefined' && fruteriaInfo.titulo) {
-        fTitle.innerText = fruteriaInfo.titulo;
-    }
-    if (fDesc && typeof fruteriaInfo !== 'undefined') {
-        fDesc.innerText = fruteriaInfo.desc || fruteriaInfo.descripcion || '';
-    }
-
-    // Charcutería
-    const cTitle = document.getElementById("charcuteria-titulo");
-    const cDesc = document.getElementById("charcuteria-desc");
-    if (cTitle && typeof charcuteriaInfo !== 'undefined' && charcuteriaInfo.titulo) {
-        cTitle.innerText = charcuteriaInfo.titulo;
-    }
-    if (cDesc && typeof charcuteriaInfo !== 'undefined') {
-        cDesc.innerText = charcuteriaInfo.desc || charcuteriaInfo.descripcion || '';
-    }
-
-    // Artesanía
-    const aTitle = document.getElementById("artesania-titulo");
-    const aDesc = document.getElementById("artesania-desc");
-    if (aTitle && typeof artesaniaInfo !== 'undefined' && artesaniaInfo.titulo) {
-        aTitle.innerText = artesaniaInfo.titulo;
-    }
-    if (aDesc && typeof artesaniaInfo !== 'undefined') {
-        aDesc.innerText = artesaniaInfo.desc || artesaniaInfo.descripcion || '';
-    }
-
-    // --- 2. LÓGICA DE LOS CARRUSELES DE IMÁGENES ---
+    // --- CARRUSELES DE IMÁGENES ---
 
     function crearCarrusel(contenedorId, listaImagenes) {
         const contenedor = document.getElementById(contenedorId);
         if (!contenedor || !listaImagenes || listaImagenes.length === 0) return;
 
         contenedor.innerHTML = listaImagenes.map((src, index) => 
-            `<img src="${src}" class="${index === 0 ? 'active' : ''}" alt="Imagen de departamento">`
+            `<img src="${src}" class="${index === 0 ? 'active' : ''}" alt="Imagen del departamento">`
         ).join('');
 
         let indiceActual = 0;
@@ -91,15 +62,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // --- 3. INICIALIZACIÓN DE CARRUSELES ---
+    const imgVerduras = (typeof verdurasInfo !== 'undefined' && verdurasInfo.imagenes) ? verdurasInfo.imagenes : [];
+    const imgFruteria = (typeof fruteriaInfo !== 'undefined' && fruteriaInfo.imagenes) ? fruteriaInfo.imagenes : [];
+    const imgCharcuteria = (typeof charcuteriaInfo !== 'undefined' && charcuteriaInfo.imagenes) ? charcuteriaInfo.imagenes : [];
+    const imgArtesania = (typeof artesaniaInfo !== 'undefined' && artesaniaInfo.imagenes) ? artesaniaInfo.imagenes : [];
 
-    const imagenesVerduras = (typeof verdurasInfo !== 'undefined' && verdurasInfo.imagenes) ? verdurasInfo.imagenes : [];
-    const imagenesFruteria = (typeof fruteriaInfo !== 'undefined' && fruteriaInfo.imagenes) ? fruteriaInfo.imagenes : [];
-    const imagenesCharcuteria = (typeof charcuteriaInfo !== 'undefined' && charcuteriaInfo.imagenes) ? charcuteriaInfo.imagenes : [];
-    const imagenesArtesania = (typeof artesaniaInfo !== 'undefined' && artesaniaInfo.imagenes) ? artesaniaInfo.imagenes : [];
-
-    crearCarrusel('carrusel-verduras', imagenesVerduras);
-    crearCarrusel('carrusel-fruteria', imagenesFruteria);
-    crearCarrusel('carrusel-charcuteria', imagenesCharcuteria);
-    crearCarrusel('carrusel-artesania', imagenesArtesania);
+    crearCarrusel('carrusel-verduras', imgVerduras);
+    crearCarrusel('carrusel-fruteria', imgFruteria);
+    crearCarrusel('carrusel-charcuteria', imgCharcuteria);
+    crearCarrusel('carrusel-artesania', imgArtesania);
 });
