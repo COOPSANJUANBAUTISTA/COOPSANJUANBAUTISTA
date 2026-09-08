@@ -1,39 +1,40 @@
-// MAPA DE PALETAS (Noche = Colores originales | Día = Tonalidades claras con alto contraste)
+// PALETAS DE COLORES
 const paletaColores = {
-    inicio:      { noche: '#2d6a4f', dia: '#e8f5e9' },
-    verduras:    { noche: '#1b4332', dia: '#d8f3dc' },
-    fruteria:    { noche: '#991b1b', dia: '#ffe3e3' },
-    charcuteria: { noche: '#4c0519', dia: '#ffe4e6' },
-    artesania:   { noche: '#78350f', dia: '#fef3c7' }
+    inicio:       { noche: '#2d6a4f', dia: '#e8f5e9' },
+    verduras:     { noche: '#1b4332', dia: '#d8f3dc' },
+    fruteria:     { noche: '#991b1b', dia: '#ffe3e3' },
+    charcuteria:  { noche: '#4c0519', dia: '#ffe4e6' },
+    artesania:    { noche: '#78350f', dia: '#fef3c7' },
+    funeraria:    { noche: '#1e293b', dia: '#f1f5f9' },
+    historia:     { noche: '#3b0764', dia: '#f3e8ff' },
+    informaciones:{ noche: '#1e1b4b', dia: '#eef2ff' }
 };
 
 let departamentoActual = 'inicio';
 let esModoDia = false;
 
-// CAMBIAR PESTAÑA Y APLICAR COLOR SEGÚN EL MODO ACTIVO
+// CAMBIAR PESTAÑA
 function cambiarPestana(nombreTab) {
     departamentoActual = nombreTab;
     aplicarColorDeFondo();
 
-    // Actualizar paneles visibles
     document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
     const panelActivo = document.getElementById(`tab-${nombreTab}`);
     if (panelActivo) panelActivo.classList.add('active');
 
-    // Actualizar estados de botones
     document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active-tab'));
     const botonActivo = document.getElementById(`btn-${nombreTab}`);
     if (botonActivo) botonActivo.classList.add('active-tab');
 }
 
-// APLICAR COLOR CORRESPONDIENTE AL DÍA O NOCHE
+// APLICAR FONDO
 function aplicarColorDeFondo() {
     const colores = paletaColores[departamentoActual] || paletaColores.inicio;
     const colorFinal = esModoDia ? colores.dia : colores.noche;
     document.getElementById('main-body').style.backgroundColor = colorFinal;
 }
 
-// ALTERNAR ENTRE MODO DÍA Y MODO NOCHE
+// ALTERNAR DÍA / NOCHE
 function toggleModoDiaNoche() {
     esModoDia = !esModoDia;
     const body = document.getElementById('main-body');
@@ -53,9 +54,8 @@ function toggleModoDiaNoche() {
     aplicarColorDeFondo();
 }
 
-// INICIALIZACIÓN DE CONTENIDOS Y CARRUSELES
+// INICIALIZACIÓN
 document.addEventListener("DOMContentLoaded", () => {
-    
     const cargarInfo = (idTitulo, idDesc, data) => {
         const titleEl = document.getElementById(idTitulo);
         const descEl = document.getElementById(idDesc);
