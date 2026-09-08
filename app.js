@@ -1,12 +1,12 @@
 // PALETAS DE COLORES
 const paletaColores = {
     inicio:       { noche: '#2d6a4f', dia: '#e8f5e9' },
+    historia:     { noche: '#3b0764', dia: '#f3e8ff' },
     verduras:     { noche: '#1b4332', dia: '#d8f3dc' },
     fruteria:     { noche: '#991b1b', dia: '#ffe3e3' },
     charcuteria:  { noche: '#4c0519', dia: '#ffe4e6' },
     artesania:    { noche: '#78350f', dia: '#fef3c7' },
     funeraria:    { noche: '#1e293b', dia: '#f1f5f9' },
-    historia:     { noche: '#3b0764', dia: '#f3e8ff' },
     informaciones:{ noche: '#1e1b4b', dia: '#eef2ff' }
 };
 
@@ -56,19 +56,25 @@ function toggleModoDiaNoche() {
 
 // INICIALIZACIÓN
 document.addEventListener("DOMContentLoaded", () => {
-    const cargarInfo = (idTitulo, idDesc, data) => {
+    const cargarInfo = (idTitulo, idDesc, data, tituloPorDefecto) => {
         const titleEl = document.getElementById(idTitulo);
         const descEl = document.getElementById(idDesc);
-        if (titleEl && data && data.titulo) titleEl.innerText = data.titulo;
-        if (descEl && data) descEl.innerText = data.desc || data.descripcion || '';
+        
+        // Asignación estricta de nombres solicitados si no hay título en el JS
+        if (titleEl) {
+            titleEl.innerText = tituloPorDefecto;
+        }
+        if (descEl && data) {
+            descEl.innerText = data.desc || data.descripcion || '';
+        }
     };
 
-    if (typeof verdurasInfo !== 'undefined') cargarInfo("verduras-titulo", "verduras-desc", verdurasInfo);
-    if (typeof fruteriaInfo !== 'undefined') cargarInfo("fruteria-titulo", "fruteria-desc", fruteriaInfo);
-    if (typeof charcuteriaInfo !== 'undefined') cargarInfo("charcuteria-titulo", "charcuteria-desc", charcuteriaInfo);
-    if (typeof artesaniaInfo !== 'undefined') cargarInfo("artesania-titulo", "artesania-desc", artesaniaInfo);
+    if (typeof verdurasInfo !== 'undefined') cargarInfo("verduras-titulo", "verduras-desc", verdurasInfo, "Verduras y Hortalizas");
+    if (typeof fruteriaInfo !== 'undefined') cargarInfo("fruteria-titulo", "fruteria-desc", fruteriaInfo, "Frutería");
+    if (typeof charcuteriaInfo !== 'undefined') cargarInfo("charcuteria-titulo", "charcuteria-desc", charcuteriaInfo, "Charcutería");
+    if (typeof artesaniaInfo !== 'undefined') cargarInfo("artesania-titulo", "artesania-desc", artesaniaInfo, "Artesanía Local");
 
-    // MUESTRA DE IMÁGENES EN SU TAMAÑO ORIGINAL SIN ENCIERRO
+    // CARRUSEL DE FOTOS SUELTAS
     function crearCarrusel(contenedorId, listaImagenes) {
         const contenedor = document.getElementById(contenedorId);
         if (!contenedor || !listaImagenes || listaImagenes.length === 0) return;
