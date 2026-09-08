@@ -69,10 +69,10 @@
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.22);
             box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.2), 0 12px 32px rgba(0, 0, 0, 0.15);
-            border-radius: 1.5rem;
+            border-radius: 1rem;
         }
 
-        /* ETIQUETAS PLANAS DE TEXTO (NO BOTONES) */
+        /* ETIQUETAS PLANAS DE TEXTO */
         .badge-etiqueta {
             background: rgba(255, 255, 255, 0.15);
             border: 1px solid rgba(255, 255, 255, 0.25);
@@ -125,12 +125,17 @@
             color: #0f172a;
         }
 
-        /* IMÁGENES EN SU TAMAÑO ORIGINAL SUELTAS */
+        /* IMÁGENES CONTROLADAS Y TAMAÑO ADECUADO */
         .foto-original {
-            max-width: 100%;
+            max-width: 280px;
+            max-height: 280px;
+            width: auto;
             height: auto;
             display: none;
             object-fit: contain;
+            margin: 0 auto;
+            border-radius: 0.75rem;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
         }
         .foto-original.active {
             display: block;
@@ -164,7 +169,7 @@
             </div>
         </div>
 
-        <!-- Botones Nivelados (Historia ubicado después de Inicio) -->
+        <!-- Menú de Navegación (Historia ubicado justo después de Inicio) -->
         <nav class="flex items-center gap-2 flex-wrap justify-center">
             <button onclick="cambiarPestana('inicio')" class="tab-btn liquid-btn active-tab px-4 py-2.5 rounded-full text-xs md:text-sm font-bold" id="btn-inicio">Inicio</button>
             <button onclick="cambiarPestana('historia')" class="tab-btn liquid-btn px-4 py-2.5 rounded-full text-xs md:text-sm font-bold" id="btn-historia">Historia</button>
@@ -208,20 +213,13 @@
                     Impulsamos la economía de Duaca con hortalizas cosechadas diariamente, frutas selectas de temporada, charcutería, artesanía y atención exequial comunitaria.
                 </p>
 
-                <!-- CUADRO DE PRECIO ÚNICO GLOBAL -->
-                <div class="liquid-card p-5 rounded-2xl shadow-xl">
-                    <div class="flex items-center justify-between pb-3 mb-3 border-b border-white/20">
-                        <div class="flex items-center gap-2">
-                            <span class="text-xl">📋</span>
-                            <h3 class="font-extrabold text-sm md:text-base text-contrast uppercase tracking-wider">Precio de Hoy — Verduras y Hortalizas</h3>
-                        </div>
-                        <span class="text-[11px] font-bold dark-highlight bg-white/10 px-3 py-1 rounded-full border border-white/20">Tasa Única Global</span>
+                <!-- CUADRO DE PRECIO PEQUEÑO Y DIRECTO -->
+                <div class="liquid-card px-4 py-3 rounded-xl max-w-sm flex items-center justify-between gap-4">
+                    <div class="flex items-center gap-2">
+                        <span class="text-lg">🏷️</span>
+                        <span class="text-xs font-bold uppercase tracking-wider text-contrast">Precio Único (Verduras):</span>
                     </div>
-                    <div class="bg-black/15 p-4 rounded-xl border border-white/10 text-center">
-                        <p class="text-sub-contrast font-semibold text-xs uppercase tracking-wider">Precio Único General</p>
-                        <p class="font-black text-contrast text-2xl md:text-3xl mt-1">Consulte Precio Global del Día</p>
-                        <p class="text-xs text-sub-contrast mt-1 font-normal">Mismo precio unificado para todas las verduras y hortalizas en tienda</p>
-                    </div>
+                    <span class="font-black text-contrast text-base md:text-lg dark-highlight">Bs. 00,00</span>
                 </div>
 
                 <div class="pt-2 flex flex-wrap items-center gap-4">
@@ -236,7 +234,7 @@
 
             <!-- Foto de Portada Suelta -->
             <div class="lg:col-span-5 flex justify-center items-center">
-                <img src="./logo.jpg.png" alt="Logo Principal" class="max-w-full h-auto drop-shadow-2xl">
+                <img src="./logo.jpg.png" alt="Logo Principal" class="max-w-[320px] h-auto drop-shadow-2xl">
             </div>
         </div>
 
@@ -264,20 +262,16 @@
                 <h2 id="verduras-titulo" class="text-4xl md:text-6xl font-black tracking-tight leading-none text-contrast">Verduras y Hortalizas</h2>
                 <p id="verduras-desc" class="text-sub-contrast text-base md:text-lg leading-relaxed font-normal max-w-xl"></p>
 
-                <!-- CUADRO DE PRECIO ÚNICO DE HOY -->
-                <div class="liquid-card p-5 border border-white/20 rounded-2xl">
-                    <div class="flex items-center justify-between mb-3 pb-2 border-b border-white/20">
-                        <h4 class="font-extrabold text-sm text-contrast uppercase">📌 Precio Único de Hoy</h4>
-                        <span class="text-xs text-sub-contrast">Duaca - Lara</span>
+                <!-- CUADRO DE PRECIO PEQUEÑO EN DEPARTAMENTO VERDURAS -->
+                <div class="liquid-card px-4 py-3 rounded-xl max-w-sm flex items-center justify-between gap-4">
+                    <div class="flex items-center gap-2">
+                        <span class="text-lg">📌</span>
+                        <span class="text-xs font-bold uppercase tracking-wider text-contrast">Precio Único General:</span>
                     </div>
-                    <div class="text-center py-2 bg-black/10 rounded-xl p-3 border border-white/10">
-                        <p class="text-xs text-sub-contrast font-semibold uppercase tracking-wider">Tasa Global Unificada</p>
-                        <p class="text-2xl md:text-3xl font-black text-contrast mt-1">Consulte en Mostrador</p>
-                        <p class="text-xs text-sub-contrast mt-1 font-normal">Manejamso un solo precio estandarizado para todo el rubro de verduras y hortalizas.</p>
-                    </div>
+                    <span class="font-black text-contrast text-base md:text-lg dark-highlight">Bs. 00,00</span>
                 </div>
             </div>
-            <div class="flex justify-center items-center" id="carrusel-verduras"></div>
+            <div class="flex justify-center items-center max-w-xs mx-auto" id="carrusel-verduras"></div>
         </div>
 
         <!-- PESTAÑA 3: FRUTERÍA -->
@@ -287,7 +281,7 @@
                 <h2 id="fruteria-titulo" class="text-4xl md:text-6xl font-black tracking-tight leading-none text-contrast">Frutería</h2>
                 <p id="fruteria-desc" class="text-sub-contrast text-base md:text-lg leading-relaxed font-normal max-w-xl"></p>
             </div>
-            <div class="flex justify-center items-center" id="carrusel-fruteria"></div>
+            <div class="flex justify-center items-center max-w-xs mx-auto" id="carrusel-fruteria"></div>
         </div>
 
         <!-- PESTAÑA 4: CHARCUTERÍA -->
@@ -297,7 +291,7 @@
                 <h2 id="charcuteria-titulo" class="text-4xl md:text-6xl font-black tracking-tight leading-none text-contrast">Charcutería</h2>
                 <p id="charcuteria-desc" class="text-sub-contrast text-base md:text-lg leading-relaxed font-normal max-w-xl"></p>
             </div>
-            <div class="flex justify-center items-center" id="carrusel-charcuteria"></div>
+            <div class="flex justify-center items-center max-w-xs mx-auto" id="carrusel-charcuteria"></div>
         </div>
 
         <!-- PESTAÑA 5: ARTESANÍA -->
@@ -307,7 +301,7 @@
                 <h2 id="artesania-titulo" class="text-4xl md:text-6xl font-black tracking-tight leading-none text-contrast">Artesanía Local</h2>
                 <p id="artesania-desc" class="text-sub-contrast text-base md:text-lg leading-relaxed font-normal max-w-xl"></p>
             </div>
-            <div class="flex justify-center items-center" id="carrusel-artesania"></div>
+            <div class="flex justify-center items-center max-w-xs mx-auto" id="carrusel-artesania"></div>
         </div>
 
         <!-- PESTAÑA 6: FUNERARIA -->
