@@ -1,3 +1,6 @@
+// URL de Google Apps Script (Google Sheets Backend)
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzZnb85tPJR7fTt-mJWW9qZ2huk--pU_d7KPwE2RP9RRIcII5ti8Xyh-QtpqMFrBrdN/exec";
+
 // PALETAS DE COLORES
 const paletaColores = {
     inicio:       { noche: '#2d6a4f', dia: '#e8f5e9' },
@@ -54,13 +57,53 @@ function toggleModoDiaNoche() {
     aplicarColorDeFondo();
 }
 
+// CARGAR DATOS DINÁMICOS DESDE GOOGLE SHEETS
+async function cargarDatosDinamicos() {
+    try {
+        const respuesta = await fetch(APPS_SCRIPT_URL);
+        const datos = await respuesta.json();
+
+        // 1. Actualizar el precio único de verduras
+        const precioVerduras = datos.find(d => d.clave && d.clave.toLowerCase() === 'precio_verduras');
+        if (precioVerduras) {
+            document.querySelectorAll('#tab-verduras .dark-highlight, #tab-inicio .dark-highlight').forEach(el => {
+                el.textContent = `Bs. ${precioVerduras.precio_detalle}`;
+            });
+        }
+
+        // 2. Cargar avisos, reuniones y comunicados en la cartelera
+        const contenedorAvisos = document.querySelector('#tab-informaciones .grid');
+        const avisos = datos.filter(d => d.clave && ['REUNIÓN', 'JORNADA', 'COMUNICADO', 'AVISO'].includes(d.clave.toUpperCase()));
+
+        if (contenedorAvisos && avisos.length > 0) {
+            contenedorAvisos.innerHTML = '';
+            avisos.forEach(item => {
+                contenedorAvisos.innerHTML += `
+                    <div class="liquid-card p-6 space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-bold dark-highlight uppercase">${item.clave}</span>
+                            ${item.fecha_nota ? `<span class="text-[11px] text-sub-contrast opacity-80">${item.fecha_nota}</span>` : ''}
+                        </div>
+                        <h3 class="font-bold text-lg text-contrast">${item.titulo}</h3>
+                        <p class="text-xs text-sub-contrast leading-relaxed">${item.precio_detalle}</p>
+                    </div>
+                `;
+            });
+        }
+    } catch (error) {
+        console.error("Error cargando información desde Google Sheets:", error);
+    }
+}
+
 // INICIALIZACIÓN
 document.addEventListener("DOMContentLoaded", () => {
+    // Carga de precios y reuniones desde Google Sheets
+    cargarDatosDinamicos();
+
     const cargarInfo = (idTitulo, idDesc, data, tituloPorDefecto) => {
         const titleEl = document.getElementById(idTitulo);
         const descEl = document.getElementById(idDesc);
         
-        // Asignación estricta de nombres solicitados si no hay título en el JS
         if (titleEl) {
             titleEl.innerText = tituloPorDefecto;
         }
