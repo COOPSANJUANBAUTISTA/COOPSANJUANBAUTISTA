@@ -136,9 +136,9 @@
             display: block;
         }
 
-        /* ÚNICAMENTE LAS FOTOS DE FRUTERÍA SE REDUCEN UN 10% */
+        /* ÚNICAMENTE LAS FOTOS DE FRUTERÍA SE REDUCEN UN 10% ADICIONAL (AHORA AL 80%) */
         #carrusel-fruteria .foto-original {
-            max-width: 90%;
+            max-width: 80%;
             height: auto;
             margin: 0 auto;
         }
@@ -171,7 +171,7 @@
             </div>
         </div>
 
-        <!-- Menú de Navegación (Historia ubicado justo después de Inicio) -->
+        <!-- Menú de Navegación -->
         <nav class="flex items-center gap-2 flex-wrap justify-center">
             <button onclick="cambiarPestana('inicio')" class="tab-btn liquid-btn active-tab px-4 py-2.5 rounded-full text-xs md:text-sm font-bold" id="btn-inicio">Inicio</button>
             <button onclick="cambiarPestana('historia')" class="tab-btn liquid-btn px-4 py-2.5 rounded-full text-xs md:text-sm font-bold" id="btn-historia">Historia</button>
@@ -276,7 +276,7 @@
             <div class="flex justify-center items-center" id="carrusel-verduras"></div>
         </div>
 
-        <!-- PESTAÑA 3: FRUTERÍA (FOTOS 10% MÁS PEQUEÑAS) -->
+        <!-- PESTAÑA 3: FRUTERÍA (FOTOS REDUCIDAS AL 80%) -->
         <div id="tab-fruteria" class="tab-panel grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div class="space-y-6 text-left">
                 <span class="badge-etiqueta">Departamento 02</span>
