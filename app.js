@@ -68,12 +68,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (typeof charcuteriaInfo !== 'undefined') cargarInfo("charcuteria-titulo", "charcuteria-desc", charcuteriaInfo);
     if (typeof artesaniaInfo !== 'undefined') cargarInfo("artesania-titulo", "artesania-desc", artesaniaInfo);
 
+    // MUESTRA DE IMÁGENES EN SU TAMAÑO ORIGINAL SIN ENCIERRO
     function crearCarrusel(contenedorId, listaImagenes) {
         const contenedor = document.getElementById(contenedorId);
         if (!contenedor || !listaImagenes || listaImagenes.length === 0) return;
 
         contenedor.innerHTML = listaImagenes.map((src, index) => 
-            `<img src="${src}" class="${index === 0 ? 'active' : ''}" alt="Imagen departamento">`
+            `<img src="${src}" class="foto-original ${index === 0 ? 'active' : ''}" alt="Foto producto">`
         ).join('');
 
         let indiceActual = 0;
