@@ -3,14 +3,14 @@ const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzZnb85tPJR7fTt
 
 // PALETAS DE COLORES
 const paletaColores = {
-    inicio:       { noche: '#2d6a4f', dia: '#e8f5e9' },
-    historia:     { noche: '#3b0764', dia: '#f3e8ff' },
-    verduras:     { noche: '#1b4332', dia: '#d8f3dc' },
-    fruteria:     { noche: '#991b1b', dia: '#ffe3e3' },
-    charcuteria:  { noche: '#4c0519', dia: '#ffe4e6' },
-    artesania:    { noche: '#78350f', dia: '#fef3c7' },
-    funeraria:    { noche: '#1e293b', dia: '#f1f5f9' },
-    informaciones:{ noche: '#1e1b4b', dia: '#eef2ff' }
+    inicio:        { noche: '#2d6a4f', dia: '#e8f5e9' },
+    historia:      { noche: '#3b0764', dia: '#f3e8ff' },
+    verduras:      { noche: '#1b4332', dia: '#d8f3dc' },
+    fruteria:      { noche: '#991b1b', dia: '#ffe3e3' },
+    charcuteria:   { noche: '#4c0519', dia: '#ffe4e6' },
+    artesania:     { noche: '#78350f', dia: '#fef3c7' },
+    funeraria:     { noche: '#1e293b', dia: '#f1f5f9' },
+    informaciones: { noche: '#1e1b4b', dia: '#eef2ff' }
 };
 
 let departamentoActual = 'inicio';
@@ -63,10 +63,10 @@ async function cargarDatosDinamicos() {
         const respuesta = await fetch(APPS_SCRIPT_URL);
         const datos = await respuesta.json();
 
-        // 1. Actualizar el precio único de verduras
+        // 1. Actualizar el precio único de verduras (Solo apunta a selectores de precio)
         const precioVerduras = datos.find(d => d.clave && d.clave.toLowerCase() === 'precio_verduras');
         if (precioVerduras) {
-            document.querySelectorAll('#tab-verduras .dark-highlight, #tab-inicio .dark-highlight').forEach(el => {
+            document.querySelectorAll('.precio-monto, #precio-verduras-val').forEach(el => {
                 el.textContent = `Bs. ${precioVerduras.precio_detalle}`;
             });
         }
