@@ -125,20 +125,22 @@
             color: #0f172a;
         }
 
-        /* IMÁGENES CONTROLADAS Y TAMAÑO ADECUADO */
+        /* IMÁGENES EN SU TAMAÑO ORIGINAL */
         .foto-original {
-            max-width: 280px;
-            max-height: 280px;
-            width: auto;
+            max-width: 100%;
             height: auto;
             display: none;
             object-fit: contain;
-            margin: 0 auto;
-            border-radius: 0.75rem;
-            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
         }
         .foto-original.active {
             display: block;
+        }
+
+        /* ÚNICAMENTE LAS FOTOS DE FRUTERÍA SE REDUCEN UN 10% */
+        #carrusel-fruteria .foto-original {
+            max-width: 90%;
+            height: auto;
+            margin: 0 auto;
         }
 
         /* PANELES */
@@ -232,9 +234,9 @@
                 </div>
             </div>
 
-            <!-- Foto de Portada Suelta -->
+            <!-- Foto de Portada Suelta (Tamaño Original) -->
             <div class="lg:col-span-5 flex justify-center items-center">
-                <img src="./logo.jpg.png" alt="Logo Principal" class="max-w-[320px] h-auto drop-shadow-2xl">
+                <img src="./logo.jpg.png" alt="Logo Principal" class="max-w-full h-auto drop-shadow-2xl">
             </div>
         </div>
 
@@ -271,17 +273,17 @@
                     <span class="font-black text-contrast text-base md:text-lg dark-highlight">Bs. 00,00</span>
                 </div>
             </div>
-            <div class="flex justify-center items-center max-w-xs mx-auto" id="carrusel-verduras"></div>
+            <div class="flex justify-center items-center" id="carrusel-verduras"></div>
         </div>
 
-        <!-- PESTAÑA 3: FRUTERÍA -->
+        <!-- PESTAÑA 3: FRUTERÍA (FOTOS 10% MÁS PEQUEÑAS) -->
         <div id="tab-fruteria" class="tab-panel grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div class="space-y-6 text-left">
                 <span class="badge-etiqueta">Departamento 02</span>
                 <h2 id="fruteria-titulo" class="text-4xl md:text-6xl font-black tracking-tight leading-none text-contrast">Frutería</h2>
                 <p id="fruteria-desc" class="text-sub-contrast text-base md:text-lg leading-relaxed font-normal max-w-xl"></p>
             </div>
-            <div class="flex justify-center items-center max-w-xs mx-auto" id="carrusel-fruteria"></div>
+            <div class="flex justify-center items-center" id="carrusel-fruteria"></div>
         </div>
 
         <!-- PESTAÑA 4: CHARCUTERÍA -->
@@ -291,7 +293,7 @@
                 <h2 id="charcuteria-titulo" class="text-4xl md:text-6xl font-black tracking-tight leading-none text-contrast">Charcutería</h2>
                 <p id="charcuteria-desc" class="text-sub-contrast text-base md:text-lg leading-relaxed font-normal max-w-xl"></p>
             </div>
-            <div class="flex justify-center items-center max-w-xs mx-auto" id="carrusel-charcuteria"></div>
+            <div class="flex justify-center items-center" id="carrusel-charcuteria"></div>
         </div>
 
         <!-- PESTAÑA 5: ARTESANÍA -->
@@ -301,7 +303,7 @@
                 <h2 id="artesania-titulo" class="text-4xl md:text-6xl font-black tracking-tight leading-none text-contrast">Artesanía Local</h2>
                 <p id="artesania-desc" class="text-sub-contrast text-base md:text-lg leading-relaxed font-normal max-w-xl"></p>
             </div>
-            <div class="flex justify-center items-center max-w-xs mx-auto" id="carrusel-artesania"></div>
+            <div class="flex justify-center items-center" id="carrusel-artesania"></div>
         </div>
 
         <!-- PESTAÑA 6: FUNERARIA -->
