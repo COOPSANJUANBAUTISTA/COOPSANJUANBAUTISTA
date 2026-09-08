@@ -62,7 +62,7 @@
             pointer-events: none;
         }
 
-        /* TARJETAS INFORMATIVAS (NO PARECEN BOTONES) */
+        /* TARJETAS INFORMATIVAS */
         .liquid-card {
             background: rgba(255, 255, 255, 0.12);
             backdrop-filter: blur(20px);
@@ -136,7 +136,7 @@
             display: block;
         }
 
-        /* ÚNICAMENTE LAS FOTOS DE FRUTERÍA SE REDUCEN UN 10% ADICIONAL (AHORA AL 80%) */
+        /* FOTOS DE FRUTERÍA REDUCIDAS AL 80% */
         #carrusel-fruteria .foto-original {
             max-width: 80%;
             height: auto;
@@ -157,42 +157,43 @@
         }
     </style>
 </head>
-<body class="min-h-screen text-white flex flex-col justify-between px-4 lg:px-12 py-6 overflow-x-hidden bg-[#2d6a4f]" id="main-body">
+<body class="min-h-screen text-white flex flex-col justify-between px-3 lg:px-8 py-6 overflow-x-hidden bg-[#2d6a4f]" id="main-body">
 
     <!-- CABECERA -->
-    <header class="flex flex-col lg:flex-row items-center justify-between gap-4 py-2 max-w-[1400px] mx-auto w-full z-50">
+    <header class="flex flex-col lg:flex-row items-center justify-between gap-3 py-2 max-w-[1600px] mx-auto w-full z-50">
         
-        <!-- Logo e Identidad -->
-        <div class="flex items-center gap-4">
-            <img src="./logo.jpg.png" alt="Logo Cooperativa" class="w-16 h-16 md:w-20 md:h-20 object-contain drop-shadow-md">
-            <div>
-                <h1 class="text-base md:text-xl font-extrabold tracking-widest uppercase text-contrast leading-tight">Coop. San Juan Bautista</h1>
-                <span class="text-xs md:text-sm text-sub-contrast font-semibold tracking-wider">Duaca • J-08501684-8</span>
-            </div>
+        <!-- Nombre Arriba y RIF Debajo -->
+        <div class="shrink-0 flex flex-col items-center lg:items-start text-center lg:text-left">
+            <h1 class="text-sm md:text-base lg:text-lg font-extrabold tracking-wider uppercase text-contrast leading-tight">
+                COOP. SAN JUAN BAUTISTA
+            </h1>
+            <p class="text-xs md:text-sm font-medium text-sub-contrast tracking-normal opacity-90 mt-0.5">
+                Duaca • J-08501684-8
+            </p>
         </div>
 
-        <!-- Menú de Navegación (SOLO AQUÍ SE AJUSTARON LOS BOTONES) -->
-        <nav class="flex items-center gap-1.5 flex-wrap justify-center">
-            <button onclick="cambiarPestana('inicio')" class="tab-btn liquid-btn active-tab px-3 py-2 rounded-full text-xs font-bold" id="btn-inicio">Inicio</button>
-            <button onclick="cambiarPestana('historia')" class="tab-btn liquid-btn px-3 py-2 rounded-full text-xs font-bold" id="btn-historia">Historia</button>
-            <button onclick="cambiarPestana('verduras')" class="tab-btn liquid-btn px-3 py-2 rounded-full text-xs font-bold" id="btn-verduras">Verduras</button>
-            <button onclick="cambiarPestana('fruteria')" class="tab-btn liquid-btn px-3 py-2 rounded-full text-xs font-bold" id="btn-fruteria">Frutería</button>
-            <button onclick="cambiarPestana('charcuteria')" class="tab-btn liquid-btn px-3 py-2 rounded-full text-xs font-bold" id="btn-charcuteria">Charcutería</button>
-            <button onclick="cambiarPestana('artesania')" class="tab-btn liquid-btn px-3 py-2 rounded-full text-xs font-bold" id="btn-artesania">Artesanía</button>
-            <button onclick="cambiarPestana('funeraria')" class="tab-btn liquid-btn px-3 py-2 rounded-full text-xs font-bold" id="btn-funeraria">Funeraria</button>
-            <button onclick="cambiarPestana('informaciones')" class="tab-btn liquid-btn px-3 py-2 rounded-full text-xs font-bold" id="btn-informaciones">Informaciones</button>
+        <!-- Menú de Navegación en Una Sola Fila -->
+        <nav class="flex items-center gap-1 xl:gap-1.5 flex-nowrap overflow-x-auto max-w-full py-1">
+            <button onclick="cambiarPestana('inicio')" class="tab-btn liquid-btn active-tab px-2.5 py-1.5 rounded-full text-[11px] md:text-xs font-bold whitespace-nowrap" id="btn-inicio">Inicio</button>
+            <button onclick="cambiarPestana('historia')" class="tab-btn liquid-btn px-2.5 py-1.5 rounded-full text-[11px] md:text-xs font-bold whitespace-nowrap" id="btn-historia">Historia</button>
+            <button onclick="cambiarPestana('verduras')" class="tab-btn liquid-btn px-2.5 py-1.5 rounded-full text-[11px] md:text-xs font-bold whitespace-nowrap" id="btn-verduras">Verduras</button>
+            <button onclick="cambiarPestana('fruteria')" class="tab-btn liquid-btn px-2.5 py-1.5 rounded-full text-[11px] md:text-xs font-bold whitespace-nowrap" id="btn-fruteria">Frutería</button>
+            <button onclick="cambiarPestana('charcuteria')" class="tab-btn liquid-btn px-2.5 py-1.5 rounded-full text-[11px] md:text-xs font-bold whitespace-nowrap" id="btn-charcuteria">Charcutería</button>
+            <button onclick="cambiarPestana('artesania')" class="tab-btn liquid-btn px-2.5 py-1.5 rounded-full text-[11px] md:text-xs font-bold whitespace-nowrap" id="btn-artesania">Artesanía</button>
+            <button onclick="cambiarPestana('funeraria')" class="tab-btn liquid-btn px-2.5 py-1.5 rounded-full text-[11px] md:text-xs font-bold whitespace-nowrap" id="btn-funeraria">Funeraria</button>
+            <button onclick="cambiarPestana('informaciones')" class="tab-btn liquid-btn px-2.5 py-1.5 rounded-full text-[11px] md:text-xs font-bold whitespace-nowrap" id="btn-informaciones">Informaciones</button>
         </nav>
 
         <!-- Botones de Acción -->
-        <div class="flex items-center gap-2">
-            <a href="https://whatsapp.com/channel/0029VbDjia172WU2GFry2L1W" target="_blank" rel="noopener noreferrer" class="liquid-btn flex items-center gap-2 px-4 py-2.5 rounded-full text-xs md:text-sm font-bold">
-                <svg class="w-4 h-4 fill-emerald-400" viewBox="0 0 24 24">
+        <div class="flex items-center gap-2 shrink-0">
+            <a href="https://whatsapp.com/channel/0029VbDjia172WU2GFry2L1W" target="_blank" rel="noopener noreferrer" class="liquid-btn flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] md:text-xs font-bold whitespace-nowrap">
+                <svg class="w-3.5 h-3.5 fill-emerald-400" viewBox="0 0 24 24">
                     <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
                 </svg>
                 <span class="text-contrast">WhatsApp</span>
             </a>
 
-            <button onclick="toggleModoDiaNoche()" id="theme-toggle" class="liquid-btn flex items-center gap-2 px-4 py-2.5 rounded-full text-xs md:text-sm font-bold">
+            <button onclick="toggleModoDiaNoche()" id="theme-toggle" class="liquid-btn flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] md:text-xs font-bold whitespace-nowrap">
                 <span id="theme-icon">🌙</span>
                 <span id="theme-text" class="text-contrast">Noche</span>
             </button>
@@ -215,7 +216,7 @@
                     Impulsamos la economía de Duaca con hortalizas cosechadas diariamente, frutas selectas de temporada, charcutería, artesanía y atención exequial comunitaria.
                 </p>
 
-                <!-- CUADRO DE PRECIO PEQUEÑO Y DIRECTO -->
+                <!-- CUADRO DE PRECIO PEQUEÑO -->
                 <div class="liquid-card px-4 py-3 rounded-xl max-w-sm flex items-center justify-between gap-4">
                     <div class="flex items-center gap-2">
                         <span class="text-lg">🏷️</span>
@@ -234,7 +235,6 @@
                 </div>
             </div>
 
-            <!-- Foto de Portada Suelta (Tamaño Original) -->
             <div class="lg:col-span-5 flex justify-center items-center">
                 <img src="./logo.jpg.png" alt="Logo Principal" class="max-w-full h-auto drop-shadow-2xl">
             </div>
@@ -264,7 +264,6 @@
                 <h2 id="verduras-titulo" class="text-4xl md:text-6xl font-black tracking-tight leading-none text-contrast">Verduras y Hortalizas</h2>
                 <p id="verduras-desc" class="text-sub-contrast text-base md:text-lg leading-relaxed font-normal max-w-xl"></p>
 
-                <!-- CUADRO DE PRECIO PEQUEÑO EN DEPARTAMENTO VERDURAS -->
                 <div class="liquid-card px-4 py-3 rounded-xl max-w-sm flex items-center justify-between gap-4">
                     <div class="flex items-center gap-2">
                         <span class="text-lg">📌</span>
@@ -276,7 +275,7 @@
             <div class="flex justify-center items-center" id="carrusel-verduras"></div>
         </div>
 
-        <!-- PESTAÑA 3: FRUTERÍA (FOTOS REDUCIDAS AL 80%) -->
+        <!-- PESTAÑA 3: FRUTERÍA -->
         <div id="tab-fruteria" class="tab-panel grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div class="space-y-6 text-left">
                 <span class="badge-etiqueta">Departamento 02</span>
