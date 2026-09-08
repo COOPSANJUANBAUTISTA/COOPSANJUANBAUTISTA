@@ -12,41 +12,63 @@
             font-family: 'Poppins', sans-serif;
         }
 
-        /* ESTILOS GLASSMORPHISM (NOCHE Y BASE) */
-        .glass-nav {
-            background: rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border: 1px solid rgba(255, 255, 255, 0.22);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.4);
-        }
-
-        .glass-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(12px);
-            color: #ffffff;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .glass-btn:hover {
-            background: rgba(255, 255, 255, 0.25);
-            border-color: rgba(255, 255, 255, 0.4);
-            transform: translateY(-2px);
-        }
-
-        .glass-btn.active-tab {
-            background: rgba(255, 255, 255, 0.95) !important;
-            border: 1px solid rgba(255, 255, 255, 1) !important;
-            color: #0f172a !important;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-            font-weight: 700;
-        }
-
-        .glass-card {
-            background: rgba(255, 255, 255, 0.08);
+        /* ESTILO LIQUID GLASS (CRISTAL LÍQUIDO) */
+        .liquid-btn {
+            position: relative;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.08) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.35);
             backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            -webkit-backdrop-filter: blur(16px);
+            color: #ffffff;
+            box-shadow: 
+                inset 0 1px 2px rgba(255, 255, 255, 0.5),
+                inset 0 -1px 2px rgba(0, 0, 0, 0.2),
+                0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            overflow: hidden;
+        }
+
+        .liquid-btn:hover {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.32) 0%, rgba(255, 255, 255, 0.15) 100%);
+            border-color: rgba(255, 255, 255, 0.6);
+            box-shadow: 
+                inset 0 1px 3px rgba(255, 255, 255, 0.7),
+                0 6px 18px rgba(0, 0, 0, 0.25);
+            transform: translateY(-1px);
+        }
+
+        /* ESTADO ACTIVO: BURBUJA LÍQUIDA BRILLANTE CON RESPLANDOR */
+        .liquid-btn.active-tab {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(225, 235, 245, 0.75) 100%) !important;
+            border: 1px solid rgba(255, 255, 255, 0.9) !important;
+            color: #0f172a !important;
+            font-weight: 800 !important;
+            box-shadow: 
+                inset 0 2px 4px rgba(255, 255, 255, 1),
+                inset 0 -2px 5px rgba(0, 0, 0, 0.25),
+                0 8px 25px rgba(255, 255, 255, 0.4),
+                0 4px 15px rgba(0, 0, 0, 0.3) !important;
+        }
+
+        /* LENTE DE REFLEJO LÍQUIDO SUPERIOR (EFECTO GOTA/CRISTAL) */
+        .liquid-btn::before {
+            content: '';
+            position: absolute;
+            top: 1px;
+            left: 8%;
+            width: 84%;
+            height: 40%;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0));
+            border-radius: 9999px;
+            pointer-events: none;
+        }
+
+        .liquid-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.3), 0 12px 32px rgba(0, 0, 0, 0.2);
             border-radius: 1.5rem;
         }
 
@@ -54,7 +76,7 @@
             color: #6ee7b7;
         }
 
-        /* MODO DÍA (LIGHT MODE) OPTIMIZADO PARA ALTO CONTRASTE */
+        /* MODO DÍA ADAPTADO AL ESTILO LÍQUIDO */
         body.light-mode {
             color: #0f172a !important;
         }
@@ -65,25 +87,26 @@
             color: #334155 !important;
         }
         body.light-mode .dark-highlight {
-            color: #047857 !important; /* Verde oscuro visible */
+            color: #047857 !important;
         }
-        body.light-mode .glass-nav {
-            background: rgba(255, 255, 255, 0.65);
-            border-color: rgba(0, 0, 0, 0.1);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+        body.light-mode .liquid-btn {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.12) 0%, rgba(15, 23, 42, 0.04) 100%);
+            border-color: rgba(15, 23, 42, 0.2);
+            color: #0f172a;
+            box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.8), 0 4px 12px rgba(0, 0, 0, 0.08);
         }
-        body.light-mode .glass-btn {
-            background: rgba(255, 255, 255, 0.6);
-            border-color: rgba(0, 0, 0, 0.12);
-            color: #1e293b;
+        body.light-mode .liquid-btn.active-tab {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+            border-color: #0f172a !important;
+            color: #ffffff !important;
+            box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.4), 0 8px 20px rgba(15, 23, 42, 0.3) !important;
         }
-        body.light-mode .glass-card {
-            background: rgba(255, 255, 255, 0.7);
-            border-color: rgba(0, 0, 0, 0.08);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        body.light-mode .liquid-card {
+            background: rgba(255, 255, 255, 0.75);
+            border-color: rgba(15, 23, 42, 0.12);
         }
 
-        /* PANELES DE PESTAÑAS */
+        /* PANELES */
         .tab-panel {
             display: none;
             opacity: 0;
@@ -99,41 +122,40 @@
 </head>
 <body class="min-h-screen text-white flex flex-col justify-between px-4 lg:px-12 py-6 overflow-x-hidden bg-[#2d6a4f]" id="main-body">
 
-    <!-- CABECERA SUPERIOR -->
+    <!-- CABECERA -->
     <header class="flex flex-col lg:flex-row items-center justify-between gap-4 py-2 max-w-[1400px] mx-auto w-full z-50">
         
         <!-- Logo e Identidad -->
         <div class="flex items-center gap-4">
-            <img src="./logo.jpg.png" alt="Logo Cooperativa" class="w-16 h-16 md:w-20 md:h-20 object-contain drop-shadow-[0_10px_15px_rgba(0,0,0,0.3)] transition-transform hover:scale-105">
+            <img src="./logo.jpg.png" alt="Logo Cooperativa" class="w-16 h-16 md:w-20 md:h-20 object-contain drop-shadow-md">
             <div>
                 <h1 class="text-base md:text-xl font-extrabold tracking-widest uppercase text-contrast leading-tight">Coop. San Juan Bautista</h1>
                 <span class="text-xs md:text-sm text-sub-contrast font-semibold tracking-wider">Duaca • J-08501684-8</span>
             </div>
         </div>
 
-        <!-- Botones Flotantes de Navegación -->
-        <nav class="flex items-center gap-1.5 p-1.5 glass-nav rounded-full flex-wrap justify-center">
-            <button onclick="cambiarPestana('inicio')" class="tab-btn glass-btn active-tab px-4 py-2 rounded-full text-xs md:text-sm font-semibold tracking-wide" id="btn-inicio">Inicio</button>
-            <button onclick="cambiarPestana('verduras')" class="tab-btn glass-btn px-4 py-2 rounded-full text-xs md:text-sm font-semibold tracking-wide" id="btn-verduras">Verduras</button>
-            <button onclick="cambiarPestana('fruteria')" class="tab-btn glass-btn px-4 py-2 rounded-full text-xs md:text-sm font-semibold tracking-wide" id="btn-fruteria">Frutería</button>
-            <button onclick="cambiarPestana('charcuteria')" class="tab-btn glass-btn px-4 py-2 rounded-full text-xs md:text-sm font-semibold tracking-wide" id="btn-charcuteria">Charcutería</button>
-            <button onclick="cambiarPestana('artesania')" class="tab-btn glass-btn px-4 py-2 rounded-full text-xs md:text-sm font-semibold tracking-wide" id="btn-artesania">Artesanía</button>
-            <button onclick="cambiarPestana('funeraria')" class="tab-btn glass-btn px-4 py-2 rounded-full text-xs md:text-sm font-semibold tracking-wide" id="btn-funeraria">Funeraria</button>
-            <button onclick="cambiarPestana('precios')" class="tab-btn glass-btn px-4 py-2 rounded-full text-xs md:text-sm font-semibold tracking-wide" id="btn-precios">Precios del Día</button>
-            <button onclick="cambiarPestana('historia')" class="tab-btn glass-btn px-4 py-2 rounded-full text-xs md:text-sm font-semibold tracking-wide" id="btn-historia">Historia</button>
-            <button onclick="cambiarPestana('informaciones')" class="tab-btn glass-btn px-4 py-2 rounded-full text-xs md:text-sm font-semibold tracking-wide" id="btn-informaciones">Informaciones</button>
+        <!-- Botones Nivelados con Estilo Cristal Líquido -->
+        <nav class="flex items-center gap-2 flex-wrap justify-center">
+            <button onclick="cambiarPestana('inicio')" class="tab-btn liquid-btn active-tab px-4 py-2.5 rounded-full text-xs md:text-sm font-bold" id="btn-inicio">Inicio</button>
+            <button onclick="cambiarPestana('verduras')" class="tab-btn liquid-btn px-4 py-2.5 rounded-full text-xs md:text-sm font-bold" id="btn-verduras">Verduras</button>
+            <button onclick="cambiarPestana('fruteria')" class="tab-btn liquid-btn px-4 py-2.5 rounded-full text-xs md:text-sm font-bold" id="btn-fruteria">Frutería</button>
+            <button onclick="cambiarPestana('charcuteria')" class="tab-btn liquid-btn px-4 py-2.5 rounded-full text-xs md:text-sm font-bold" id="btn-charcuteria">Charcutería</button>
+            <button onclick="cambiarPestana('artesania')" class="tab-btn liquid-btn px-4 py-2.5 rounded-full text-xs md:text-sm font-bold" id="btn-artesania">Artesanía</button>
+            <button onclick="cambiarPestana('funeraria')" class="tab-btn liquid-btn px-4 py-2.5 rounded-full text-xs md:text-sm font-bold" id="btn-funeraria">Funeraria</button>
+            <button onclick="cambiarPestana('historia')" class="tab-btn liquid-btn px-4 py-2.5 rounded-full text-xs md:text-sm font-bold" id="btn-historia">Historia</button>
+            <button onclick="cambiarPestana('informaciones')" class="tab-btn liquid-btn px-4 py-2.5 rounded-full text-xs md:text-sm font-bold" id="btn-informaciones">Informaciones</button>
         </nav>
 
-        <!-- Canal de WhatsApp y Selector de Tema -->
+        <!-- Botones de Acción Líquidos (WhatsApp y Tema) -->
         <div class="flex items-center gap-2">
-            <a href="https://whatsapp.com/channel/0029VbDjia172WU2GFry2L1W" target="_blank" rel="noopener noreferrer" class="glass-nav flex items-center gap-2 px-4 py-2 rounded-full text-xs md:text-sm font-bold transition-all hover:scale-105 shadow-lg group">
-                <svg class="w-4 h-4 fill-emerald-500 group-hover:scale-110 transition-transform" viewBox="0 0 24 24">
+            <a href="https://whatsapp.com/channel/0029VbDjia172WU2GFry2L1W" target="_blank" rel="noopener noreferrer" class="liquid-btn flex items-center gap-2 px-4 py-2.5 rounded-full text-xs md:text-sm font-bold">
+                <svg class="w-4 h-4 fill-emerald-400" viewBox="0 0 24 24">
                     <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
                 </svg>
                 <span class="text-contrast">WhatsApp</span>
             </a>
 
-            <button onclick="toggleModoDiaNoche()" id="theme-toggle" class="glass-nav flex items-center gap-2 px-4 py-2 rounded-full text-xs md:text-sm font-bold transition-all hover:scale-105 shadow-lg">
+            <button onclick="toggleModoDiaNoche()" id="theme-toggle" class="liquid-btn flex items-center gap-2 px-4 py-2.5 rounded-full text-xs md:text-sm font-bold">
                 <span id="theme-icon">🌙</span>
                 <span id="theme-text" class="text-contrast">Noche</span>
             </button>
@@ -145,57 +167,79 @@
 
         <!-- PESTAÑA 1: INICIO -->
         <div id="tab-inicio" class="tab-panel active grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div class="lg:col-span-7 space-y-6 text-left">
-                <span class="inline-block px-4 py-1.5 glass-btn rounded-full text-xs font-bold uppercase tracking-widest text-contrast">
+            <div class="lg:col-span-7 space-y-5 text-left">
+                <span class="inline-block px-4 py-1.5 liquid-btn rounded-full text-xs font-bold uppercase tracking-widest text-contrast">
                     Bienvenido a la Cooperativa
                 </span>
-                <h2 class="text-4xl md:text-6xl font-black tracking-tight leading-none text-contrast drop-shadow-md">
+                <h2 class="text-4xl md:text-6xl font-black tracking-tight leading-none text-contrast">
                     Frescura y Tradición <span class="dark-highlight">Local</span>
                 </h2>
                 <p class="text-sub-contrast text-base md:text-lg leading-relaxed max-w-xl font-normal">
-                    Impulsamos la economía solidaria de Duaca con hortalizas cosechadas diariamente, frutas de temporada, charcutería, artesanías y servicios comunitarios para nuestras familias.
+                    Impulsamos la economía de Duaca con hortalizas cosechadas diariamente, frutas selectas de temporada, charcutería, artesanía y atención exequial comunitaria.
                 </p>
-                
-                <!-- Botones Destacados -->
-                <div class="pt-2 flex flex-wrap items-center gap-4">
-                    <button onclick="cambiarPestana('precios')" class="bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold px-8 py-3.5 rounded-full shadow-2xl transition-all text-sm uppercase tracking-wider hover:scale-105">
-                        Ver Precios del Día 📋
-                    </button>
-                    <a href="https://whatsapp.com/channel/0029VbDjia172WU2GFry2L1W" target="_blank" rel="noopener noreferrer" class="glass-btn px-6 py-3.5 rounded-full font-bold text-sm tracking-wider uppercase text-contrast hover:scale-105 transition-all">
-                        Canal Informativo 📢
-                    </a>
-                </div>
 
-                <!-- Tarjeta con Horarios de Atención -->
-                <div class="glass-card p-5 mt-6 max-w-xl flex flex-col sm:flex-row items-center justify-between gap-4">
-                    <div class="flex items-center gap-3">
-                        <span class="text-3xl">⏰</span>
-                        <div>
-                            <h3 class="font-bold text-sm uppercase text-contrast">Horarios de Atención</h3>
-                            <p class="text-xs text-sub-contrast">Abiertos para servir a la comunidad de Duaca</p>
+                <!-- CUADRO INFORMATIVO EN INICIO -->
+                <div class="liquid-card p-5 border border-white/30 rounded-2xl shadow-xl">
+                    <div class="flex items-center justify-between pb-3 mb-3 border-b border-white/20">
+                        <div class="flex items-center gap-2">
+                            <span class="text-xl">📋</span>
+                            <h3 class="font-extrabold text-sm md:text-base text-contrast uppercase tracking-wider">Precios del Día — Verduras y Hortalizas</h3>
+                        </div>
+                        <span class="text-[11px] font-bold dark-highlight bg-white/10 px-3 py-1 rounded-full border border-white/20">Hoy en Tienda</span>
+                    </div>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+                        <div class="bg-black/15 p-2.5 rounded-xl border border-white/10 text-center">
+                            <p class="text-sub-contrast font-medium text-[11px]">Papa Blanca</p>
+                            <p class="font-black text-contrast text-sm mt-0.5">Precio del Día</p>
+                        </div>
+                        <div class="bg-black/15 p-2.5 rounded-xl border border-white/10 text-center">
+                            <p class="text-sub-contrast font-medium text-[11px]">Tomate Perita</p>
+                            <p class="font-black text-contrast text-sm mt-0.5">Precio del Día</p>
+                        </div>
+                        <div class="bg-black/15 p-2.5 rounded-xl border border-white/10 text-center">
+                            <p class="text-sub-contrast font-medium text-[11px]">Cebolla</p>
+                            <p class="font-black text-contrast text-sm mt-0.5">Precio del Día</p>
+                        </div>
+                        <div class="bg-black/15 p-2.5 rounded-xl border border-white/10 text-center">
+                            <p class="text-sub-contrast font-medium text-[11px]">Pimentón</p>
+                            <p class="font-black text-contrast text-sm mt-0.5">Precio del Día</p>
                         </div>
                     </div>
-                    <div class="text-right text-xs font-semibold text-contrast">
-                        <p>Lun - Sáb: <span class="dark-highlight">7:00 AM - 5:00 PM</span></p>
-                        <p>Domingos: <span class="dark-highlight">7:00 AM - 1:00 PM</span></p>
-                    </div>
+                </div>
+
+                <div class="pt-2 flex flex-wrap items-center gap-4">
+                    <button onclick="cambiarPestana('verduras')" class="bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold px-8 py-3.5 rounded-full shadow-2xl transition-all text-sm uppercase tracking-wider hover:scale-105">
+                        Explorar Departamentos →
+                    </button>
+                    <a href="https://whatsapp.com/channel/0029VbDjia172WU2GFry2L1W" target="_blank" rel="noopener noreferrer" class="liquid-btn px-6 py-3.5 rounded-full font-bold text-sm tracking-wider uppercase text-contrast hover:scale-105 transition-all">
+                        Unirme al Canal
+                    </a>
                 </div>
             </div>
 
             <div class="lg:col-span-5 flex justify-center items-center">
-                <img src="./logo.jpg.png" alt="Logo Principal" class="w-full max-w-md md:max-w-lg lg:max-w-xl h-auto max-h-[460px] object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,0.35)] transition-transform hover:scale-105 duration-300">
+                <img src="./logo.jpg.png" alt="Logo Principal" class="w-full max-w-md md:max-w-lg lg:max-w-xl h-auto max-h-[460px] object-contain drop-shadow-2xl">
             </div>
         </div>
 
         <!-- PESTAÑA 2: VERDURAS -->
         <div id="tab-verduras" class="tab-panel grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div class="space-y-6 text-left">
-                <span class="inline-block px-4 py-1.5 glass-btn rounded-full text-xs font-bold uppercase tracking-widest text-contrast">Departamento 01</span>
+                <span class="inline-block px-4 py-1.5 liquid-btn rounded-full text-xs font-bold uppercase tracking-widest text-contrast">Departamento 01</span>
                 <h2 id="verduras-titulo" class="text-4xl md:text-6xl font-black tracking-tight leading-none text-contrast">Verduras y Hortalizas</h2>
                 <p id="verduras-desc" class="text-sub-contrast text-base md:text-lg leading-relaxed font-normal max-w-xl"></p>
-                <button onclick="cambiarPestana('precios')" class="bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold px-8 py-3.5 rounded-full shadow-2xl transition-all text-sm uppercase tracking-wider">
-                    Consultar Precios de Hoy
-                </button>
+
+                <div class="liquid-card p-5 border border-white/30 rounded-2xl">
+                    <div class="flex items-center justify-between mb-3 pb-2 border-b border-white/20">
+                        <h4 class="font-extrabold text-sm text-contrast uppercase">📌 Precios Informativos de Hoy</h4>
+                        <span class="text-xs text-sub-contrast">Duaca - Lara</span>
+                    </div>
+                    <ul class="text-xs space-y-2 text-sub-contrast">
+                        <li class="flex justify-between border-b border-white/10 pb-1"><span>• Hortalizas Frescas (Kg)</span> <strong class="text-contrast font-bold">Consulte en mostrador</strong></li>
+                        <li class="flex justify-between border-b border-white/10 pb-1"><span>• Aliños y Verduguilla (Atado)</span> <strong class="text-contrast font-bold">Consulte en mostrador</strong></li>
+                        <li class="flex justify-between"><span>• Tubérculos y Raíces (Kg)</span> <strong class="text-contrast font-bold">Consulte en mostrador</strong></li>
+                    </ul>
+                </div>
             </div>
             <div class="flex justify-center">
                 <div class="carrusel-container w-full max-w-lg h-[380px] rounded-3xl overflow-hidden shadow-2xl border border-white/25" id="carrusel-verduras"></div>
@@ -205,7 +249,7 @@
         <!-- PESTAÑA 3: FRUTERÍA -->
         <div id="tab-fruteria" class="tab-panel grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div class="space-y-6 text-left">
-                <span class="inline-block px-4 py-1.5 glass-btn rounded-full text-xs font-bold uppercase tracking-widest text-contrast">Departamento 02</span>
+                <span class="inline-block px-4 py-1.5 liquid-btn rounded-full text-xs font-bold uppercase tracking-widest text-contrast">Departamento 02</span>
                 <h2 id="fruteria-titulo" class="text-4xl md:text-6xl font-black tracking-tight leading-none text-contrast">Frutería</h2>
                 <p id="fruteria-desc" class="text-sub-contrast text-base md:text-lg leading-relaxed font-normal max-w-xl"></p>
             </div>
@@ -217,7 +261,7 @@
         <!-- PESTAÑA 4: CHARCUTERÍA -->
         <div id="tab-charcuteria" class="tab-panel grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div class="space-y-6 text-left">
-                <span class="inline-block px-4 py-1.5 glass-btn rounded-full text-xs font-bold uppercase tracking-widest text-contrast">Departamento 03</span>
+                <span class="inline-block px-4 py-1.5 liquid-btn rounded-full text-xs font-bold uppercase tracking-widest text-contrast">Departamento 03</span>
                 <h2 id="charcuteria-titulo" class="text-4xl md:text-6xl font-black tracking-tight leading-none text-contrast">Charcutería</h2>
                 <p id="charcuteria-desc" class="text-sub-contrast text-base md:text-lg leading-relaxed font-normal max-w-xl"></p>
             </div>
@@ -229,7 +273,7 @@
         <!-- PESTAÑA 5: ARTESANÍA -->
         <div id="tab-artesania" class="tab-panel grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div class="space-y-6 text-left">
-                <span class="inline-block px-4 py-1.5 glass-btn rounded-full text-xs font-bold uppercase tracking-widest text-contrast">Departamento 04</span>
+                <span class="inline-block px-4 py-1.5 liquid-btn rounded-full text-xs font-bold uppercase tracking-widest text-contrast">Departamento 04</span>
                 <h2 id="artesania-titulo" class="text-4xl md:text-6xl font-black tracking-tight leading-none text-contrast">Artesanía Local</h2>
                 <p id="artesania-desc" class="text-sub-contrast text-base md:text-lg leading-relaxed font-normal max-w-xl"></p>
             </div>
@@ -238,10 +282,10 @@
             </div>
         </div>
 
-        <!-- PESTAÑA 6: FUNERARIA (NUEVO DEPARTAMENTO) -->
+        <!-- PESTAÑA 6: FUNERARIA -->
         <div id="tab-funeraria" class="tab-panel grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div class="lg:col-span-7 space-y-6 text-left">
-                <span class="inline-block px-4 py-1.5 glass-btn rounded-full text-xs font-bold uppercase tracking-widest text-contrast">
+                <span class="inline-block px-4 py-1.5 liquid-btn rounded-full text-xs font-bold uppercase tracking-widest text-contrast">
                     Servicio Exequial Comunitario
                 </span>
                 <h2 class="text-4xl md:text-5xl font-black tracking-tight text-contrast">
@@ -250,109 +294,54 @@
                 <p class="text-sub-contrast text-base md:text-lg leading-relaxed">
                     Brindamos apoyo integral y digno a nuestras familias asociadas y a la comunidad de Duaca en los momentos más difíciles, ofreciendo planes de previsión exequial accesible y atención 24/7 con alto sentido humano.
                 </p>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                    <div class="glass-card p-4">
-                        <h4 class="font-bold text-sm text-contrast">🕊️ Cobertura Familiar</h4>
-                        <p class="text-xs text-sub-contrast mt-1">Planes comunitarios adaptados para la protección de todo el núcleo familiar.</p>
-                    </div>
-                    <div class="glass-card p-4">
-                        <h4 class="font-bold text-sm text-contrast">📞 Atención las 24 Horas</h4>
-                        <p class="text-xs text-sub-contrast mt-1">Guardia permanente para orientación e inmediata asistencia exequial.</p>
-                    </div>
-                </div>
             </div>
             <div class="lg:col-span-5 flex justify-center">
-                <div class="glass-card p-8 w-full max-w-md text-center space-y-4 border border-white/30">
+                <div class="liquid-card p-8 w-full max-w-md text-center space-y-4 border border-white/30">
                     <span class="text-5xl">🏛️</span>
                     <h3 class="text-2xl font-bold text-contrast">Servicio Funerario</h3>
                     <p class="text-xs text-sub-contrast">Acompañamiento respetuoso y respuesta oportuna.</p>
-                    <a href="https://whatsapp.com/channel/0029VbDjia172WU2GFry2L1W" target="_blank" class="block w-full bg-slate-800 hover:bg-slate-700 text-white font-bold py-3 rounded-full text-sm uppercase tracking-wider transition-all">
-                        Consultar Plan Funerario
-                    </a>
                 </div>
             </div>
         </div>
 
-        <!-- PESTAÑA 7: PRECIOS DEL DÍA (NUEVA SECCIÓN) -->
-        <div id="tab-precios" class="tab-panel grid-cols-1 gap-6">
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <div>
-                    <span class="inline-block px-4 py-1.5 glass-btn rounded-full text-xs font-bold uppercase tracking-widest text-contrast">
-                        Lista Actualizada
-                    </span>
-                    <h2 class="text-3xl md:text-5xl font-black text-contrast mt-2">Precios del Día — Verduras y Hortalizas</h2>
-                </div>
-                <div class="glass-card px-4 py-2 text-xs font-semibold text-contrast">
-                    📅 Publicado hoy • Sujeto a disponibilidad
-                </div>
-            </div>
-
-            <!-- Tabla de Precios -->
-            <div class="glass-card overflow-hidden p-2">
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse">
-                        <thead>
-                            <tr class="border-b border-white/20 text-xs uppercase tracking-wider text-contrast">
-                                <th class="p-4">Producto</th>
-                                <th class="p-4">Categoría</th>
-                                <th class="p-4">Unidad</th>
-                                <th class="p-4 text-right">Precio estimado</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tabla-precios-body" class="divide-y divide-white/10 text-sm text-sub-contrast">
-                            <!-- Los precios se cargan dinámicamente o por defecto -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <!-- PESTAÑA 8: HISTORIA (NUEVA SECCIÓN) -->
+        <!-- PESTAÑA 7: HISTORIA -->
         <div id="tab-historia" class="tab-panel grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div class="lg:col-span-8 space-y-6">
-                <span class="inline-block px-4 py-1.5 glass-btn rounded-full text-xs font-bold uppercase tracking-widest text-contrast">Nuestra Trayectoria</span>
+                <span class="inline-block px-4 py-1.5 liquid-btn rounded-full text-xs font-bold uppercase tracking-widest text-contrast">Nuestra Trayectoria</span>
                 <h2 class="text-3xl md:text-5xl font-black text-contrast">Construyendo Trabajo Cooperativo en Duaca</h2>
-                <div class="space-y-4 text-sub-contrast text-sm md:text-base leading-relaxed">
-                    <p>
-                        La **Cooperativa San Juan Bautista** nació con el firme compromiso de impulsar el desarrollo socioeconómico de Duaca, "La Perla del Norte", uniendo el esfuerzo de productores locales, trabajadores y familias asociadas.
-                    </p>
-                    <p>
-                        Inspirados en los principios de ayuda mutua, transparencia y solidaridad comunitaria, nos hemos consolidado como un centro de abastecimiento clave donde la producción del campo llega directamente al hogar sin intermediarios innecesarios.
-                    </p>
-                </div>
+                <p class="text-sub-contrast text-sm md:text-base leading-relaxed">
+                    La Cooperativa San Juan Bautista nació con el firme compromiso de impulsar el desarrollo socioeconómico de Duaca, "La Perla del Norte", uniendo el esfuerzo de productores locales y familias asociadas.
+                </p>
             </div>
             <div class="lg:col-span-4 flex justify-center">
-                <div class="glass-card p-6 text-center space-y-4">
-                    <div class="text-4xl font-black dark-highlight">J-08501684-8</div>
-                    <p class="text-xs uppercase tracking-widest text-sub-contrast font-bold">Registro de Identificación Fiscal</p>
-                    <hr class="border-white/20">
-                    <p class="text-xs text-sub-contrast">Comprometidos con el desarrollo justo y sostenible de nuestra región Lara.</p>
+                <div class="liquid-card p-6 text-center space-y-2">
+                    <div class="text-3xl font-black dark-highlight">J-08501684-8</div>
+                    <p class="text-xs text-sub-contrast font-bold uppercase">Registro de Identificación Fiscal</p>
                 </div>
             </div>
         </div>
 
-        <!-- PESTAÑA 9: INFORMACIONES (NUEVA SECCIÓN) -->
+        <!-- PESTAÑA 8: INFORMACIONES -->
         <div id="tab-informaciones" class="tab-panel grid-cols-1 gap-6">
             <div>
-                <span class="inline-block px-4 py-1.5 glass-btn rounded-full text-xs font-bold uppercase tracking-widest text-contrast">Avisos y Comunicados</span>
+                <span class="inline-block px-4 py-1.5 liquid-btn rounded-full text-xs font-bold uppercase tracking-widest text-contrast">Avisos y Comunicados</span>
                 <h2 class="text-3xl md:text-5xl font-black text-contrast mt-2">Cartelera Informativa</h2>
             </div>
-
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="glass-card p-6 space-y-3">
-                    <span class="text-xs font-bold dark-highlight uppercase tracking-wider">Anuncio General</span>
-                    <h3 class="font-bold text-lg text-contrast">Jornada de Despacho Semanal</h3>
-                    <p class="text-xs text-sub-contrast leading-relaxed">Recibimos hortalizas frescas directamente del campo para garantizar variedad al mejor precio justo.</p>
+                <div class="liquid-card p-6 space-y-2">
+                    <span class="text-xs font-bold dark-highlight uppercase">Jornada Semanal</span>
+                    <h3 class="font-bold text-lg text-contrast">Despacho Agrícola</h3>
+                    <p class="text-xs text-sub-contrast">Recibimos producciones frescas cosechadas diariamente por productores locales.</p>
                 </div>
-                <div class="glass-card p-6 space-y-3">
-                    <span class="text-xs font-bold dark-highlight uppercase tracking-wider">Atención al Asociado</span>
-                    <h3 class="font-bold text-lg text-contrast">Atención Previsión Exequial</h3>
-                    <p class="text-xs text-sub-contrast leading-relaxed">Invitamos a los asociados a mantener actualizados sus datos en el módulo de previsión exequial.</p>
+                <div class="liquid-card p-6 space-y-2">
+                    <span class="text-xs font-bold dark-highlight uppercase">Atención</span>
+                    <h3 class="font-bold text-lg text-contrast">Atención al Asociado</h3>
+                    <p class="text-xs text-sub-contrast">Oficina abierta para consultas sobre la cooperativa y previsiones.</p>
                 </div>
-                <div class="glass-card p-6 space-y-3">
-                    <span class="text-xs font-bold dark-highlight uppercase tracking-wider">Comunidad</span>
-                    <h3 class="font-bold text-lg text-contrast">Canal Oficial de Difusión</h3>
-                    <p class="text-xs text-sub-contrast leading-relaxed">Sigue nuestro canal de WhatsApp para enterarte de ofertas, novedades y comunicados al instante.</p>
+                <div class="liquid-card p-6 space-y-2">
+                    <span class="text-xs font-bold dark-highlight uppercase">WhatsApp</span>
+                    <h3 class="font-bold text-lg text-contrast">Canal de Difusión</h3>
+                    <p class="text-xs text-sub-contrast">Sigue el canal oficial para mantenerte al día con avisos al instante.</p>
                 </div>
             </div>
         </div>
@@ -363,8 +352,7 @@
     <footer class="pt-4 border-t border-white/15 flex flex-col md:flex-row items-center justify-between text-xs text-sub-contrast gap-3 max-w-[1400px] mx-auto w-full font-medium">
         <p>© Cooperativa San Juan Bautista — La Perla del Norte</p>
         <div class="flex items-center gap-4">
-            <a href="https://whatsapp.com/channel/0029VbDjia172WU2GFry2L1W" target="_blank" class="hover:underline font-bold text-emerald-300 dark-highlight">Canal Oficial</a>
-            <span class="glass-btn px-3 py-1 rounded-full">RIF: J-08501684-8</span>
+            <span class="liquid-btn px-3 py-1 rounded-full">RIF: J-08501684-8</span>
             <span>Duaca, Estado Lara</span>
         </div>
     </footer>
