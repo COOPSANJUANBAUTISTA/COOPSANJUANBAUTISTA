@@ -1,7 +1,7 @@
 // URL de Google Apps Script (Google Sheets Backend)
 const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzZnb85tPJR7fTt-mJWW9qZ2huk--pU_d7KPwE2RP9RRIcII5ti8Xyh-QtpqMFrBrdN/exec";
 
-// PALETAS DE COLORES POR DEPARTAMENTO
+// PALETAS DE COLORES POR DEPARTAMENTO (NOCHE / DÍA)
 const paletaColores = {
     inicio:        { noche: '#2d6a4f', dia: '#e8f5e9' },
     historia:      { noche: '#3b0764', dia: '#f3e8ff' },
@@ -16,7 +16,7 @@ const paletaColores = {
 let departamentoActual = 'inicio';
 let esModoDia = false;
 
-// CAMBIAR PESTAÑA
+// CAMBIAR PESTAÑA Y ACTUALIZAR COLOR
 function cambiarPestana(nombreTab) {
     departamentoActual = nombreTab;
     aplicarColorDeFondo();
@@ -31,13 +31,16 @@ function cambiarPestana(nombreTab) {
     // Actualizar botones de navegación
     document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active-tab'));
     const botonActivo = document.getElementById(`btn-${nombreTab}`);
-    if (botonActivo) botonActivo.classList.add('active-tab');
+    if (botonActivo) {
+        botonActivo.classList.add('active-tab');
+        botonActivo.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
 
-    // Subir suavemente al inicio (ideal para teléfonos móviles)
+    // Subir suavemente en móviles
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// APLICAR COLOR DE FONDO
+// APLICAR COLOR DE FONDO SEGÚN DEPARTAMENTO Y MODO
 function aplicarColorDeFondo() {
     const colores = paletaColores[departamentoActual] || paletaColores.inicio;
     const colorFinal = esModoDia ? colores.dia : colores.noche;
@@ -47,7 +50,7 @@ function aplicarColorDeFondo() {
     }
 }
 
-// ALTERNAR DÍA / NOCHE
+// ALTERNAR MODO DÍA / NOCHE
 function toggleModoDiaNoche() {
     esModoDia = !esModoDia;
     const body = document.getElementById('main-body');
@@ -75,33 +78,80 @@ async function cargarDatosDinamicos() {
 
         if (!Array.isArray(datos)) return;
 
-        // 1. Actualizar el precio único de verduras
-        const precioVerduras = datos.find(d => d.clave && d.clave.toLowerCase() === 'precio_verduras');
-        if (precioVerduras && precioVerduras.precio_detalle) {
-            document.querySelectorAll('.precio-monto, #precio-verduras-val').forEach(el => {
-                el.textContent = `Bs. ${precioVerduras.precio_detalle}`;
-            });
+        // 1. HISTORIA / INICIO (Si existen registros clave)
+        const itemHistoria = datos.find(d => (d.clave || d.departamento || '').toLowerCase() === 'historia');
+        if (itemHistoria) {
+            const hTitulo = document.getElementById('historia-titulo');
+            const hDesc = document.getElementById('historia-descripcion');
+            if (hTitulo) hTitulo.innerText = itemHistoria.titulo || 'Nuestra Historia';
+            if (hDesc) hDesc.innerText = itemHistoria.descripcion || itemHistoria.precio_detalle || '';
         }
 
-        // 2. Cargar avisos, reuniones y comunicados en la cartelera
-        const contenedorAvisos = document.getElementById('contenedor-cartelera');
-        const avisos = datos.filter(d => d.clave && ['REUNIÓN', 'REUNION', 'JORNADA', 'COMUNICADO', 'AVISO'].includes(d.clave.toUpperCase()));
+        // 2. POBLAR DEPARTAMENTOS CON TARJETAS
+        const departamentos = ['verduras', 'fruteria', 'charcuteria', 'artesania', 'funeraria'];
 
-        if (contenedorAvisos && avisos.length > 0) {
-            contenedorAvisos.innerHTML = '';
-            avisos.forEach(item => {
-                contenedorAvisos.innerHTML += `
-                    <div class="liquid-card p-6 space-y-2">
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs font-bold dark-highlight uppercase">${item.clave || 'AVISO'}</span>
-                            ${item.fecha_nota ? `<span class="text-[11px] text-sub-contrast opacity-80">${item.fecha_nota}</span>` : ''}
+        departamentos.forEach(dept => {
+            const contenedor = document.getElementById(`contenedor-${dept}`);
+            if (!contenedor) return;
+
+            // Filtrar items correspondientes al departamento
+            const itemsDept = datos.filter(d => {
+                const dep = (d.departamento || d.clave || '').toLowerCase();
+                return dep === dept;
+            });
+
+            if (itemsDept.length > 0) {
+                contenedor.innerHTML = itemsDept.map(item => `
+                    <div class="liquid-card p-6 space-y-3 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between gap-2 mb-1">
+                                <span class="badge-etiqueta text-[10px] py-0.5 px-2.5">
+                                    ${item.etiqueta || dept.toUpperCase()}
+                                </span>
+                                ${item.unidad ? `<span class="text-xs text-sub-contrast opacity-80 font-medium">${item.unidad}</span>` : ''}
+                            </div>
+                            <h3 class="font-black text-xl text-contrast">${item.titulo || item.producto || item.nombre || 'Producto'}</h3>
+                            ${item.descripcion ? `<p class="text-xs text-sub-contrast leading-relaxed mt-2">${item.descripcion}</p>` : ''}
                         </div>
-                        <h3 class="font-bold text-lg text-contrast">${item.titulo || ''}</h3>
-                        <p class="text-xs text-sub-contrast leading-relaxed">${item.precio_detalle || ''}</p>
+                        ${item.precio_detalle || item.precio ? `
+                            <div class="pt-3 border-t border-white/10 flex justify-between items-center">
+                                <span class="text-xs text-sub-contrast uppercase font-bold">Precio</span>
+                                <span class="text-xl font-black dark-highlight">Bs. ${item.precio_detalle || item.precio}</span>
+                            </div>
+                        ` : ''}
+                    </div>
+                `).join('');
+            } else {
+                contenedor.innerHTML = `
+                    <div class="col-span-full liquid-card p-8 text-center text-sub-contrast">
+                        <p class="text-sm font-medium">Información en actualización para este departamento.</p>
                     </div>
                 `;
-            });
+            }
+        });
+
+        // 3. CARTELERA INFORMATIVA / COMUNICADOS
+        const contenedorAvisos = document.getElementById('contenedor-cartelera');
+        const palabrasClaveCartelera = ['reunión', 'reunion', 'jornada', 'comunicado', 'aviso', 'informaciones', 'informacion'];
+        
+        const avisos = datos.filter(d => {
+            const depClave = (d.departamento || d.clave || '').toLowerCase();
+            return palabrasClaveCartelera.includes(depClave);
+        });
+
+        if (contenedorAvisos && avisos.length > 0) {
+            contenedorAvisos.innerHTML = avisos.map(item => `
+                <div class="liquid-card p-6 space-y-3">
+                    <div class="flex justify-between items-center">
+                        <span class="badge-etiqueta text-[10px] py-0.5 px-2.5">${(item.clave || item.departamento || 'AVISO').toUpperCase()}</span>
+                        ${item.fecha_nota || item.fecha ? `<span class="text-[11px] text-sub-contrast opacity-80 font-medium">${item.fecha_nota || item.fecha}</span>` : ''}
+                    </div>
+                    <h3 class="font-bold text-lg text-contrast">${item.titulo || item.nombre || 'Comunicado'}</h3>
+                    <p class="text-xs text-sub-contrast leading-relaxed">${item.descripcion || item.precio_detalle || ''}</p>
+                </div>
+            `).join('');
         }
+
     } catch (error) {
         console.error("Error cargando información desde Google Sheets:", error);
     }
@@ -109,60 +159,9 @@ async function cargarDatosDinamicos() {
 
 // INICIALIZACIÓN
 document.addEventListener("DOMContentLoaded", () => {
-    // Aplicar fondo del departamento inicial
+    // 1. Aplicar fondo inicial
     aplicarColorDeFondo();
 
-    // Carga de precios y reuniones desde Google Sheets
+    // 2. Cargar datos dinámicos desde Google Sheets
     cargarDatosDinamicos();
-
-    // Función auxiliar para poblar títulos y descripciones
-    const cargarInfo = (idTitulo, idDesc, data, tituloPorDefecto) => {
-        const titleEl = document.getElementById(idTitulo);
-        const descEl = document.getElementById(idDesc);
-        
-        if (titleEl) {
-            titleEl.innerText = tituloPorDefecto;
-        }
-        if (descEl && data) {
-            descEl.innerText = data.desc || data.descripcion || '';
-        }
-    };
-
-    if (typeof verdurasInfo !== 'undefined') cargarInfo("verduras-titulo", "verduras-desc", verdurasInfo, "Verduras y Hortalizas");
-    if (typeof fruteriaInfo !== 'undefined') cargarInfo("fruteria-titulo", "fruteria-desc", fruteriaInfo, "Frutería");
-    if (typeof charcuteriaInfo !== 'undefined') cargarInfo("charcuteria-titulo", "charcuteria-desc", charcuteriaInfo, "Charcutería");
-    if (typeof artesaniaInfo !== 'undefined') cargarInfo("artesania-titulo", "artesania-desc", artesaniaInfo, "Artesanía Local");
-
-    // CARRUSEL DE FOTOS SUELTAS
-    function crearCarrusel(contenedorId, listaImagenes) {
-        const contenedor = document.getElementById(contenedorId);
-        if (!contenedor || !listaImagenes || listaImagenes.length === 0) return;
-
-        contenedor.innerHTML = listaImagenes.map((src, index) => 
-            `<img src="${src}" class="foto-original ${index === 0 ? 'active' : ''}" alt="Foto producto">`
-        ).join('');
-
-        let indiceActual = 0;
-        const imagenes = contenedor.querySelectorAll('img');
-
-        if (imagenes.length > 1) {
-            setInterval(() => {
-                imagenes[indiceActual].classList.remove('active');
-                indiceActual = (indiceActual + 1) % imagenes.length;
-                imagenes[indiceActual].classList.add('active');
-            }, 3500);
-        }
-    }
-
-    // Obtener imágenes de cada departamento si existen
-    const imgVerduras = (typeof verdurasInfo !== 'undefined' && verdurasInfo.imagenes) ? verdurasInfo.imagenes : [];
-    const imgFruteria = (typeof fruteriaInfo !== 'undefined' && fruteriaInfo.imagenes) ? fruteriaInfo.imagenes : [];
-    const imgCharcuteria = (typeof charcuteriaInfo !== 'undefined' && charcuteriaInfo.imagenes) ? charcuteriaInfo.imagenes : [];
-    const imgArtesania = (typeof artesaniaInfo !== 'undefined' && artesaniaInfo.imagenes) ? artesaniaInfo.imagenes : [];
-
-    // Inicializar los carruseles
-    crearCarrusel('carrusel-verduras', imgVerduras);
-    crearCarrusel('carrusel-fruteria', imgFruteria);
-    crearCarrusel('carrusel-charcuteria', imgCharcuteria);
-    crearCarrusel('carrusel-artesania', imgArtesania);
 });
