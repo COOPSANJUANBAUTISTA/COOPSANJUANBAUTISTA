@@ -79,6 +79,29 @@
 
         .dark-highlight { color: #6ee7b7; }
 
+        /* CARRUSEL DE FOTOS */
+        .carrusel-contenedor {
+            position: relative;
+            width: 100%;
+            height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-radius: 1rem;
+        }
+        .foto-original {
+            position: absolute;
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .foto-original.active {
+            opacity: 1;
+        }
+
         /* MODO DÍA */
         body.light-mode { color: #0f172a !important; }
         body.light-mode .text-contrast { color: #0f172a !important; }
@@ -113,7 +136,7 @@
 </head>
 <body class="min-h-screen text-white flex flex-col justify-between px-4 lg:px-10 py-6 bg-[#2d6a4f]" id="main-body">
 
-    <!-- BOTÓN DE NAVEGACIÓN RÁPIDA -->
+    <!-- BOTÓN NAVEGACIÓN -->
     <button onclick="siguienteDepartamento()" class="fixed bottom-6 right-5 z-50 btn-flecha-siguiente p-3.5 rounded-full text-white flex items-center justify-center cursor-pointer" title="Siguiente departamento">
         <svg class="w-6 h-6 fill-current opacity-95" viewBox="0 0 24 24">
             <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
@@ -131,7 +154,6 @@
             </p>
         </div>
 
-        <!-- MENÚ DE NAVEGACIÓN -->
         <nav id="nav-menu" class="flex items-center gap-2 flex-nowrap overflow-x-auto max-w-full py-2 w-full xl:w-auto justify-start xl:justify-center">
             <button onclick="cambiarPestana('inicio')" class="tab-btn liquid-btn active-tab px-4 py-2 rounded-full text-xs lg:text-sm font-bold whitespace-nowrap shrink-0" id="btn-inicio">Inicio</button>
             <button onclick="cambiarPestana('historia')" class="tab-btn liquid-btn px-4 py-2 rounded-full text-xs lg:text-sm font-bold whitespace-nowrap shrink-0" id="btn-historia">Historia</button>
@@ -163,16 +185,16 @@
 
         <!-- INICIO -->
         <div id="tab-inicio" class="tab-panel active grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div class="lg:col-span-12 space-y-5 text-center max-w-3xl mx-auto" id="contenedor-inicio">
+            <div class="lg:col-span-12 space-y-5 text-center max-w-3xl mx-auto">
                 <span class="badge-etiqueta">Bienvenido a la Cooperativa</span>
-                <h2 id="inicio-titulo" class="text-4xl md:text-6xl font-black tracking-tight leading-none text-contrast">
+                <h2 class="text-4xl md:text-6xl font-black tracking-tight leading-none text-contrast">
                     Cooperativa San Juan Bautista
                 </h2>
-                <p id="inicio-subtitulo" class="text-sub-contrast text-base md:text-lg leading-relaxed font-normal">
+                <p class="text-sub-contrast text-base md:text-lg leading-relaxed font-normal">
                     Horario General de Atención
                 </p>
                 <div class="liquid-card px-6 py-4 rounded-xl inline-block mt-4">
-                    <span id="inicio-horario" class="font-bold text-contrast text-base md:text-lg dark-highlight">
+                    <span class="font-bold text-contrast text-base md:text-lg dark-highlight">
                         Lunes a Viernes - 7:30 AM a 1:00 PM
                     </span>
                 </div>
@@ -181,10 +203,12 @@
 
         <!-- HISTORIA -->
         <div id="tab-historia" class="tab-panel grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div class="lg:col-span-8 space-y-6" id="contenedor-historia">
+            <div class="lg:col-span-8 space-y-6">
                 <span class="badge-etiqueta">Nuestra Trayectoria</span>
-                <h2 id="historia-titulo" class="text-3xl md:text-5xl font-black text-contrast">Cargando Historia...</h2>
-                <p id="historia-descripcion" class="text-sub-contrast text-sm md:text-base leading-relaxed"></p>
+                <h2 id="historia-titulo" class="text-3xl md:text-5xl font-black text-contrast">Historia de la Cooperativa</h2>
+                <p id="historia-descripcion" class="text-sub-contrast text-sm md:text-base leading-relaxed">
+                    Nacidos del esfuerzo comunitario en Duaca para brindar apoyo solidario, producción agrícola y servicios de calidad para todas las familias del Municipio Crespo.
+                </p>
             </div>
             <div class="lg:col-span-4 flex justify-center">
                 <div class="liquid-card p-6 text-center space-y-2">
@@ -195,48 +219,72 @@
         </div>
 
         <!-- VERDURAS -->
-        <div id="tab-verduras" class="tab-panel grid-cols-1 gap-6">
-            <div class="space-y-2 text-left">
+        <div id="tab-verduras" class="tab-panel grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div class="lg:col-span-6 space-y-4">
                 <span class="badge-etiqueta">Departamento 01</span>
-                <h2 class="text-4xl md:text-5xl font-black text-contrast">Verduras y Hortalizas</h2>
+                <h2 id="verduras-titulo" class="text-3xl md:text-5xl font-black text-contrast">Verduras y Hortalizas</h2>
+                <p id="verduras-desc" class="text-sub-contrast text-sm md:text-base leading-relaxed"></p>
+                <div class="liquid-card p-4 inline-block mt-2">
+                    <span class="text-xs uppercase font-bold text-sub-contrast block">Precio General</span>
+                    <span id="precio-verduras-val" class="text-2xl font-black dark-highlight precio-monto">Cargando...</span>
+                </div>
             </div>
-            <div id="contenedor-verduras" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+            <div class="lg:col-span-6">
+                <div class="liquid-card p-4">
+                    <div id="carrusel-verduras" class="carrusel-contenedor"></div>
+                </div>
+            </div>
         </div>
 
         <!-- FRUTERÍA -->
-        <div id="tab-fruteria" class="tab-panel grid-cols-1 gap-6">
-            <div class="space-y-2 text-left">
+        <div id="tab-fruteria" class="tab-panel grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div class="lg:col-span-6 space-y-4">
                 <span class="badge-etiqueta">Departamento 02</span>
-                <h2 class="text-4xl md:text-5xl font-black text-contrast">Frutería</h2>
+                <h2 id="fruteria-titulo" class="text-3xl md:text-5xl font-black text-contrast">Frutería</h2>
+                <p id="fruteria-desc" class="text-sub-contrast text-sm md:text-base leading-relaxed"></p>
             </div>
-            <div id="contenedor-fruteria" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+            <div class="lg:col-span-6">
+                <div class="liquid-card p-4">
+                    <div id="carrusel-fruteria" class="carrusel-contenedor"></div>
+                </div>
+            </div>
         </div>
 
         <!-- CHARCUTERÍA -->
-        <div id="tab-charcuteria" class="tab-panel grid-cols-1 gap-6">
-            <div class="space-y-2 text-left">
+        <div id="tab-charcuteria" class="tab-panel grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div class="lg:col-span-6 space-y-4">
                 <span class="badge-etiqueta">Departamento 03</span>
-                <h2 class="text-4xl md:text-5xl font-black text-contrast">Charcutería</h2>
+                <h2 id="charcuteria-titulo" class="text-3xl md:text-5xl font-black text-contrast">Charcutería</h2>
+                <p id="charcuteria-desc" class="text-sub-contrast text-sm md:text-base leading-relaxed"></p>
             </div>
-            <div id="contenedor-charcuteria" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+            <div class="lg:col-span-6">
+                <div class="liquid-card p-4">
+                    <div id="carrusel-charcuteria" class="carrusel-contenedor"></div>
+                </div>
+            </div>
         </div>
 
         <!-- ARTESANÍA -->
-        <div id="tab-artesania" class="tab-panel grid-cols-1 gap-6">
-            <div class="space-y-2 text-left">
+        <div id="tab-artesania" class="tab-panel grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div class="lg:col-span-6 space-y-4">
                 <span class="badge-etiqueta">Departamento 04</span>
-                <h2 class="text-4xl md:text-5xl font-black text-contrast">Artesanía Local</h2>
+                <h2 id="artesania-titulo" class="text-3xl md:text-5xl font-black text-contrast">Artesanía Local</h2>
+                <p id="artesania-desc" class="text-sub-contrast text-sm md:text-base leading-relaxed"></p>
             </div>
-            <div id="contenedor-artesania" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+            <div class="lg:col-span-6">
+                <div class="liquid-card p-4">
+                    <div id="carrusel-artesania" class="carrusel-contenedor"></div>
+                </div>
+            </div>
         </div>
 
         <!-- FUNERARIA -->
         <div id="tab-funeraria" class="tab-panel grid-cols-1 gap-6">
             <div class="space-y-2 text-left">
                 <span class="badge-etiqueta">Servicio Exequial Comunitario</span>
-                <h2 class="text-4xl md:text-5xl font-black text-contrast">Previsión y Atención Solidaria</h2>
+                <h2 class="text-3xl md:text-5xl font-black text-contrast">Previsión y Atención Solidaria</h2>
+                <p class="text-sub-contrast text-sm md:text-base max-w-2xl">Atención con dignidad y sensibilidad para nuestras familias asociadas y comunidad general.</p>
             </div>
-            <div id="contenedor-funeraria" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
         </div>
 
         <!-- INFORMACIONES -->
@@ -259,75 +307,8 @@
         </div>
     </footer>
 
-    <!-- LÓGICA DE NAVEGACIÓN Y GESTOS TÁCTILES -->
-    <script>
-        const ordenDepartamentos = ['inicio', 'historia', 'verduras', 'fruteria', 'charcuteria', 'artesania', 'funeraria', 'informaciones'];
-
-        function cambiarPestana(idPestana) {
-            document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active-tab'));
-
-            const panelActivo = document.getElementById(`tab-${idPestana}`);
-            if (panelActivo) panelActivo.classList.add('active');
-
-            const btnActivo = document.getElementById(`btn-${idPestana}`);
-            if (btnActivo) {
-                btnActivo.classList.add('active-tab');
-                btnActivo.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-            }
-        }
-
-        function siguienteDepartamento() {
-            const btnActual = document.querySelector('.tab-btn.active-tab');
-            let idActual = 'inicio';
-            if (btnActual) idActual = btnActual.id.replace('btn-', '');
-
-            const indiceActual = ordenDepartamentos.indexOf(idActual);
-            const siguienteIndice = (indiceActual + 1) % ordenDepartamentos.length;
-            cambiarPestana(ordenDepartamentos[siguienteIndice]);
-        }
-
-        function anteriorDepartamento() {
-            const btnActual = document.querySelector('.tab-btn.active-tab');
-            let idActual = 'inicio';
-            if (btnActual) idActual = btnActual.id.replace('btn-', '');
-
-            const indiceActual = ordenDepartamentos.indexOf(idActual);
-            const anteriorIndice = (indiceActual - 1 + ordenDepartamentos.length) % ordenDepartamentos.length;
-            cambiarPestana(ordenDepartamentos[anteriorIndice]);
-        }
-
-        let touchstartX = 0;
-        let touchstartY = 0;
-        let touchendX = 0;
-        let touchendY = 0;
-
-        document.addEventListener('touchstart', e => {
-            touchstartX = e.changedTouches[0].screenX;
-            touchstartY = e.changedTouches[0].screenY;
-        }, { passive: true });
-
-        document.addEventListener('touchend', e => {
-            touchendX = e.changedTouches[0].screenX;
-            touchendY = e.changedTouches[0].screenY;
-            procesarSwipe();
-        }, { passive: true });
-
-        function procesarSwipe() {
-            const diffX = touchendX - touchstartX;
-            const diffY = touchendY - touchstartY;
-
-            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
-                if (diffX < 0) {
-                    siguienteDepartamento();
-                } else {
-                    anteriorDepartamento();
-                }
-            }
-        }
-    </script>
-
-    <!-- ARCHIVOS JS -->
+    <!-- JS LOCAL Y PRINCIPAL -->
+    <script src="verduras.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
