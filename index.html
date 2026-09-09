@@ -22,6 +22,7 @@
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none; /* Firefox */
             -ms-overflow-style: none;  /* IE y Edge */
+            scroll-behavior: smooth;
         }
         nav::-webkit-scrollbar {
             display: none; /* Chrome, Safari y Opera */
@@ -75,6 +76,13 @@
             background: linear-gradient(to bottom, rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0));
             border-radius: 9999px;
             pointer-events: none;
+        }
+
+        /* BOTÓN DE FLECHA ANIMADO */
+        .btn-flecha-siguiente {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.9) 0%, rgba(5, 150, 105, 0.9) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
         }
 
         /* TARJETAS INFORMATIVAS */
@@ -187,17 +195,27 @@
             </p>
         </div>
 
-        <!-- Menú de Navegación Principal (Con Scroll Horizontal y botones no deformables) -->
-        <nav class="flex items-center gap-2 flex-nowrap overflow-x-auto max-w-full py-2 w-full xl:w-auto justify-start xl:justify-center">
-            <button onclick="cambiarPestana('inicio')" class="tab-btn liquid-btn active-tab px-4 py-2 rounded-full text-xs lg:text-sm font-bold whitespace-nowrap shrink-0" id="btn-inicio">Inicio</button>
-            <button onclick="cambiarPestana('historia')" class="tab-btn liquid-btn px-4 py-2 rounded-full text-xs lg:text-sm font-bold whitespace-nowrap shrink-0" id="btn-historia">Historia</button>
-            <button onclick="cambiarPestana('verduras')" class="tab-btn liquid-btn px-4 py-2 rounded-full text-xs lg:text-sm font-bold whitespace-nowrap shrink-0" id="btn-verduras">Verduras</button>
-            <button onclick="cambiarPestana('fruteria')" class="tab-btn liquid-btn px-4 py-2 rounded-full text-xs lg:text-sm font-bold whitespace-nowrap shrink-0" id="btn-fruteria">Frutería</button>
-            <button onclick="cambiarPestana('charcuteria')" class="tab-btn liquid-btn px-4 py-2 rounded-full text-xs lg:text-sm font-bold whitespace-nowrap shrink-0" id="btn-charcuteria">Charcutería</button>
-            <button onclick="cambiarPestana('artesania')" class="tab-btn liquid-btn px-4 py-2 rounded-full text-xs lg:text-sm font-bold whitespace-nowrap shrink-0" id="btn-artesania">Artesanía</button>
-            <button onclick="cambiarPestana('funeraria')" class="tab-btn liquid-btn px-4 py-2 rounded-full text-xs lg:text-sm font-bold whitespace-nowrap shrink-0" id="btn-funeraria">Funeraria</button>
-            <button onclick="cambiarPestana('informaciones')" class="tab-btn liquid-btn px-4 py-2 rounded-full text-xs lg:text-sm font-bold whitespace-nowrap shrink-0" id="btn-informaciones">Informaciones</button>
-        </nav>
+        <!-- MENÚ DE NAVEGACIÓN Y FLECHA SIGUIENTE -->
+        <div class="relative flex items-center w-full xl:w-auto max-w-full">
+            <!-- Menú Horizontal -->
+            <nav id="nav-menu" class="flex items-center gap-2 flex-nowrap overflow-x-auto max-w-full py-2 w-full xl:w-auto justify-start xl:justify-center pr-12 xl:pr-0">
+                <button onclick="cambiarPestana('inicio')" class="tab-btn liquid-btn active-tab px-4 py-2 rounded-full text-xs lg:text-sm font-bold whitespace-nowrap shrink-0" id="btn-inicio">Inicio</button>
+                <button onclick="cambiarPestana('historia')" class="tab-btn liquid-btn px-4 py-2 rounded-full text-xs lg:text-sm font-bold whitespace-nowrap shrink-0" id="btn-historia">Historia</button>
+                <button onclick="cambiarPestana('verduras')" class="tab-btn liquid-btn px-4 py-2 rounded-full text-xs lg:text-sm font-bold whitespace-nowrap shrink-0" id="btn-verduras">Verduras</button>
+                <button onclick="cambiarPestana('fruteria')" class="tab-btn liquid-btn px-4 py-2 rounded-full text-xs lg:text-sm font-bold whitespace-nowrap shrink-0" id="btn-fruteria">Frutería</button>
+                <button onclick="cambiarPestana('charcuteria')" class="tab-btn liquid-btn px-4 py-2 rounded-full text-xs lg:text-sm font-bold whitespace-nowrap shrink-0" id="btn-charcuteria">Charcutería</button>
+                <button onclick="cambiarPestana('artesania')" class="tab-btn liquid-btn px-4 py-2 rounded-full text-xs lg:text-sm font-bold whitespace-nowrap shrink-0" id="btn-artesania">Artesanía</button>
+                <button onclick="cambiarPestana('funeraria')" class="tab-btn liquid-btn px-4 py-2 rounded-full text-xs lg:text-sm font-bold whitespace-nowrap shrink-0" id="btn-funeraria">Funeraria</button>
+                <button onclick="cambiarPestana('informaciones')" class="tab-btn liquid-btn px-4 py-2 rounded-full text-xs lg:text-sm font-bold whitespace-nowrap shrink-0" id="btn-informaciones">Informaciones</button>
+            </nav>
+
+            <!-- FLECHA ANIMADA QUE SALTA (Pasa al siguiente departamento) -->
+            <button onclick="siguienteDepartamento()" class="absolute right-0 top-1/2 -translate-y-1/2 z-20 btn-flecha-siguiente animate-bounce p-2.5 rounded-full text-white flex items-center justify-center cursor-pointer hover:scale-110 transition-transform" title="Siguiente departamento">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                    <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+                </svg>
+            </button>
+        </div>
 
         <!-- Botones de Acción Secundarios -->
         <div class="flex items-center gap-2 shrink-0">
@@ -348,7 +366,6 @@
                 <span class="badge-etiqueta">Avisos y Comunicados</span>
                 <h2 class="text-3xl md:text-5xl font-black text-contrast mt-2">Cartelera Informativa</h2>
             </div>
-            <!-- Contenedor adaptado para cargar la información de Google Sheets -->
             <div id="contenedor-cartelera" class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- Se llena dinámicamente desde app.js -->
             </div>
@@ -365,7 +382,51 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
+    <!-- LÓGICA DE NAVEGACIÓN Y AVANCE -->
+    <script>
+        const ordenDepartamentos = ['inicio', 'historia', 'verduras', 'fruteria', 'charcuteria', 'artesania', 'funeraria', 'informaciones'];
+
+        function cambiarPestana(idPestana) {
+            // Ocultar todos los paneles
+            document.querySelectorAll('.tab-panel').forEach(panel => {
+                panel.classList.remove('active');
+            });
+
+            // Desactivar todos los botones
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active-tab');
+            });
+
+            // Mostrar el panel seleccionado
+            const panelActivo = document.getElementById(`tab-${idPestana}`);
+            if (panelActivo) {
+                panelActivo.classList.add('active');
+            }
+
+            // Activar el botón correspondiente
+            const btnActivo = document.getElementById(`btn-${idPestana}`);
+            if (btnActivo) {
+                btnActivo.classList.add('active-tab');
+                // Centrar automáticamente el botón en el menú deslizable
+                btnActivo.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            }
+        }
+
+        function siguienteDepartamento() {
+            const btnActual = document.querySelector('.tab-btn.active-tab');
+            let idActual = 'inicio';
+            if (btnActual) {
+                idActual = btnActual.id.replace('btn-', '');
+            }
+
+            const indiceActual = ordenDepartamentos.indexOf(idActual);
+            const siguienteIndice = (indiceActual + 1) % ordenDepartamentos.length;
+            
+            cambiarPestana(ordenDepartamentos[siguienteIndice]);
+        }
+    </script>
+
+    <!-- Scripts adicionales -->
     <script src="verduras.js"></script>
     <script src="fruteria.js"></script>
     <script src="charcuteria.js"></script>
