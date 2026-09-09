@@ -155,10 +155,13 @@
 
         <nav id="nav-menu" class="flex items-center gap-2 flex-nowrap overflow-x-auto max-w-full py-2 w-full xl:w-auto justify-start xl:justify-center">
             <button onclick="cambiarPestana('inicio')" class="tab-btn liquid-btn active-tab px-4 py-2 rounded-full text-xs lg:text-sm font-bold whitespace-nowrap shrink-0" id="btn-inicio">Inicio</button>
+            <button onclick="cambiarPestana('historia')" class="tab-btn liquid-btn px-4 py-2 rounded-full text-xs lg:text-sm font-bold whitespace-nowrap shrink-0" id="btn-historia">Historia</button>
             <button onclick="cambiarPestana('verduras')" class="tab-btn liquid-btn px-4 py-2 rounded-full text-xs lg:text-sm font-bold whitespace-nowrap shrink-0" id="btn-verduras">Verduras</button>
             <button onclick="cambiarPestana('fruteria')" class="tab-btn liquid-btn px-4 py-2 rounded-full text-xs lg:text-sm font-bold whitespace-nowrap shrink-0" id="btn-fruteria">Frutería</button>
             <button onclick="cambiarPestana('charcuteria')" class="tab-btn liquid-btn px-4 py-2 rounded-full text-xs lg:text-sm font-bold whitespace-nowrap shrink-0" id="btn-charcuteria">Charcutería</button>
             <button onclick="cambiarPestana('artesania')" class="tab-btn liquid-btn px-4 py-2 rounded-full text-xs lg:text-sm font-bold whitespace-nowrap shrink-0" id="btn-artesania">Artesanía</button>
+            <button onclick="cambiarPestana('funeraria')" class="tab-btn liquid-btn px-4 py-2 rounded-full text-xs lg:text-sm font-bold whitespace-nowrap shrink-0" id="btn-funeraria">Funeraria</button>
+            <button onclick="cambiarPestana('informaciones')" class="tab-btn liquid-btn px-4 py-2 rounded-full text-xs lg:text-sm font-bold whitespace-nowrap shrink-0" id="btn-informaciones">Informaciones</button>
         </nav>
 
         <div class="flex items-center gap-2 shrink-0">
@@ -187,8 +190,26 @@
                     Frescura y Tradición <span class="dark-highlight">Local</span>
                 </h2>
                 <p class="text-sub-contrast text-base md:text-lg leading-relaxed max-w-xl">
-                    Impulsamos la economía de Duaca con hortalizas cosechadas diariamente, frutas selectas de temporada, charcutería y artesanías de nuestros productores localizados.
+                    Impulsamos la economía de Duaca con hortalizas cosechadas diariamente, frutas selectas de temporada, charcutería, artesanías y servicios funerarios.
                 </p>
+
+                <!-- CUADRO DE DÍAS DE TRABAJO -->
+                <div class="liquid-card p-5 max-w-lg">
+                    <h3 class="font-extrabold text-sm uppercase tracking-wider text-contrast mb-3 flex items-center gap-2">
+                        <span>📅</span> Horario y Días de Atención
+                    </h3>
+                    <div class="grid grid-cols-2 gap-3 text-xs text-sub-contrast">
+                        <div class="p-2.5 rounded-lg bg-white/5 border border-white/10">
+                            <span class="font-bold text-contrast block">Lunes a Viernes</span>
+                            <span>7:30 AM - 4:30 PM</span>
+                        </div>
+                        <div class="p-2.5 rounded-lg bg-white/5 border border-white/10">
+                            <span class="font-bold text-contrast block">Sábados</span>
+                            <span>8:00 AM - 2:00 PM</span>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="flex flex-wrap gap-4 pt-2">
                     <button onclick="cambiarPestana('verduras')" class="bg-white text-slate-900 font-extrabold px-6 py-3 rounded-full text-xs tracking-wider uppercase hover:bg-slate-100 transition shadow-lg">
                         EXPLORAR DEPARTAMENTOS →
@@ -199,25 +220,66 @@
                 </div>
             </div>
             <div class="lg:col-span-5 flex justify-center items-center">
-                <!-- LOGO EMBLEMA ESTÁTICO (NO ROTA) -->
                 <img src="logo.png" alt="Emblema Coop San Juan Bautista" class="w-full max-w-[380px] drop-shadow-2xl object-contain">
             </div>
         </div>
 
+        <!-- HISTORIA (Colocado justo después de Inicio) -->
+        <div id="tab-historia" class="tab-panel grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div class="lg:col-span-7 space-y-6 text-left">
+                <span class="badge-etiqueta">NUESTRAS RAÍCES</span>
+                <h2 class="text-4xl md:text-6xl font-black text-contrast leading-tight">Historia de la Cooperativa</h2>
+                <p class="text-sub-contrast text-base leading-relaxed">
+                    Fundada con el compromiso de apoyar a los productores y familias de Duaca, la Cooperativa San Juan Bautista ha crecido como un pilar de solidaridad, comercio justo y trabajo organizado comunitariamente.
+                </p>
+                <div class="liquid-card p-6 space-y-3">
+                    <h3 class="font-extrabold text-contrast text-lg">Misión y Filosofía</h3>
+                    <p class="text-xs text-sub-contrast leading-relaxed">
+                        Proveer servicios y productos de alta calidad manteniendo siempre la accesibilidad, el trato humano y la cooperación comunitaria como norte.
+                    </p>
+                </div>
+            </div>
+            <div class="lg:col-span-5 flex justify-center items-center">
+                <div class="liquid-card p-8 text-center space-y-4">
+                    <span class="text-5xl">🏛️</span>
+                    <h3 class="text-xl font-bold text-contrast">Duaca, Estado Lara</h3>
+                    <p class="text-xs text-sub-contrast">Comprometidos con La Perla del Norte desde nuestros inicios.</p>
+                </div>
+            </div>
+        </div>
+
         <!-- VERDURAS -->
-        <div id="tab-verduras" class="tab-panel grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div id="tab-verduras" class="tab-panel grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             <div class="lg:col-span-6 space-y-6 text-left">
                 <span class="badge-etiqueta">DEPARTAMENTO 01</span>
                 <h2 id="verduras-titulo" class="text-4xl md:text-6xl font-black text-contrast leading-tight">Verduras y Hortalizas</h2>
                 <p id="verduras-desc" class="text-sub-contrast text-base leading-relaxed">
-                    Seleccionamos minuciosamente los mejores productos agrícolas para llevar a tu mesa la máxima frescura, sabor auténtico y un alto valor nutricional en cada una de tus comidas.
+                    Seleccionamos minuciosamente los mejores productos agrícolas para llevar a tu mesa la máxima frescura y sabor.
                 </p>
-                <div>
-                    <button class="bg-white text-slate-900 font-extrabold px-6 py-3 rounded-full text-xs tracking-wider uppercase hover:bg-slate-100 transition shadow-lg">
-                        VER PRODUCTOS
-                    </button>
+
+                <!-- CUADRO DE PRECIOS VERDURAS -->
+                <div class="liquid-card p-5">
+                    <h3 class="font-extrabold text-sm uppercase tracking-wider text-contrast mb-3 flex items-center justify-between">
+                        <span>🥬 Lista de Precios</span>
+                        <span class="text-[10px] opacity-75 font-normal">Actualizado hoy</span>
+                    </h3>
+                    <div id="tabla-precios-verduras" class="space-y-2 text-xs">
+                        <div class="flex justify-between p-2 rounded bg-white/5 border border-white/10">
+                            <span>Papa Seleccionada</span>
+                            <span class="font-bold dark-highlight">Consultar</span>
+                        </div>
+                        <div class="flex justify-between p-2 rounded bg-white/5 border border-white/10">
+                            <span>Tomate Criollo</span>
+                            <span class="font-bold dark-highlight">Consultar</span>
+                        </div>
+                        <div class="flex justify-between p-2 rounded bg-white/5 border border-white/10">
+                            <span>Cebolla</span>
+                            <span class="font-bold dark-highlight">Consultar</span>
+                        </div>
+                    </div>
                 </div>
             </div>
+
             <div class="lg:col-span-6 flex justify-center items-center">
                 <div id="carrusel-verduras" class="carrusel-contenedor">
                     <img src="repollo.png" class="foto-original active" alt="Verduras">
@@ -231,7 +293,7 @@
                 <span class="badge-etiqueta">DEPARTAMENTO 02</span>
                 <h2 id="fruteria-titulo" class="text-4xl md:text-6xl font-black text-contrast leading-tight">Frutería Seleccionada</h2>
                 <p id="fruteria-desc" class="text-sub-contrast text-base leading-relaxed">
-                    Disfruta de frutas de temporada dulces, jugosas y llenas de vitaminas, seleccionadas cuidadosamente para llevar la energía del trópico a tu mesa.
+                    Disfruta de frutas de temporada dulces, jugosas y llenas de vitaminas, seleccionadas cuidadosamente.
                 </p>
                 <div>
                     <button class="bg-white text-slate-900 font-extrabold px-6 py-3 rounded-full text-xs tracking-wider uppercase hover:bg-slate-100 transition shadow-lg">
@@ -252,7 +314,7 @@
                 <span class="badge-etiqueta">DEPARTAMENTO 03</span>
                 <h2 id="charcuteria-titulo" class="text-4xl md:text-6xl font-black text-contrast leading-tight">Charcutería y Víveres</h2>
                 <p id="charcuteria-desc" class="text-sub-contrast text-base leading-relaxed">
-                    Productos de alta calidad para complementar tu despensa, incluyendo embutidos seleccionados, quesos artesanales y víveres de primera necesidad.
+                    Productos de alta calidad para complementar tu despensa, incluyendo embutidos seleccionados y quesos artesanales.
                 </p>
                 <div>
                     <button class="bg-white text-slate-900 font-extrabold px-6 py-3 rounded-full text-xs tracking-wider uppercase hover:bg-slate-100 transition shadow-lg">
@@ -273,7 +335,7 @@
                 <span class="badge-etiqueta">DEPARTAMENTO 04</span>
                 <h2 id="artesania-titulo" class="text-4xl md:text-6xl font-black text-contrast leading-tight">Artesanía y Tradición</h2>
                 <p id="artesania-desc" class="text-sub-contrast text-base leading-relaxed">
-                    Piezas elaboradas a mano con dedicación y talento local, reflejando la identidad, creatividad y cultura de nuestra comunidad.
+                    Piezas elaboradas a mano con dedicación y talento local, reflejando la identidad y cultura de nuestra comunidad.
                 </p>
                 <div>
                     <button class="bg-white text-slate-900 font-extrabold px-6 py-3 rounded-full text-xs tracking-wider uppercase hover:bg-slate-100 transition shadow-lg">
@@ -288,7 +350,83 @@
             </div>
         </div>
 
-        <!-- INFORMACIONES / CARTELERA -->
+        <!-- FUNERARIA -->
+        <div id="tab-funeraria" class="tab-panel grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <div class="lg:col-span-6 space-y-6 text-left">
+                <span class="badge-etiqueta">DEPARTAMENTO 05</span>
+                <h2 class="text-4xl md:text-6xl font-black text-contrast leading-tight">Servicios Funerarios</h2>
+                <p class="text-sub-contrast text-base leading-relaxed">
+                    Brindamos acompañamiento, respeto y atención humana a las familias en los momentos más difíciles con planes integrales y cuotas mensuales accesibles.
+                </p>
+
+                <!-- CUADRO DE DÍAS Y HORARIOS DE ATENCIÓN FUNERARIA -->
+                <div class="liquid-card p-5">
+                    <h3 class="font-extrabold text-sm uppercase tracking-wider text-contrast mb-3 flex items-center gap-2">
+                        <span>🕒</span> Atención y Servicios Funerarios
+                    </h3>
+                    <div class="grid grid-cols-2 gap-3 text-xs text-sub-contrast">
+                        <div class="p-2.5 rounded-lg bg-white/5 border border-white/10">
+                            <span class="font-bold text-contrast block">Oficina / Contrataciones</span>
+                            <span>Lunes a Sábado: 8:00 AM - 4:00 PM</span>
+                        </div>
+                        <div class="p-2.5 rounded-lg bg-white/5 border border-white/10">
+                            <span class="font-bold text-contrast block">Atención de Emergencias</span>
+                            <span class="text-emerald-400 font-bold">24 Horas / 7 Días</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <a href="https://whatsapp.com/channel/0029VbDjia172WU2GFry2L1W" target="_blank" rel="noopener noreferrer" class="liquid-btn inline-block px-6 py-3 rounded-full text-xs font-extrabold tracking-wider uppercase">
+                        SOLICITAR INFORMACIÓN O AFILIACIÓN
+                    </a>
+                </div>
+            </div>
+
+            <!-- CUADRO DE PRECIOS MENSUALES FUNERARIA -->
+            <div class="lg:col-span-6">
+                <div class="liquid-card p-6 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-extrabold text-base uppercase tracking-wider text-contrast flex items-center gap-2">
+                            <span>⚰️</span> Planes y Cuotas Mensuales
+                        </h3>
+                        <span class="text-[10px] opacity-75 font-normal">Aportes por grupo familiar</span>
+                    </div>
+
+                    <div id="tabla-precios-funeraria" class="space-y-3 text-xs">
+                        <div class="p-3 rounded-lg bg-white/5 border border-white/10 flex justify-between items-center">
+                            <div>
+                                <span class="font-bold text-contrast block">Plan Individual</span>
+                                <span class="text-[11px] text-sub-contrast opacity-80">Cobertura básica individual</span>
+                            </div>
+                            <span class="font-bold text-sm dark-highlight">Consultar</span>
+                        </div>
+
+                        <div class="p-3 rounded-lg bg-white/5 border border-white/10 flex justify-between items-center">
+                            <div>
+                                <span class="font-bold text-contrast block">Plan Familiar Básico</span>
+                                <span class="text-[11px] text-sub-contrast opacity-80">Hasta 5 integrantes</span>
+                            </div>
+                            <span class="font-bold text-sm dark-highlight">Consultar</span>
+                        </div>
+
+                        <div class="p-3 rounded-lg bg-white/5 border border-white/10 flex justify-between items-center">
+                            <div>
+                                <span class="font-bold text-contrast block">Plan Familiar Especial</span>
+                                <span class="text-[11px] text-sub-contrast opacity-80">Hasta 8 integrantes con ataúd especial</span>
+                            </div>
+                            <span class="font-bold text-sm dark-highlight">Consultar</span>
+                        </div>
+                    </div>
+
+                    <p class="text-[11px] text-sub-contrast opacity-80 italic">
+                        * Los precios y cuotas mensuales pueden ser consultados directamente en nuestras oficinas o sincronizados a través de Google Sheets.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- INFORMACIONES -->
         <div id="tab-informaciones" class="tab-panel grid-cols-1 gap-6">
             <div>
                 <span class="badge-etiqueta">Avisos y Comunicados</span>
