@@ -7,9 +7,24 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s ease;
             font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* NAVEGACIÓN MÓVIL FLUIDA (Oculta barra de scroll en celulares) */
+        nav {
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none;  /* IE y Edge */
+        }
+        nav::-webkit-scrollbar {
+            display: none; /* Chrome, Safari y Opera */
         }
 
         /* ESTILO LIQUID GLASS (EXCLUSIVO PARA BOTONES INTERACTIVOS) */
@@ -125,7 +140,7 @@
             color: #0f172a;
         }
 
-        /* IMÁGENES EN SU TAMAÑO ORIGINAL */
+        /* IMÁGENES RESPONSIVAS */
         .foto-original {
             max-width: 100%;
             height: auto;
@@ -157,7 +172,7 @@
         }
     </style>
 </head>
-<body class="min-h-screen text-white flex flex-col justify-between px-4 lg:px-10 py-6 overflow-x-hidden bg-[#2d6a4f]" id="main-body">
+<body class="min-h-screen text-white flex flex-col justify-between px-4 lg:px-10 py-6 bg-[#2d6a4f]" id="main-body">
 
     <!-- CABECERA -->
     <header class="flex flex-col xl:flex-row items-center justify-between gap-4 py-3 max-w-[1800px] mx-auto w-full z-50">
@@ -173,7 +188,7 @@
         </div>
 
         <!-- Menú de Navegación Principal -->
-        <nav class="flex items-center gap-1.5 xl:gap-2.5 flex-nowrap overflow-x-auto max-w-full py-2">
+        <nav class="flex items-center gap-1.5 xl:gap-2.5 flex-nowrap overflow-x-auto max-w-full py-2 w-full xl:w-auto justify-start xl:justify-center">
             <button onclick="cambiarPestana('inicio')" class="tab-btn liquid-btn active-tab px-3.5 py-2 rounded-full text-[11px] md:text-xs lg:text-sm font-bold whitespace-nowrap" id="btn-inicio">Inicio</button>
             <button onclick="cambiarPestana('historia')" class="tab-btn liquid-btn px-3.5 py-2 rounded-full text-[11px] md:text-xs lg:text-sm font-bold whitespace-nowrap" id="btn-historia">Historia</button>
             <button onclick="cambiarPestana('verduras')" class="tab-btn liquid-btn px-3.5 py-2 rounded-full text-[11px] md:text-xs lg:text-sm font-bold whitespace-nowrap" id="btn-verduras">Verduras</button>
@@ -333,22 +348,9 @@
                 <span class="badge-etiqueta">Avisos y Comunicados</span>
                 <h2 class="text-3xl md:text-5xl font-black text-contrast mt-2">Cartelera Informativa</h2>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="liquid-card p-6 space-y-2">
-                    <span class="text-xs font-bold dark-highlight uppercase">Jornada Semanal</span>
-                    <h3 class="font-bold text-lg text-contrast">Despacho Agrícola</h3>
-                    <p class="text-xs text-sub-contrast">Recibimos producciones frescas cosechadas diariamente por productores locales.</p>
-                </div>
-                <div class="liquid-card p-6 space-y-2">
-                    <span class="text-xs font-bold dark-highlight uppercase">Atención</span>
-                    <h3 class="font-bold text-lg text-contrast">Atención al Asociado</h3>
-                    <p class="text-xs text-sub-contrast">Oficina abierta para consultas sobre la cooperativa y previsiones.</p>
-                </div>
-                <div class="liquid-card p-6 space-y-2">
-                    <span class="text-xs font-bold dark-highlight uppercase">WhatsApp</span>
-                    <h3 class="font-bold text-lg text-contrast">Canal de Difusión</h3>
-                    <p class="text-xs text-sub-contrast">Sigue el canal oficial para mantenerte al día con avisos al instante.</p>
-                </div>
+            <!-- Contenedor adaptado para cargar la información de Google Sheets -->
+            <div id="contenedor-cartelera" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Se llena dinámicamente desde app.js -->
             </div>
         </div>
 
