@@ -4,34 +4,28 @@ const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzZnb85tPJR7fTt
 // PALETAS DE COLORES POR DEPARTAMENTO
 const paletaColores = {
     inicio:        { noche: '#2d6a4f', dia: '#e8f5e9' },
-    historia:      { noche: '#3b0764', dia: '#f3e8ff' },
     verduras:      { noche: '#1b4332', dia: '#d8f3dc' },
     fruteria:      { noche: '#991b1b', dia: '#ffe3e3' },
     charcuteria:   { noche: '#4c0519', dia: '#ffe4e6' },
     artesania:     { noche: '#78350f', dia: '#fef3c7' },
-    funeraria:     { noche: '#1e293b', dia: '#f1f5f9' },
     informaciones: { noche: '#1e1b4b', dia: '#eef2ff' }
 };
 
 let departamentoActual = 'inicio';
 let esModoDia = false;
 
-// ORDEN DE DEPARTAMENTOS PARA NAVEGACIÓN
-const ordenDepartamentos = ['inicio', 'historia', 'verduras', 'fruteria', 'charcuteria', 'artesania', 'funeraria', 'informaciones'];
+const ordenDepartamentos = ['inicio', 'verduras', 'fruteria', 'charcuteria', 'artesania', 'informaciones'];
 
 // CAMBIAR PESTAÑA
 function cambiarPestana(nombreTab) {
     departamentoActual = nombreTab;
     aplicarColorDeFondo();
 
-    // Ocultar todos los paneles
     document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
     
-    // Activar panel seleccionado
     const panelActivo = document.getElementById(`tab-${nombreTab}`);
     if (panelActivo) panelActivo.classList.add('active');
 
-    // Actualizar botones de navegación
     document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active-tab'));
     const botonActivo = document.getElementById(`btn-${nombreTab}`);
     if (botonActivo) {
@@ -39,11 +33,9 @@ function cambiarPestana(nombreTab) {
         botonActivo.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
     }
 
-    // Subir suavemente al inicio
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// NAVEGACIÓN SIGUIENTE / ANTERIOR (BOTÓN FLECHA Y GESTOS)
 function siguienteDepartamento() {
     const indiceActual = ordenDepartamentos.indexOf(departamentoActual);
     const siguienteIndice = (indiceActual + 1) % ordenDepartamentos.length;
@@ -94,15 +86,6 @@ async function cargarDatosDinamicos() {
 
         if (!Array.isArray(datos)) return;
 
-        // 1. Actualizar el precio único de verduras
-        const precioVerduras = datos.find(d => d.clave && d.clave.toLowerCase() === 'precio_verduras');
-        if (precioVerduras && precioVerduras.precio_detalle) {
-            document.querySelectorAll('.precio-monto, #precio-verduras-val').forEach(el => {
-                el.textContent = `Bs. ${precioVerduras.precio_detalle}`;
-            });
-        }
-
-        // 2. Cargar avisos, reuniones y comunicados en la cartelera
         const contenedorAvisos = document.getElementById('contenedor-cartelera');
         const avisos = datos.filter(d => d.clave && ['REUNIÓN', 'REUNION', 'JORNADA', 'COMUNICADO', 'AVISO'].includes(d.clave.toUpperCase()));
 
@@ -126,39 +109,17 @@ async function cargarDatosDinamicos() {
     }
 }
 
-// INICIALIZACIÓN
+// INICIALIZACIÓN Y CARRUSELES
 document.addEventListener("DOMContentLoaded", () => {
-    // Aplicar fondo del departamento inicial
     aplicarColorDeFondo();
-
-    // Carga de precios y reuniones desde Google Sheets
     cargarDatosDinamicos();
 
-    // Función auxiliar para poblar títulos y descripciones
-    const cargarInfo = (idTitulo, idDesc, data, tituloPorDefecto) => {
-        const titleEl = document.getElementById(idTitulo);
-        const descEl = document.getElementById(idDesc);
-        
-        if (titleEl) {
-            titleEl.innerText = tituloPorDefecto;
-        }
-        if (descEl && data) {
-            descEl.innerText = data.desc || data.descripcion || '';
-        }
-    };
-
-    if (typeof verdurasInfo !== 'undefined') cargarInfo("verduras-titulo", "verduras-desc", verdurasInfo, "Verduras y Hortalizas");
-    if (typeof fruteriaInfo !== 'undefined') cargarInfo("fruteria-titulo", "fruteria-desc", fruteriaInfo, "Frutería");
-    if (typeof charcuteriaInfo !== 'undefined') cargarInfo("charcuteria-titulo", "charcuteria-desc", charcuteriaInfo, "Charcutería");
-    if (typeof artesaniaInfo !== 'undefined') cargarInfo("artesania-titulo", "artesania-desc", artesaniaInfo, "Artesanía Local");
-
-    // CARRUSEL DE FOTOS SUELTAS
     function crearCarrusel(contenedorId, listaImagenes) {
         const contenedor = document.getElementById(contenedorId);
         if (!contenedor || !listaImagenes || listaImagenes.length === 0) return;
 
         contenedor.innerHTML = listaImagenes.map((src, index) => 
-            `<img src="${src}" class="foto-original ${index === 0 ? 'active' : ''}" alt="Foto producto">`
+            `<img src="${src}" class="foto-original ${index === 0 ? 'active' : ''}" alt="Foto producto" onError="this.style.display='none'">`
         ).join('');
 
         let indiceActual = 0;
@@ -173,20 +134,18 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Obtener imágenes de cada departamento si existen
-    const imgVerduras = (typeof verdurasInfo !== 'undefined' && verdurasInfo.imagenes) ? verdurasInfo.imagenes : [];
-    const imgFruteria = (typeof fruteriaInfo !== 'undefined' && fruteriaInfo.imagenes) ? fruteriaInfo.imagenes : [];
-    const imgCharcuteria = (typeof charcuteriaInfo !== 'undefined' && charcuteriaInfo.imagenes) ? charcuteriaInfo.imagenes : [];
-    const imgArtesania = (typeof artesaniaInfo !== 'undefined' && artesaniaInfo.imagenes) ? artesaniaInfo.imagenes : [];
+    const imgVerduras = (typeof verdurasInfo !== 'undefined' && verdurasInfo.imagenes) ? verdurasInfo.imagenes : ['repollo.png'];
+    const imgFruteria = (typeof fruteriaInfo !== 'undefined' && fruteriaInfo.imagenes) ? fruteriaInfo.imagenes : ['fresa.png'];
+    const imgCharcuteria = (typeof charcuteriaInfo !== 'undefined' && charcuteriaInfo.imagenes) ? charcuteriaInfo.imagenes : ['queso.png'];
+    const imgArtesania = (typeof artesaniaInfo !== 'undefined' && artesaniaInfo.imagenes) ? artesaniaInfo.imagenes : ['artesania.png'];
 
-    // Inicializar los carruseles
     crearCarrusel('carrusel-verduras', imgVerduras);
     crearCarrusel('carrusel-fruteria', imgFruteria);
     crearCarrusel('carrusel-charcuteria', imgCharcuteria);
     crearCarrusel('carrusel-artesania', imgArtesania);
 });
 
-// DETECCIÓN DE GESTOS TÁCTILES (SWIPE EN MÓVILES)
+// GESTOS TÁCTILES
 let touchstartX = 0, touchstartY = 0, touchendX = 0, touchendY = 0;
 document.addEventListener('touchstart', e => {
     touchstartX = e.changedTouches[0].screenX;
