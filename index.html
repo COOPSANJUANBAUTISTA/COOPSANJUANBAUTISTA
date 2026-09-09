@@ -78,7 +78,7 @@
             pointer-events: none;
         }
 
-        /* BOTÓN DE FLECHA FLOTANTE (10% más grande y centrado a la derecha de la pantalla) */
+        /* BOTÓN DE FLECHA FLOTANTE */
         .btn-flecha-siguiente {
             background: linear-gradient(135deg, rgba(16, 185, 129, 0.95) 0%, rgba(5, 150, 105, 0.95) 100%);
             border: 2px solid rgba(255, 255, 255, 0.8);
@@ -182,8 +182,8 @@
 </head>
 <body class="min-h-screen text-white flex flex-col justify-between px-4 lg:px-10 py-6 bg-[#2d6a4f]" id="main-body">
 
-    <!-- BOTÓN DE FLECHA FLOTANTE (Centrado a la derecha de la pantalla y 10% más grande) -->
-    <button onclick="siguienteDepartamento()" class="fixed right-3 top-1/2 -translate-y-1/2 z-50 btn-flecha-siguiente animate-bounce p-3.5 rounded-full text-white flex items-center justify-center cursor-pointer hover:scale-110 transition-transform" title="Siguiente departamento">
+    <!-- BOTÓN DE FLECHA FLOTANTE (Ubicado arriba a la derecha para no tapar contenido) -->
+    <button onclick="siguienteDepartamento()" class="fixed right-3 top-28 z-50 btn-flecha-siguiente animate-bounce p-3.5 rounded-full text-white flex items-center justify-center cursor-pointer hover:scale-110 transition-transform" title="Siguiente departamento">
         <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
             <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
         </svg>
