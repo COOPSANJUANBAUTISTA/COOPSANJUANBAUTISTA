@@ -1,7 +1,7 @@
 // URL de Google Apps Script (Google Sheets Backend)
 const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzZnb85tPJR7fTt-mJWW9qZ2huk--pU_d7KPwE2RP9RRIcII5ti8Xyh-QtpqMFrBrdN/exec";
 
-// PALETAS DE COLORES
+// PALETAS DE COLORES POR DEPARTAMENTO
 const paletaColores = {
     inicio:        { noche: '#2d6a4f', dia: '#e8f5e9' },
     historia:      { noche: '#3b0764', dia: '#f3e8ff' },
@@ -21,20 +21,30 @@ function cambiarPestana(nombreTab) {
     departamentoActual = nombreTab;
     aplicarColorDeFondo();
 
+    // Ocultar todos los paneles
     document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
+    
+    // Activar panel seleccionado
     const panelActivo = document.getElementById(`tab-${nombreTab}`);
     if (panelActivo) panelActivo.classList.add('active');
 
+    // Actualizar botones de navegación
     document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active-tab'));
     const botonActivo = document.getElementById(`btn-${nombreTab}`);
     if (botonActivo) botonActivo.classList.add('active-tab');
+
+    // Subir suavemente al inicio (ideal para teléfonos móviles)
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// APLICAR FONDO
+// APLICAR COLOR DE FONDO
 function aplicarColorDeFondo() {
     const colores = paletaColores[departamentoActual] || paletaColores.inicio;
     const colorFinal = esModoDia ? colores.dia : colores.noche;
-    document.getElementById('main-body').style.backgroundColor = colorFinal;
+    const body = document.getElementById('main-body');
+    if (body) {
+        body.style.backgroundColor = colorFinal;
+    }
 }
 
 // ALTERNAR DÍA / NOCHE
@@ -45,13 +55,13 @@ function toggleModoDiaNoche() {
     const themeText = document.getElementById('theme-text');
 
     if (esModoDia) {
-        body.classList.add('light-mode');
-        themeIcon.innerText = '☀️';
-        themeText.innerText = 'Día';
+        if (body) body.classList.add('light-mode');
+        if (themeIcon) themeIcon.innerText = '☀️';
+        if (themeText) themeText.innerText = 'Día';
     } else {
-        body.classList.remove('light-mode');
-        themeIcon.innerText = '🌙';
-        themeText.innerText = 'Noche';
+        if (body) body.classList.remove('light-mode');
+        if (themeIcon) themeIcon.innerText = '🌙';
+        if (themeText) themeText.innerText = 'Noche';
     }
 
     aplicarColorDeFondo();
@@ -63,17 +73,19 @@ async function cargarDatosDinamicos() {
         const respuesta = await fetch(APPS_SCRIPT_URL);
         const datos = await respuesta.json();
 
-        // 1. Actualizar el precio único de verduras (Solo apunta a selectores de precio)
+        if (!Array.isArray(datos)) return;
+
+        // 1. Actualizar el precio único de verduras
         const precioVerduras = datos.find(d => d.clave && d.clave.toLowerCase() === 'precio_verduras');
-        if (precioVerduras) {
+        if (precioVerduras && precioVerduras.precio_detalle) {
             document.querySelectorAll('.precio-monto, #precio-verduras-val').forEach(el => {
                 el.textContent = `Bs. ${precioVerduras.precio_detalle}`;
             });
         }
 
         // 2. Cargar avisos, reuniones y comunicados en la cartelera
-        const contenedorAvisos = document.querySelector('#tab-informaciones .grid');
-        const avisos = datos.filter(d => d.clave && ['REUNIÓN', 'JORNADA', 'COMUNICADO', 'AVISO'].includes(d.clave.toUpperCase()));
+        const contenedorAvisos = document.getElementById('contenedor-cartelera');
+        const avisos = datos.filter(d => d.clave && ['REUNIÓN', 'REUNION', 'JORNADA', 'COMUNICADO', 'AVISO'].includes(d.clave.toUpperCase()));
 
         if (contenedorAvisos && avisos.length > 0) {
             contenedorAvisos.innerHTML = '';
@@ -81,11 +93,11 @@ async function cargarDatosDinamicos() {
                 contenedorAvisos.innerHTML += `
                     <div class="liquid-card p-6 space-y-2">
                         <div class="flex justify-between items-center">
-                            <span class="text-xs font-bold dark-highlight uppercase">${item.clave}</span>
+                            <span class="text-xs font-bold dark-highlight uppercase">${item.clave || 'AVISO'}</span>
                             ${item.fecha_nota ? `<span class="text-[11px] text-sub-contrast opacity-80">${item.fecha_nota}</span>` : ''}
                         </div>
-                        <h3 class="font-bold text-lg text-contrast">${item.titulo}</h3>
-                        <p class="text-xs text-sub-contrast leading-relaxed">${item.precio_detalle}</p>
+                        <h3 class="font-bold text-lg text-contrast">${item.titulo || ''}</h3>
+                        <p class="text-xs text-sub-contrast leading-relaxed">${item.precio_detalle || ''}</p>
                     </div>
                 `;
             });
@@ -97,9 +109,13 @@ async function cargarDatosDinamicos() {
 
 // INICIALIZACIÓN
 document.addEventListener("DOMContentLoaded", () => {
+    // Aplicar fondo del departamento inicial
+    aplicarColorDeFondo();
+
     // Carga de precios y reuniones desde Google Sheets
     cargarDatosDinamicos();
 
+    // Función auxiliar para poblar títulos y descripciones
     const cargarInfo = (idTitulo, idDesc, data, tituloPorDefecto) => {
         const titleEl = document.getElementById(idTitulo);
         const descEl = document.getElementById(idDesc);
@@ -138,11 +154,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    // Obtener imágenes de cada departamento si existen
     const imgVerduras = (typeof verdurasInfo !== 'undefined' && verdurasInfo.imagenes) ? verdurasInfo.imagenes : [];
     const imgFruteria = (typeof fruteriaInfo !== 'undefined' && fruteriaInfo.imagenes) ? fruteriaInfo.imagenes : [];
     const imgCharcuteria = (typeof charcuteriaInfo !== 'undefined' && charcuteriaInfo.imagenes) ? charcuteriaInfo.imagenes : [];
     const imgArtesania = (typeof artesaniaInfo !== 'undefined' && artesaniaInfo.imagenes) ? artesaniaInfo.imagenes : [];
 
+    // Inicializar los carruseles
     crearCarrusel('carrusel-verduras', imgVerduras);
     crearCarrusel('carrusel-fruteria', imgFruteria);
     crearCarrusel('carrusel-charcuteria', imgCharcuteria);
